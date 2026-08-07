@@ -67,3 +67,8 @@ Adds visible task orchestration, specialist connection states, bounded local spe
 ## v1.1 — NAIB public identity
 
 NAIB is now the public-facing intelligence. NOEMA remains the administrative intelligence governing Constitution, permissions, memory, identity, Verifier standards, security, provider boundaries, and specialist authority. Existing `noema_*` data keys remain intact.
+
+
+## v1.2 — Specialist Runtime & Resource Discovery
+
+Connects approved Khaemenes Academy, ARSHIF, and PLERA Search resource manifests through NOEMA-governed discovery. Adds audience/preference/freshness gating, manifest provenance, a specialist adapter contract, visible resource results, and explicit EXECUTED / DISCOVERED / HANDOFF / UNAVAILABLE states.

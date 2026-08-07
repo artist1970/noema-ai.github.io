@@ -1,4 +1,4 @@
-const CACHE = "naib-shell-v1.1.0";
+const CACHE = "naib-shell-v1.2.0";
 const SHELL = [
   "./",
   "./index.html",
@@ -10,6 +10,18 @@ const SHELL = [
   "./styles/noema-verifier.css",
   "./styles/noema-conversation.css",
   "./styles/noema-orchestration.css",
+  "./resources/execution-state.js",
+  "./resources/approved-manifest-sources.js",
+  "./resources/resource-manifest.js",
+  "./resources/resource-manifest-loader.js",
+  "./resources/resource-eligibility.js",
+  "./resources/resource-ranker.js",
+  "./resources/resource-director.js",
+  "./resources/snapshots/manifest-snapshots.js",
+  "./specialists/adapter-contract.js",
+  "./adapters/khaemenes-resource-adapter.js",
+  "./adapters/arshif-resource-adapter.js",
+  "./adapters/plera-search-resource-adapter.js",
   "./front/naib-identity.js",
   "./front/naib-facade.js",
   "./front/public-boundary.js",

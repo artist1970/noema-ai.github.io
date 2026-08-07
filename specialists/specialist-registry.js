@@ -3,10 +3,24 @@ export const SPECIALIST_STATES = Object.freeze({
   HANDOFF: "handoff-ready",
   REMOTE: "remote-capable",
   UNAVAILABLE: "unavailable",
-  RESTRICTED: "restricted"
+  RESTRICTED: "restricted",
+  DISCOVERY: "manifest-discoverable"
 });
 
 export const SPECIALISTS = Object.freeze({
+
+  resourceDirector: {
+    id:"resource-director",
+    label:"Resource Director",
+    state:SPECIALIST_STATES.LOCAL,
+    category:"resource-discovery",
+    purposes:["learning","research","archive","resource","search","family"],
+    audiences:["child","student","adult"],
+    requiresAccount:false,
+    canExecuteLocally:true,
+    authority:"approved-resource-discovery",
+    notes:"Discovers approved ecosystem resources from validated public manifests. Discovery is not claim verification."
+  },
   verifier: {
     id:"verifier",
     label:"The Verifier",
@@ -72,7 +86,7 @@ export const SPECIALISTS = Object.freeze({
   arshif: {
     id:"arshif",
     label:"ARSHIF",
-    state:SPECIALIST_STATES.HANDOFF,
+    state:SPECIALIST_STATES.DISCOVERY,
     category:"archive",
     purposes:["archive","history","research","reference","reading"],
     audiences:["child","student","adult"],
@@ -80,12 +94,12 @@ export const SPECIALISTS = Object.freeze({
     canExecuteLocally:false,
     authority:"archive-and-context",
     url:"https://vervenveda.com/Arshif.github.io/",
-    notes:"Archive/context pathway. It is not a privileged truth authority."
+    notes:"Manifest-discoverable archive/context pathway. Opening an ARSHIF app remains a user-facing handoff. It is not a privileged truth authority."
   },
   pleraSearch: {
     id:"plera-search",
     label:"PLERA Search",
-    state:SPECIALIST_STATES.HANDOFF,
+    state:SPECIALIST_STATES.DISCOVERY,
     category:"discovery",
     purposes:["search","research","discovery","current-events"],
     audiences:["student","adult"],
@@ -93,7 +107,7 @@ export const SPECIALISTS = Object.freeze({
     canExecuteLocally:false,
     authority:"discovery",
     url:"https://vervenveda.com/PLERASearch.github.io/",
-    notes:"Discovery handoff. Search ranking does not create verified truth."
+    notes:"Manifest-discoverable outer research pathway. Opening the search app remains a user-facing handoff. Search ranking does not create verified truth."
   },
   hope: {
     id:"hope",
