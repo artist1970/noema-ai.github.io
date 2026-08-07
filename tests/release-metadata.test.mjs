@@ -2,9 +2,8 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 
-test("v1.0 metadata keeps NOEMA mature and not adult-only",()=>{
+test("public metadata identifies NAIB while preserving NOEMA administration",()=>{
   const html=fs.readFileSync(new URL("../index.html",import.meta.url),"utf8");
-  assert.match(html,/NOEMA \/ v1\.0/);
-  assert.match(html,/Sovereign Intelligence Director/);
-  assert.equal(html.includes("Sovereign Adult Intelligence"),false);
+  assert.match(html,/NAIB — Public Intelligence Director/);
+  assert.match(html,/governed behind the scenes by NOEMA/);
 });
