@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://noema.local/schemas/avatar-manifest.schema.json",
+  "title": "NOEMA Mentor Avatar Manifest",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "mentorId",
+    "displayName",
+    "supervisor",
+    "status",
+    "creationMode",
+    "appearance",
+    "temperament",
+    "traits",
+    "voice",
+    "inferenceBoundary"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "mentorId": {
+      "type": "string",
+      "minLength": 8
+    },
+    "displayName": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 30
+    },
+    "supervisor": {
+      "const": "noema"
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "adopted"
+      ]
+    },
+    "creationMode": {
+      "enum": [
+        "parts",
+        "sketch"
+      ]
+    },
+    "appearance": {
+      "type": "object"
+    },
+    "artSource": {
+      "type": "object"
+    },
+    "temperament": {
+      "type": "string"
+    },
+    "traits": {
+      "type": "array",
+      "maxItems": 4,
+      "items": {
+        "type": "string"
+      }
+    },
+    "collaboration": {
+      "type": "array",
+      "maxItems": 4,
+      "items": {
+        "type": "string"
+      }
+    },
+    "sharedInterests": {
+      "type": "array",
+      "maxItems": 8,
+      "items": {
+        "type": "string"
+      }
+    },
+    "voice": {
+      "type": "object"
+    },
+    "inferenceBoundary": {
+      "type": "object",
+      "required": [
+        "appearanceUsedForLearnerInference",
+        "appearanceUsedForAbilityInference",
+        "appearanceUsedForDemographicInference",
+        "drawingUsedForPsychologicalInference"
+      ],
+      "properties": {
+        "appearanceUsedForLearnerInference": {
+          "const": false
+        },
+        "appearanceUsedForAbilityInference": {
+          "const": false
+        },
+        "appearanceUsedForDemographicInference": {
+          "const": false
+        },
+        "drawingUsedForPsychologicalInference": {
+          "const": false
+        }
+      }
+    }
+  }
+}

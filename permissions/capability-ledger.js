@@ -8,6 +8,32 @@ export const CAPABILITY_STATES = Object.freeze({
 
 export const NOEMA_CAPABILITIES = Object.freeze({
 
+
+  "avatar.read": {
+    state: CAPABILITY_STATES.ALLOW,
+    description: "Read the user's explicitly adopted mentor manifest."
+  },
+  "avatar.design": {
+    state: CAPABILITY_STATES.ALLOW,
+    description: "Preview mentor designs and local drawing cleanup without changing permissions."
+  },
+  "avatar.sketch-save": {
+    state: CAPABILITY_STATES.CONFIRM,
+    description: "Save a user-created mentor sketch and its reversible cleaned version."
+  },
+  "avatar.save-draft": {
+    state: CAPABILITY_STATES.CONFIRM,
+    description: "Save a local mentor design through explicit user action."
+  },
+  "avatar.adopt": {
+    state: CAPABILITY_STATES.CONFIRM,
+    description: "Adopt the mentor into the existing person-to-mentor relationship through explicit user action."
+  },
+  "avatar.change-permissions": {
+    state: CAPABILITY_STATES.BLOCK,
+    description: "Avatar customization can never elevate system, guardian, account, or resource permissions."
+  },
+
   "identity.read": {
     state: CAPABILITY_STATES.ALLOW,
     description: "Read the local NOEMA enrollment profile for contextual routing."

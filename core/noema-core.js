@@ -8,6 +8,7 @@ import { EnrollmentStore } from "../identity/enrollment-store.js";
 import { MentorRelationshipStore } from "../identity/mentor-relationship-store.js";
 import { AccountServerClient } from "../adapters/account-server-client.js";
 import { IdentitySync } from "../sync/identity-sync.js";
+import { AvatarFoundry } from "../avatars/avatar-foundry.js";
 import { getConstitution } from "../ethics/constitution.js";
 
 export class NoemaCore {
@@ -35,6 +36,12 @@ export class NoemaCore {
       accountServerClient: this.accountServer
     });
 
+    this.avatarFoundry = new AvatarFoundry({
+      storage,
+      relationshipStore: this.mentorRelationships,
+      enrollmentStore: this.enrollment
+    });
+
     this.orchestrator = new ConversationOrchestrator({
       ethicsEngine,
       capabilityLedger
@@ -52,6 +59,7 @@ export class NoemaCore {
       activeProject: this.projects.active(),
       enrollmentProfile: this.enrollment.load(),
       mentorRelationship: this.mentorRelationships.load(),
+      avatar: this.avatarFoundry.current(),
       query,
       provider: this.provider
     });
@@ -112,6 +120,28 @@ export class NoemaCore {
     };
   }
 
+  saveAvatarSketch(strokes = [], meta = {}) {
+    const gate = this.checkCapability("avatar.sketch-save", { confirmed: true });
+    if (!gate.allowed) return { ok: false, reason: gate.reason };
+    return this.avatarFoundry.saveSketch(strokes, meta);
+  }
+
+  saveAvatarDraft(input = {}) {
+    const gate = this.checkCapability("avatar.save-draft", { confirmed: true });
+    if (!gate.allowed) return { ok: false, reason: gate.reason };
+    return this.avatarFoundry.saveDraft(input);
+  }
+
+  adoptAvatar(input = {}) {
+    const gate = this.checkCapability("avatar.adopt", { confirmed: true });
+    if (!gate.allowed) return { ok: false, reason: gate.reason };
+    return this.avatarFoundry.adopt(input);
+  }
+
+  getAvatar() {
+    return this.avatarFoundry.current();
+  }
+
   saveMemory(input = {}) {
     const gate = this.checkCapability("memory.record", {
       confirmed: true,
@@ -145,6 +175,7 @@ export class NoemaCore {
     this.projects.reset();
     this.enrollment.clear();
     this.mentorRelationships.clear();
+    this.avatarFoundry.clear();
   }
 
   getSystemStatus() {
@@ -161,6 +192,7 @@ export class NoemaCore {
       },
       accountServer: this.accountServer.status(),
       enrollment: this.getEnrollmentStatus(),
+      avatar: this.avatarFoundry.current(),
       memory: {
         longTermItems: this.memory.list().length,
         continuityItems: this.continuity.list().length,

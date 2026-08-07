@@ -1,39 +1,48 @@
-# NOEMA v0.6 — Identity + Enrollment Spine
+# NOEMA v0.7 — Avatar Foundry + Mentor Adoption
 
-Upload this package into:
+Upload into:
 
 `artist1970/noema-ai.github.io`
 
-preserving folders.
+preserving all folders.
 
 ## New files
 
 ```text
-config/server-config.js
-config/server-contract.example.json
+avatars/
+  appearance-catalog.js
+  personality-catalog.js
+  voice-profile.js
+  sketch-refiner.js
+  sketch-store.js
+  sketch-canvas.js
+  avatar-schema.js
+  avatar-store.js
+  avatar-supervisor.js
+  avatar-renderer.js
+  avatar-foundry.js
 
-identity/person-schema.js
-identity/guardian-policy.js
-identity/enrollment-store.js
-identity/mentor-relationship-store.js
+adapters/
+  moirai-refinement-adapter.js
 
-adapters/account-server-client.js
-sync/identity-sync.js
+schemas/
+  avatar-manifest.schema.json
+  avatar-sketch.schema.json
 
-schemas/enrollment-contract.schema.json
-schemas/mentor-relationship.schema.json
+styles/
+  noema-avatar.css
 
-styles/noema-enrollment.css
+docs/
+  AVATAR_FOUNDRY_ARCHITECTURE.md
+  BAZAAR_ART_LINEAGE.md
+  MOIRAI_AVATAR_REFINEMENT_PROTOCOL.md
 
-docs/IDENTITY_ENROLLMENT_PROTOCOL.md
-docs/FUTURE_SECURE_SERVER_HOST.md
-docs/ACCOUNT_SERVER_API_CONTRACT.md
-
-tests/enrollment.test.mjs
-tests/server-config.test.mjs
-tests/account-server-client.test.mjs
-tests/mentor-relationship.test.mjs
-tests/context-enrollment.test.mjs
+tests/
+  avatar-schema.test.mjs
+  avatar-supervisor.test.mjs
+  sketch-refiner.test.mjs
+  avatar-foundry.test.mjs
+  context-avatar.test.mjs
 ```
 
 ## Replace
@@ -47,17 +56,17 @@ permissions/capability-ledger.js
 service-worker.js
 ```
 
-## What v0.6 does now
+## Release behavior
 
-- Adds local Identity & Enrollment UI.
-- Stores month/year instead of requiring a full birthday.
-- Separates age from grade and learning stage.
-- Establishes default child / teen / adult enrollment pathways.
-- Creates a local person → mentor relationship ID.
-- Adds learner interests and favorite subject.
-- Keeps avatar appearance out of learner inference.
-- Adds a future HTTPS account-server configuration seam.
-- Adds a remote account client designed for secure server-side sessions.
-- Stores no browser password or authentication token.
-- Keeps cross-device sync disabled until a real secure server exists.
-- Advances service-worker cache to `noema-shell-v0.6.0`.
+- `Adopt a Mentor` opens the Foundry.
+- Any supported age / learning stage uses the same mentor architecture.
+- Build path: select features.
+- Draw path: create a rough mentor sketch.
+- Bazaar Art-inspired guide layer, brush, opacity, eraser, undo/redo and symmetry assist.
+- Local cleanup smooths rough lines.
+- Original drawing remains preserved.
+- Future Moirai refinement seam exists but is not falsely shown as connected.
+- Appearance and drawings never feed learner/demographic/psychological inference.
+- Mentor adoption requires explicit confirmation.
+- Avatar customization cannot elevate permissions.
+- Cache version: `noema-shell-v0.7.0`.

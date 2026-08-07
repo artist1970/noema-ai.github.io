@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="./styles/noema-ethics.css">
   <link rel="stylesheet" href="./styles/noema-memory.css">
   <link rel="stylesheet" href="./styles/noema-enrollment.css">
+  <link rel="stylesheet" href="./styles/noema-avatar.css">
 </head>
 <body>
   <header class="site-header">
@@ -108,7 +109,7 @@
 
   <main class="shell" id="noema-workspace" aria-label="NOEMA workspace">
     <div class="shell-head">
-      <div class="brand">NOEMA / v0.6</div>
+      <div class="brand">NOEMA / v0.7</div>
       <div class="status">Local-first · Private by design</div>
     </div>
 
@@ -129,6 +130,7 @@
           <button class="btn primary" id="routeBtn">Continue with Noema</button>
           <button class="btn secondary" id="clearBtn">Clear message</button>
           <button class="btn secondary" id="enrollmentBtn">Identity &amp; Enrollment</button>
+          <button class="btn secondary" id="avatarBtn">Adopt a Mentor</button>
           <button class="btn secondary" id="memoryBtn">Memory &amp; Context</button>
           <button class="btn secondary" id="eraseBtn">Clear NOEMA local data</button>
         </div>
@@ -139,6 +141,203 @@
       <aside class="modules" id="modules" aria-label="Relevant specialist systems"></aside>
     </section>
   </main>
+
+  <div class="avatar-drawer" id="avatarDrawer" hidden>
+    <section class="avatar-panel" role="dialog" aria-modal="true" aria-labelledby="avatarHeading">
+      <header class="avatar-head">
+        <div>
+          <div class="eyebrow">NOEMA Avatar Foundry · Mentor Adoption</div>
+          <h2 id="avatarHeading">Create Your Learning Companion</h2>
+          <p>
+            Build a mentor from features or draw one yourself. A rough drawing is enough:
+            the Foundry can smooth and clean the lines while preserving the original as the source.
+          </p>
+        </div>
+        <button class="avatar-close" id="avatarClose" type="button" aria-label="Close Avatar Foundry">×</button>
+      </header>
+
+      <div class="avatar-layout">
+        <form class="avatar-builder" id="avatarForm">
+          <section class="foundry-section">
+            <h3>1 · Create the character</h3>
+            <div class="creation-tabs">
+              <button type="button" class="creation-tab active" id="partsTab">Build My Mentor</button>
+              <button type="button" class="creation-tab" id="drawTab">Draw My Mentor</button>
+            </div>
+
+            <label>
+              Mentor name
+              <input id="avatarName" maxlength="30" placeholder="Choose a name" required>
+            </label>
+
+            <div class="creation-panel" id="partsPanel">
+              <div class="foundry-grid" style="margin-top:.8rem">
+                <label>Hair style<select id="avatarHairStyle"></select></label>
+                <label>Outfit style<select id="avatarOutfitStyle"></select></label>
+              </div>
+
+              <div style="margin-top:.8rem">
+                <div class="memory-section-kicker">Skin tone</div>
+                <div class="swatch-grid" id="avatarSkinTones"></div>
+              </div>
+              <div style="margin-top:.8rem">
+                <div class="memory-section-kicker">Hair color</div>
+                <div class="swatch-grid" id="avatarHairColors"></div>
+              </div>
+              <div style="margin-top:.8rem">
+                <div class="memory-section-kicker">Eye color</div>
+                <div class="swatch-grid" id="avatarEyeColors"></div>
+              </div>
+              <div class="foundry-grid" style="margin-top:.8rem">
+                <label>Primary clothing color<select id="avatarPrimaryColor"></select></label>
+                <label>Secondary clothing color<select id="avatarSecondaryColor"></select></label>
+              </div>
+            </div>
+
+            <div class="creation-panel" id="drawPanel" hidden>
+              <div class="sketch-stage">
+                <div class="sketch-tools">
+                  <label>Guide
+                    <select id="sketchGuide">
+                      <option value="face">Face</option>
+                      <option value="figure">Figure</option>
+                      <option value="grid">Grid</option>
+                      <option value="none">No guide</option>
+                    </select>
+                  </label>
+                  <label>Guide strength
+                    <select id="sketchGuideStep">
+                      <option value="1">Strong</option>
+                      <option value="2" selected>Light</option>
+                      <option value="3">Very faint</option>
+                    </select>
+                  </label>
+                  <label>Brush size<input id="sketchBrushSize" type="range" min="1" max="18" value="4"></label>
+                  <label>Opacity<input id="sketchOpacity" type="range" min=".15" max="1" step=".05" value="1"></label>
+                  <label>Color<input id="sketchColor" type="color" value="#17243a"></label>
+                  <label>Cleanup
+                    <select id="sketchCleanup">
+                      <option value="gentle">Gentle</option>
+                      <option value="balanced" selected>Balanced</option>
+                      <option value="polished">More polished</option>
+                    </select>
+                  </label>
+                </div>
+
+                <div class="sketch-tool-row">
+                  <button type="button" class="mini-btn" id="sketchEraser">Eraser</button>
+                  <button type="button" class="mini-btn" id="sketchSymmetry">Symmetry Assist</button>
+                  <button type="button" class="mini-btn" id="sketchUndo">↶ Undo</button>
+                  <button type="button" class="mini-btn" id="sketchRedo">↷ Redo</button>
+                  <button type="button" class="mini-btn" id="sketchClear">Clear</button>
+                  <button type="button" class="mini-btn" id="sketchRefine">Clean Up Lines</button>
+                  <button type="button" class="mini-btn" id="sketchSave">Save Drawing</button>
+                </div>
+
+                <div class="sketch-canvas-shell">
+                  <canvas id="mentorGuideCanvas"></canvas>
+                  <canvas id="mentorSketchCanvas"></canvas>
+                </div>
+
+                <div class="sketch-compare">
+                  <div class="sketch-compare-card">
+                    <div class="memory-section-kicker">Original</div>
+                    <canvas id="originalPreviewCanvas" width="420" height="360"></canvas>
+                  </div>
+                  <div class="sketch-compare-card">
+                    <div class="memory-section-kicker">Cleaned</div>
+                    <canvas id="refinedPreviewCanvas" width="420" height="360"></canvas>
+                  </div>
+                </div>
+
+                <div class="sketch-note">
+                  Inspired by Bazaar Art's Trace &amp; Draw, Sketch Lab, Studio Sketch, and Chromatic Foundry:
+                  the guide is separate from your drawing, your original strokes are preserved, cleanup is reversible,
+                  and future Moirai refinement must remain faithful to the source drawing.
+                </div>
+              </div>
+            </div>
+
+            <div class="appearance-boundary">
+              Appearance and drawing style are creative expression only. They are never used to infer race,
+              ethnicity, intelligence, personality, academic ability, disciplinary risk, politics, religion,
+              socioeconomic status, or psychological condition.
+            </div>
+          </section>
+
+          <section class="foundry-section">
+            <h3>2 · Personality</h3>
+            <div class="foundry-grid">
+              <label>Primary temperament<select id="avatarTemperament"></select></label>
+              <label>Voice character
+                <select id="avatarVoiceStyle">
+                  <option value="warm">Warm</option>
+                  <option value="calm">Calm</option>
+                  <option value="bright">Bright</option>
+                  <option value="measured">Measured</option>
+                  <option value="expressive">Expressive</option>
+                  <option value="neutral">Neutral</option>
+                </select>
+              </label>
+            </div>
+            <div style="margin-top:.8rem">
+              <div class="memory-section-kicker">Choose up to four traits</div>
+              <div class="choice-grid" id="avatarTraits"></div>
+            </div>
+          </section>
+
+          <section class="foundry-section">
+            <h3>3 · Shared interests</h3>
+            <p class="hint">Choose interests you would enjoy sharing with your mentor. These are preference signals, not personality diagnoses.</p>
+            <div class="choice-grid" id="avatarInterests"></div>
+          </section>
+
+          <section class="foundry-section">
+            <h3>4 · How should your mentor work with you?</h3>
+            <div class="choice-grid" id="avatarCollaboration"></div>
+          </section>
+
+          <section class="foundry-section">
+            <h3>5 · Voice</h3>
+            <div class="foundry-grid three">
+              <label>Speaking pace<input id="avatarVoiceRate" type="range" min=".65" max="1.35" step=".05" value=".95"></label>
+              <label>Pitch<input id="avatarVoicePitch" type="range" min=".7" max="1.3" step=".05" value="1"></label>
+              <label>Device voice<select id="avatarBrowserVoice"><option value="">Automatic</option></select></label>
+            </div>
+            <div class="sketch-note">
+              Speech output uses the browser's available voices. Listening is not continuous:
+              future voice input remains push-to-talk only.
+            </div>
+          </section>
+
+          <div class="foundry-actions">
+            <button type="button" class="btn secondary" id="saveAvatarDraftBtn">Save Design</button>
+            <button type="button" class="btn secondary" id="hearMentorBtn">Hear Introduction</button>
+            <button type="submit" class="btn primary">Adopt This Mentor</button>
+          </div>
+          <div class="foundry-status" id="avatarStatus" aria-live="polite"></div>
+        </form>
+
+        <aside class="avatar-preview-card">
+          <span class="adoption-badge" id="avatarAdoptionBadge">Designing</span>
+          <div class="avatar-preview" id="avatarPreview"></div>
+          <div class="avatar-preview-meta">
+            <h3 id="avatarPreviewName">My Mentor</h3>
+            <p id="avatarPreviewDescription">Choose a temperament and traits to shape how your mentor works with you.</p>
+          </div>
+          <div class="server-seam">
+            <strong>NOEMA Supervision</strong>
+            <p>
+              This mentor receives a stable mentor ID and operates under NOEMA's Constitution,
+              guardian pathway, capability boundaries, and resource permissions.
+            </p>
+            <span class="server-pill">Permissions cannot be changed here</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </div>
+
 
   <div class="enrollment-drawer" id="enrollmentDrawer" hidden>
     <section class="enrollment-panel" role="dialog" aria-modal="true" aria-labelledby="enrollmentHeading">

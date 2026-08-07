@@ -1,4 +1,4 @@
-const CACHE = "noema-shell-v0.6.0";
+const CACHE = "noema-shell-v0.7.0";
 const SHELL = [
   "./",
   "./index.html",
@@ -6,6 +6,7 @@ const SHELL = [
   "./styles/noema-ethics.css",
   "./styles/noema-memory.css",
   "./styles/noema-enrollment.css",
+  "./styles/noema-avatar.css",
   "./app/noema-app.js",
   "./core/noema-core.js",
   "./core/identity.js",
@@ -21,6 +22,18 @@ const SHELL = [
   "./memory/memory-retriever.js",
   "./memory/project-context-store.js",
   "./memory/sensitive-memory-filter.js",
+  "./avatars/personality-catalog.js",
+  "./avatars/appearance-catalog.js",
+  "./avatars/voice-profile.js",
+  "./avatars/sketch-refiner.js",
+  "./avatars/sketch-store.js",
+  "./avatars/sketch-canvas.js",
+  "./avatars/avatar-schema.js",
+  "./avatars/avatar-store.js",
+  "./avatars/avatar-supervisor.js",
+  "./avatars/avatar-renderer.js",
+  "./avatars/avatar-foundry.js",
+  "./adapters/moirai-refinement-adapter.js",
   "./identity/person-schema.js",
   "./identity/guardian-policy.js",
   "./identity/enrollment-store.js",

@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://noema.local/schemas/avatar-sketch.schema.json",
+  "title": "NOEMA User-Drawn Mentor Sketch",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "sketchId",
+    "source",
+    "originalStrokes",
+    "refinedStrokes",
+    "originalPreserved"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "sketchId": {
+      "type": "string"
+    },
+    "source": {
+      "const": "user-drawn"
+    },
+    "artLineage": {
+      "const": "bazaar-art-inspired"
+    },
+    "originalStrokes": {
+      "type": "array"
+    },
+    "refinedStrokes": {
+      "type": "array"
+    },
+    "originalPreserved": {
+      "const": true
+    },
+    "guide": {
+      "enum": [
+        "face",
+        "figure",
+        "grid",
+        "none"
+      ]
+    },
+    "symmetry": {
+      "type": "boolean"
+    }
+  }
+}

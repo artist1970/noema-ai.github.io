@@ -11,6 +11,7 @@ export function buildNoemaContext({
   activeProject = null,
   enrollmentProfile = null,
   mentorRelationship = null,
+  avatar = null,
   query = "",
   provider = null
 } = {}) {
@@ -72,6 +73,21 @@ export function buildNoemaContext({
           mentorId: mentorRelationship.mentorId,
           relationshipType: mentorRelationship.relationshipType,
           supervisor: mentorRelationship.supervisor
+        }
+      : null,
+
+    avatar: avatar
+      ? {
+          mentorId: avatar.mentorId,
+          displayName: avatar.displayName,
+          status: avatar.status,
+          creationMode: avatar.creationMode,
+          temperament: avatar.temperament,
+          traits: [...(avatar.traits || [])],
+          collaboration: [...(avatar.collaboration || [])],
+          sharedInterests: [...(avatar.sharedInterests || [])],
+          voice: { ...(avatar.voice || {}) },
+          supervisor: avatar.supervisor
         }
       : null,
 

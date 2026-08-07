@@ -1,3 +1,9 @@
+import { SketchCanvas } from "../avatars/sketch-canvas.js";
+import { refineSketch } from "../avatars/sketch-refiner.js";
+import { renderAvatarSVG } from "../avatars/avatar-renderer.js";
+import { speakMentorText } from "../avatars/voice-profile.js";
+import { PRIMARY_TEMPERAMENTS, MENTOR_TRAITS, COLLABORATION_STYLES, getTemperament } from "../avatars/personality-catalog.js";
+import { HAIR_STYLES, HAIR_COLORS, EYE_COLORS, SKIN_TONES, OUTFIT_STYLES, ACCENT_COLORS } from "../avatars/appearance-catalog.js";
 import { NoemaCore } from "../core/noema-core.js";
 import { listModes, getMode } from "../core/mode-router.js";
 import { LocalPlaceholderProvider } from "../providers/local-placeholder.js";
@@ -13,6 +19,60 @@ const responseEl = document.querySelector("#response");
 const routeBtn = document.querySelector("#routeBtn");
 const clearBtn = document.querySelector("#clearBtn");
 const eraseBtn = document.querySelector("#eraseBtn");
+
+const avatarBtn = document.querySelector("#avatarBtn");
+const avatarDrawer = document.querySelector("#avatarDrawer");
+const avatarClose = document.querySelector("#avatarClose");
+const avatarForm = document.querySelector("#avatarForm");
+const avatarName = document.querySelector("#avatarName");
+const partsTab = document.querySelector("#partsTab");
+const drawTab = document.querySelector("#drawTab");
+const partsPanel = document.querySelector("#partsPanel");
+const drawPanel = document.querySelector("#drawPanel");
+const avatarHairStyle = document.querySelector("#avatarHairStyle");
+const avatarOutfitStyle = document.querySelector("#avatarOutfitStyle");
+const avatarSkinTones = document.querySelector("#avatarSkinTones");
+const avatarHairColors = document.querySelector("#avatarHairColors");
+const avatarEyeColors = document.querySelector("#avatarEyeColors");
+const avatarPrimaryColor = document.querySelector("#avatarPrimaryColor");
+const avatarSecondaryColor = document.querySelector("#avatarSecondaryColor");
+const avatarTemperament = document.querySelector("#avatarTemperament");
+const avatarTraits = document.querySelector("#avatarTraits");
+const avatarInterests = document.querySelector("#avatarInterests");
+const avatarCollaboration = document.querySelector("#avatarCollaboration");
+const avatarVoiceStyle = document.querySelector("#avatarVoiceStyle");
+const avatarVoiceRate = document.querySelector("#avatarVoiceRate");
+const avatarVoicePitch = document.querySelector("#avatarVoicePitch");
+const avatarBrowserVoice = document.querySelector("#avatarBrowserVoice");
+const saveAvatarDraftBtn = document.querySelector("#saveAvatarDraftBtn");
+const hearMentorBtn = document.querySelector("#hearMentorBtn");
+const avatarStatus = document.querySelector("#avatarStatus");
+const avatarPreview = document.querySelector("#avatarPreview");
+const avatarPreviewName = document.querySelector("#avatarPreviewName");
+const avatarPreviewDescription = document.querySelector("#avatarPreviewDescription");
+const avatarAdoptionBadge = document.querySelector("#avatarAdoptionBadge");
+
+const sketchGuide = document.querySelector("#sketchGuide");
+const sketchGuideStep = document.querySelector("#sketchGuideStep");
+const sketchBrushSize = document.querySelector("#sketchBrushSize");
+const sketchOpacity = document.querySelector("#sketchOpacity");
+const sketchColor = document.querySelector("#sketchColor");
+const sketchCleanup = document.querySelector("#sketchCleanup");
+const sketchEraser = document.querySelector("#sketchEraser");
+const sketchSymmetry = document.querySelector("#sketchSymmetry");
+const sketchUndo = document.querySelector("#sketchUndo");
+const sketchRedo = document.querySelector("#sketchRedo");
+const sketchClear = document.querySelector("#sketchClear");
+const sketchRefine = document.querySelector("#sketchRefine");
+const sketchSave = document.querySelector("#sketchSave");
+const originalPreviewCanvas = document.querySelector("#originalPreviewCanvas");
+const refinedPreviewCanvas = document.querySelector("#refinedPreviewCanvas");
+
+let avatarCreationMode = "parts";
+let selectedSkinTone = "tone-04";
+let selectedHairColor = "brown";
+let selectedEyeColor = "brown";
+let refinedSketchStrokes = [];
 
 const enrollmentBtn = document.querySelector("#enrollmentBtn");
 const enrollmentDrawer = document.querySelector("#enrollmentDrawer");
@@ -98,6 +158,18 @@ function renderModules(route) {
     </article>
   `;
 
+  const avatar = route.context?.avatar;
+  const avatarCard = `
+    <article class="card module-card avatar-context-card">
+      <div class="module-title">Adopted Mentor</div>
+      <div class="module-purpose">
+        ${avatar
+          ? `${escapeHtml(avatar.displayName)} · ${escapeHtml(avatar.temperament)} · ${escapeHtml(avatar.status)}`
+          : "No mentor adopted yet"}
+      </div>
+    </article>
+  `;
+
   const enrollment = route.context?.enrollment;
   const enrollmentCard = `
     <article class="card module-card enrollment-status-card">
@@ -134,7 +206,7 @@ function renderModules(route) {
     </article>
   `).join("");
 
-  modulesEl.innerHTML = enrollmentCard + contextCard + integrity + specialists;
+  modulesEl.innerHTML = avatarCard + enrollmentCard + contextCard + integrity + specialists;
 }
 
 async function handleRoute() {
@@ -180,6 +252,346 @@ async function handleRoute() {
     });
   }
 }
+
+
+
+function optionize(items, selected="") {
+  return items.map(item => {
+    const id = typeof item === "string" ? item : item.id;
+    const label = typeof item === "string"
+      ? item.replaceAll("-", " ").replace(/\b\w/g, c => c.toUpperCase())
+      : item.label || item.id;
+    return `<option value="${escapeHtml(id)}"${id===selected?" selected":""}>${escapeHtml(label)}</option>`;
+  }).join("");
+}
+
+function renderSwatches(el, items, selected, onSelect) {
+  el.innerHTML = items.map(item => `
+    <button type="button" class="swatch" data-id="${escapeHtml(item.id)}"
+      aria-label="${escapeHtml(item.label || item.id)}"
+      aria-pressed="${item.id===selected?"true":"false"}"
+      style="background:${item.value}"></button>
+  `).join("");
+  el.querySelectorAll(".swatch").forEach(button => {
+    button.addEventListener("click", () => {
+      onSelect(button.dataset.id);
+      renderAvatarPreview();
+    });
+  });
+}
+
+function checkedValues(container, max=4) {
+  return [...container.querySelectorAll('input[type="checkbox"]:checked')]
+    .map(input=>input.value).slice(0,max);
+}
+
+function fillChoiceGrid(container, items, max=4, childLabel=false) {
+  container.innerHTML = items.map(item => {
+    const id = typeof item === "string" ? item : item.id;
+    const label = typeof item === "string"
+      ? item.replaceAll("-", " ").replace(/\b\w/g,c=>c.toUpperCase())
+      : (childLabel ? item.childLabel : item.label);
+    return `<label class="choice"><input type="checkbox" value="${escapeHtml(id)}"> ${escapeHtml(label)}</label>`;
+  }).join("");
+
+  container.querySelectorAll("input").forEach(input => {
+    input.addEventListener("change", () => {
+      const checked=[...container.querySelectorAll("input:checked")];
+      if(checked.length>max){
+        input.checked=false;
+        avatarStatus.textContent=`Choose up to ${max}.`;
+      }
+      renderAvatarPreview();
+    });
+  });
+}
+
+function setCreationMode(mode) {
+  avatarCreationMode = mode === "sketch" ? "sketch" : "parts";
+  partsTab.classList.toggle("active", avatarCreationMode==="parts");
+  drawTab.classList.toggle("active", avatarCreationMode==="sketch");
+  partsPanel.hidden = avatarCreationMode!=="parts";
+  drawPanel.hidden = avatarCreationMode!=="sketch";
+  if(avatarCreationMode==="sketch") {
+    requestAnimationFrame(()=>sketchPad?.resize());
+  }
+  renderAvatarPreview();
+}
+
+function avatarInput() {
+  const existingSketch = noema.avatarFoundry.currentSketch();
+  return {
+    creationMode: avatarCreationMode,
+    displayName: avatarName.value || "My Mentor",
+    appearance: {
+      hairStyle: avatarHairStyle.value,
+      hairColor: selectedHairColor,
+      eyeColor: selectedEyeColor,
+      skinTone: selectedSkinTone,
+      outfitStyle: avatarOutfitStyle.value,
+      primaryColor: avatarPrimaryColor.value,
+      secondaryColor: avatarSecondaryColor.value
+    },
+    artSource: {
+      sketchId: avatarCreationMode==="sketch" ? existingSketch?.sketchId || null : null,
+      refinementStatus: avatarCreationMode==="sketch"
+        ? (refinedSketchStrokes.length ? "local-cleanup" : "source-only")
+        : "not-applicable"
+    },
+    temperament: avatarTemperament.value,
+    traits: checkedValues(avatarTraits,4),
+    collaboration: checkedValues(avatarCollaboration,4),
+    sharedInterests: checkedValues(avatarInterests,8),
+    voice: {
+      style: avatarVoiceStyle.value,
+      rate: Number(avatarVoiceRate.value),
+      pitch: Number(avatarVoicePitch.value),
+      browserVoiceURI: avatarBrowserVoice.value
+    }
+  };
+}
+
+function drawStrokeSet(canvas, strokes) {
+  const ctx=canvas.getContext("2d");
+  const w=canvas.width,h=canvas.height;
+  ctx.clearRect(0,0,w,h);
+  ctx.fillStyle="#fffdf8";ctx.fillRect(0,0,w,h);
+  if(!strokes?.length) return;
+
+  const sourceW=sketchPad?.logicalWidth||600;
+  const sourceH=sketchPad?.logicalHeight||520;
+  const sx=w/sourceW, sy=h/sourceH;
+  ctx.save();ctx.scale(sx,sy);
+
+  for(const stroke of strokes){
+    const pts=stroke.points||[];if(!pts.length)continue;
+    ctx.save();
+    ctx.globalAlpha=stroke.opacity??1;
+    ctx.lineWidth=stroke.width||4;
+    ctx.lineCap="round";ctx.lineJoin="round";
+    ctx.strokeStyle=stroke.color||"#17243a";
+    ctx.beginPath();ctx.moveTo(pts[0].x,pts[0].y);
+    for(let i=1;i<pts.length;i++)ctx.lineTo(pts[i].x,pts[i].y);
+    ctx.stroke();ctx.restore();
+  }
+  ctx.restore();
+}
+
+function cleanupOptions() {
+  const mode=sketchCleanup.value;
+  if(mode==="gentle") return {smoothRadius:1,curveIterations:1,simplifyTolerance:.8};
+  if(mode==="polished") return {smoothRadius:3,curveIterations:3,simplifyTolerance:1.7,uniformWidth:false};
+  return {smoothRadius:2,curveIterations:2,simplifyTolerance:1.15};
+}
+
+function refineCurrentSketch() {
+  refinedSketchStrokes = refineSketch(sketchPad.strokes, cleanupOptions());
+  drawStrokeSet(originalPreviewCanvas, sketchPad.strokes);
+  drawStrokeSet(refinedPreviewCanvas, refinedSketchStrokes);
+  avatarStatus.textContent = refinedSketchStrokes.length
+    ? "Cleaned preview created. Your original drawing is still preserved."
+    : "Draw a little more before cleanup.";
+}
+
+function saveCurrentSketch() {
+  if(!sketchPad?.strokes?.length){
+    avatarStatus.textContent="Draw your mentor before saving the sketch.";
+    return null;
+  }
+  if(!refinedSketchStrokes.length) refineCurrentSketch();
+  const result=noema.saveAvatarSketch(sketchPad.strokes,{
+    width:sketchPad.logicalWidth,
+    height:sketchPad.logicalHeight,
+    guide:sketchGuide.value,
+    symmetry:sketchPad.symmetry,
+    refinement:cleanupOptions()
+  });
+  avatarStatus.textContent=result.reason;
+  renderAvatarPreview();
+  return result;
+}
+
+function renderAvatarPreview() {
+  const input=avatarInput();
+  const temperament=getTemperament(input.temperament);
+  const adopted=noema.getAvatar();
+
+  avatarPreviewName.textContent=input.displayName||"My Mentor";
+  avatarAdoptionBadge.textContent=adopted?.status==="adopted" ? "Adopted" : "Designing";
+
+  if(avatarCreationMode==="sketch" && refinedSketchStrokes.length){
+    avatarPreview.innerHTML="";
+    const canvas=document.createElement("canvas");
+    canvas.width=360;canvas.height=320;
+    canvas.style.width="100%";canvas.style.maxWidth="360px";
+    avatarPreview.appendChild(canvas);
+    drawStrokeSet(canvas,refinedSketchStrokes);
+  } else {
+    const draft=noema.avatarFoundry.draft(input);
+    avatarPreview.innerHTML = draft?.mentorId ? renderAvatarSVG(draft,{size:250}) : renderAvatarSVG(input,{size:250});
+  }
+
+  const traits=input.traits.length ? input.traits.map(t=>t.replaceAll("-"," ")).join(" · ") : "Choose a few traits";
+  avatarPreviewDescription.textContent =
+    `${temperament.label} · ${traits}. ${avatarCreationMode==="sketch" ? "Created from your drawing." : "Created from selected features."}`;
+}
+
+function populateVoices() {
+  if(!("speechSynthesis" in window)) return;
+  const current=avatarBrowserVoice.value;
+  const voices=speechSynthesis.getVoices()||[];
+  avatarBrowserVoice.innerHTML='<option value="">Automatic</option>'+
+    voices.map(v=>`<option value="${escapeHtml(v.voiceURI)}">${escapeHtml(v.name)} · ${escapeHtml(v.lang)}</option>`).join("");
+  if([...avatarBrowserVoice.options].some(o=>o.value===current)) avatarBrowserVoice.value=current;
+}
+
+const sketchPad = new SketchCanvas(
+  document.querySelector("#mentorSketchCanvas"),
+  {
+    guideCanvas: document.querySelector("#mentorGuideCanvas"),
+    onChange: strokes => {
+      refinedSketchStrokes=[];
+      drawStrokeSet(originalPreviewCanvas,strokes);
+      drawStrokeSet(refinedPreviewCanvas,[]);
+    }
+  }
+);
+
+function rerenderSkin(){
+  renderSwatches(avatarSkinTones,SKIN_TONES,selectedSkinTone,id=>{selectedSkinTone=id;rerenderSkin();renderAvatarPreview()});
+}
+function rerenderHair(){
+  renderSwatches(avatarHairColors,HAIR_COLORS,selectedHairColor,id=>{selectedHairColor=id;rerenderHair();renderAvatarPreview()});
+}
+function rerenderEyes(){
+  renderSwatches(avatarEyeColors,EYE_COLORS,selectedEyeColor,id=>{selectedEyeColor=id;rerenderEyes();renderAvatarPreview()});
+}
+
+function hydrateAvatarForm() {
+  const current=noema.getAvatar();
+  if(!current) return;
+  avatarName.value=current.displayName||"";
+  setCreationMode(current.creationMode);
+  avatarHairStyle.value=current.appearance?.hairStyle||"wavy";
+  avatarOutfitStyle.value=current.appearance?.outfitStyle||"classic";
+  selectedSkinTone=current.appearance?.skinTone||"tone-04";
+  selectedHairColor=current.appearance?.hairColor||"brown";
+  selectedEyeColor=current.appearance?.eyeColor||"brown";
+  avatarPrimaryColor.value=current.appearance?.primaryColor||"midnight";
+  avatarSecondaryColor.value=current.appearance?.secondaryColor||"gold";
+  avatarTemperament.value=current.temperament||"curious";
+  avatarVoiceStyle.value=current.voice?.style||"warm";
+  avatarVoiceRate.value=current.voice?.rate||.95;
+  avatarVoicePitch.value=current.voice?.pitch||1;
+
+  const setChecked=(container,vals=[])=>{
+    const set=new Set(vals);
+    container.querySelectorAll("input").forEach(i=>i.checked=set.has(i.value));
+  };
+  setChecked(avatarTraits,current.traits);
+  setChecked(avatarCollaboration,current.collaboration);
+  setChecked(avatarInterests,current.sharedInterests);
+
+  rerenderSkin();rerenderHair();rerenderEyes();
+
+  const sketch=noema.avatarFoundry.currentSketch();
+  if(sketch){
+    sketchPad.setStrokes(sketch.originalStrokes||[]);
+    refinedSketchStrokes=sketch.refinedStrokes||[];
+    drawStrokeSet(originalPreviewCanvas,sketch.originalStrokes||[]);
+    drawStrokeSet(refinedPreviewCanvas,refinedSketchStrokes);
+  }
+}
+
+function openAvatarFoundry() {
+  const enrollment=noema.getEnrollmentStatus().profile;
+  if(!enrollment){
+    avatarStatus.textContent="Create an Identity & Enrollment profile first so the mentor has a person to belong to.";
+  }
+  avatarDrawer.hidden=false;
+  populateVoices();
+  hydrateAvatarForm();
+  requestAnimationFrame(()=>sketchPad.resize());
+  renderAvatarPreview();
+}
+function closeAvatarFoundry(){avatarDrawer.hidden=true}
+
+partsTab.addEventListener("click",()=>setCreationMode("parts"));
+drawTab.addEventListener("click",()=>setCreationMode("sketch"));
+
+sketchGuide.addEventListener("change",()=>sketchPad.setGuide(sketchGuide.value));
+sketchGuideStep.addEventListener("change",()=>sketchPad.setGuideStep(sketchGuideStep.value));
+sketchBrushSize.addEventListener("input",()=>sketchPad.setWidth(sketchBrushSize.value));
+sketchOpacity.addEventListener("input",()=>sketchPad.setOpacity(sketchOpacity.value));
+sketchColor.addEventListener("input",()=>{sketchPad.setColor(sketchColor.value);sketchEraser.classList.remove("active")});
+sketchEraser.addEventListener("click",()=>{
+  sketchPad.setEraser(!sketchPad.eraser);
+  sketchEraser.classList.toggle("active",sketchPad.eraser);
+});
+sketchSymmetry.addEventListener("click",()=>{
+  sketchPad.setSymmetry(!sketchPad.symmetry);
+  sketchSymmetry.classList.toggle("active",sketchPad.symmetry);
+});
+sketchUndo.addEventListener("click",()=>sketchPad.undo());
+sketchRedo.addEventListener("click",()=>sketchPad.redo());
+sketchClear.addEventListener("click",()=>{if(confirm("Clear this mentor drawing?"))sketchPad.clear()});
+sketchRefine.addEventListener("click",refineCurrentSketch);
+sketchSave.addEventListener("click",saveCurrentSketch);
+
+avatarForm.addEventListener("input",event=>{
+  if(event.target.closest("#avatarTraits")||event.target.closest("#avatarInterests")||event.target.closest("#avatarCollaboration"))return;
+  renderAvatarPreview();
+});
+
+saveAvatarDraftBtn.addEventListener("click",()=>{
+  if(avatarCreationMode==="sketch"&&!noema.avatarFoundry.currentSketch()) saveCurrentSketch();
+  const result=noema.saveAvatarDraft(avatarInput());
+  avatarStatus.textContent=result.reason;
+  renderAvatarPreview();
+  handleRoute();
+});
+
+hearMentorBtn.addEventListener("click",()=>{
+  const input=avatarInput();
+  const draft=noema.avatarFoundry.draft(input);
+  const text=draft?.mentorId ? noema.avatarFoundry.greeting(draft) : `Hi! I’m ${input.displayName}.`;
+  speakMentorText(text,input.voice);
+});
+
+avatarForm.addEventListener("submit",event=>{
+  event.preventDefault();
+  if(avatarCreationMode==="sketch"&&!noema.avatarFoundry.currentSketch()){
+    const saved=saveCurrentSketch();
+    if(!saved?.ok) return;
+  }
+  if(!confirm(`Adopt ${avatarName.value||"this mentor"} as your learning companion?`))return;
+  const result=noema.adoptAvatar(avatarInput());
+  avatarStatus.textContent=result.reason;
+  renderAvatarPreview();
+  handleRoute();
+});
+
+avatarBtn.addEventListener("click",openAvatarFoundry);
+avatarClose.addEventListener("click",closeAvatarFoundry);
+avatarDrawer.addEventListener("click",e=>{if(e.target===avatarDrawer)closeAvatarFoundry()});
+window.addEventListener("resize",()=>{if(!avatarDrawer.hidden)sketchPad.resize()});
+if("speechSynthesis" in window){
+  speechSynthesis.addEventListener?.("voiceschanged",populateVoices);
+}
+
+avatarHairStyle.innerHTML=optionize(HAIR_STYLES,"wavy");
+avatarOutfitStyle.innerHTML=optionize(OUTFIT_STYLES,"classic");
+avatarPrimaryColor.innerHTML=optionize(ACCENT_COLORS,"midnight");
+avatarSecondaryColor.innerHTML=optionize(ACCENT_COLORS,"gold");
+avatarTemperament.innerHTML=optionize(PRIMARY_TEMPERAMENTS,"curious");
+fillChoiceGrid(avatarTraits,MENTOR_TRAITS,4);
+fillChoiceGrid(avatarInterests,[
+  "music","cooking","reading","art","writing","science","mathematics","history",
+  "nature","animals","space","technology","building","games","sports","languages",
+  "design","photography","film","gardening"
+],8);
+fillChoiceGrid(avatarCollaboration,COLLABORATION_STYLES,4);
+rerenderSkin();rerenderHair();rerenderEyes();
 
 
 function openEnrollment() {
@@ -471,6 +883,10 @@ eraseBtn.addEventListener("click", () => {
   renderMemoryLibrary();
   renderProjects();
   renderEnrollment();
+  avatarStatus.textContent = "NOEMA local avatar data cleared.";
+  refinedSketchStrokes = [];
+  sketchPad.clear();
+  renderAvatarPreview();
   responseEl.innerHTML =
     "NOEMA local preferences, continuity, Memory Library, and project context were cleared. Other applications were not affected.";
 });
