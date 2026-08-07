@@ -12,6 +12,7 @@ import { AvatarFoundry } from "../avatars/avatar-foundry.js";
 import { VerifierAgent } from "../research/verifier-agent.js";
 import { getConstitution } from "../ethics/constitution.js";
 import { IntelligenceDirector } from "./intelligence-director.js";
+import { ResourceDirector } from "../resources/resource-director.js";
 
 export class NoemaCore {
   constructor({
@@ -45,6 +46,7 @@ export class NoemaCore {
     });
 
     this.verifier = new VerifierAgent({ storage });
+    this.resourceDirector = new ResourceDirector();
 
     this.orchestrator = new ConversationOrchestrator({
       ethicsEngine,

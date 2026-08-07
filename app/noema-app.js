@@ -40,6 +40,10 @@ const voiceStatus = document.querySelector("#voiceStatus");
 const intelligencePlan = document.querySelector("#intelligencePlan");
 const planSummary = document.querySelector("#planSummary");
 const planList = document.querySelector("#planList");
+const resourcePanel = document.querySelector("#resourcePanel");
+const resourceSummary = document.querySelector("#resourceSummary");
+const resourceResults = document.querySelector("#resourceResults");
+const resourceFoot = document.querySelector("#resourceFoot");
 
 const verifierBtn = document.querySelector("#verifierBtn");
 const verifierDrawer = document.querySelector("#verifierDrawer");
@@ -327,6 +331,47 @@ function renderIntelligencePlan(orchestration) {
   `).join("");
 }
 
+
+function renderResourceDiscovery(discovery) {
+  const data=discovery?.coordination?.resources || discovery || null;
+  const results=data?.results || [];
+
+  if(!data || !results.length) {
+    resourcePanel.hidden=true;
+    resourceResults.innerHTML="";
+    resourceFoot.textContent="";
+    return;
+  }
+
+  resourcePanel.hidden=false;
+  resourceSummary.textContent=`${results.length} eligible result${results.length===1?"":"s"} · audience ${data.audience || "unknown"}`;
+
+  resourceResults.innerHTML=results.map(item=>{
+    const freshness=item.requiresFreshnessCheck
+      ? `<span class="freshness-required">freshness required</span>`
+      : `<span>stable resource</span>`;
+    const source=`<span>${escapeHtml(item.sourceName || item.sourceId || "")}</span>`;
+    const state=`<span>${escapeHtml(item.executionState || "DISCOVERED")}</span>`;
+    const provenance=`<span>${escapeHtml(item.manifestProvenance || "snapshot")}</span>`;
+    return `
+      <article class="resource-result">
+        <div>
+          <strong>${escapeHtml(item.title)}</strong>
+          ${item.description ? `<small>${escapeHtml(item.description)}</small>` : ""}
+          <div class="resource-meta">${source}${state}${freshness}${provenance}</div>
+        </div>
+        <a href="${escapeHtml(item.url)}" target="_blank" rel="noopener">Open resource ↗</a>
+      </article>
+    `;
+  }).join("");
+
+  const withheld=Number(data.withheldCount || 0);
+  resourceFoot.textContent=
+    `${withheld} resource${withheld===1?"":"s"} withheld by audience, role, or preference rules. ` +
+    `Current lesson/course/school resources will outrank the central Academy when those sources are connected. ` +
+    `Discovery is navigation, not verification.`;
+}
+
 async function handleRoute() {
   const result = await naib.respond(messageEl.value, { mode: activeMode });
   const route = result.route;
@@ -336,6 +381,7 @@ async function handleRoute() {
 
   renderModules(route);
   renderIntelligencePlan(result.orchestration);
+  renderResourceDiscovery(result.response);
 
   const safety = route.safety.highStakes
     ? `<div class="notice"><strong>Care boundary:</strong> This request may involve ${route.safety.categories.join(", ")} information. Current or qualified sources may be required.</div>`
@@ -1242,6 +1288,7 @@ eraseBtn.addEventListener("click", () => {
   lastResponseText = "";
   lastConversationResult = null;
   renderIntelligencePlan(null);
+  renderResourceDiscovery(null);
   activeMode = "personal";
   renderModes();
   renderMode(activeMode);

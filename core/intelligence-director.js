@@ -33,6 +33,18 @@ export class IntelligenceDirector {
       researchRequired:researchDecision.required
     });
 
+    let resourceRefresh=[];
+    const resourceLikely =
+      ["learning","research","archive","family"].includes(route.mode?.id) ||
+      /\b(find|resource|lesson|course|study|learn|research|search|archive|reading|tool)\b/i.test(route.message || "");
+
+    if (resourceLikely && this.core.resourceDirector) {
+      resourceRefresh=await this.core.resourceDirector.refresh({
+        allowNetwork:true,
+        timeoutMs:3500
+      });
+    }
+
     const coordinated=this.orchestration.coordinate({
       message:route.message,
       route,
@@ -106,6 +118,7 @@ export class IntelligenceDirector {
     const integrated=synthesizeIntegratedResponse({
       providerResponse:response,
       orchestration:coordinated,
+      resourceRefresh,
       research:researchState,
       route
     });
@@ -131,6 +144,7 @@ export class IntelligenceDirector {
       response:integrated,
       providerResponse:response,
       orchestration:coordinated,
+      resourceRefresh,
       research:{
         ...researchState,
         session:verifierSession
