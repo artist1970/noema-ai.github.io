@@ -1,3 +1,4 @@
+import { statusLabel } from "../research/fact-status.js";
 import { SketchCanvas } from "../avatars/sketch-canvas.js";
 import { refineSketch } from "../avatars/sketch-refiner.js";
 import { renderAvatarSVG } from "../avatars/avatar-renderer.js";
@@ -19,6 +20,39 @@ const responseEl = document.querySelector("#response");
 const routeBtn = document.querySelector("#routeBtn");
 const clearBtn = document.querySelector("#clearBtn");
 const eraseBtn = document.querySelector("#eraseBtn");
+
+const verifierBtn = document.querySelector("#verifierBtn");
+const verifierDrawer = document.querySelector("#verifierDrawer");
+const verifierClose = document.querySelector("#verifierClose");
+const verifierForm = document.querySelector("#verifierForm");
+const verifierClaim = document.querySelector("#verifierClaim");
+const verifierDomain = document.querySelector("#verifierDomain");
+const verifierLanes = document.querySelector("#verifierLanes");
+const verifierTasks = document.querySelector("#verifierTasks");
+const verifierEvidence = document.querySelector("#verifierEvidence");
+const verifierVerdict = document.querySelector("#verifierVerdict");
+const verifierDomainLabel = document.querySelector("#verifierDomainLabel");
+const metricSources = document.querySelector("#metricSources");
+const metricFamilies = document.querySelector("#metricFamilies");
+const metricPrimary = document.querySelector("#metricPrimary");
+const metricMissing = document.querySelector("#metricMissing");
+const verifierWarning = document.querySelector("#verifierWarning");
+const verifierStatus = document.querySelector("#verifierStatus");
+const freshnessVerifiedBtn = document.querySelector("#freshnessVerifiedBtn");
+const saveVerificationBtn = document.querySelector("#saveVerificationBtn");
+const addEvidenceBtn = document.querySelector("#addEvidenceBtn");
+const evidenceTitle = document.querySelector("#evidenceTitle");
+const evidenceOrganization = document.querySelector("#evidenceOrganization");
+const evidenceUrl = document.querySelector("#evidenceUrl");
+const evidenceLevel = document.querySelector("#evidenceLevel");
+const evidenceRelation = document.querySelector("#evidenceRelation");
+const evidenceFamily = document.querySelector("#evidenceFamily");
+const evidenceRegion = document.querySelector("#evidenceRegion");
+const evidenceConfidence = document.querySelector("#evidenceConfidence");
+const evidenceDate = document.querySelector("#evidenceDate");
+const evidenceNotes = document.querySelector("#evidenceNotes");
+
+let activeVerification = null;
 
 const avatarBtn = document.querySelector("#avatarBtn");
 const avatarDrawer = document.querySelector("#avatarDrawer");
@@ -158,6 +192,15 @@ function renderModules(route) {
     </article>
   `;
 
+  const verifierCard = `
+    <article class="card module-card verifier-context-card">
+      <div class="module-title">The Verifier Agent</div>
+      <div class="module-purpose">
+        Research claims use evidence status, provenance, independent corroboration and contradiction checks before a verified-fact label.
+      </div>
+    </article>
+  `;
+
   const avatar = route.context?.avatar;
   const avatarCard = `
     <article class="card module-card avatar-context-card">
@@ -206,7 +249,7 @@ function renderModules(route) {
     </article>
   `).join("");
 
-  modulesEl.innerHTML = avatarCard + enrollmentCard + contextCard + integrity + specialists;
+  modulesEl.innerHTML = verifierCard + avatarCard + enrollmentCard + contextCard + integrity + specialists;
 }
 
 async function handleRoute() {
@@ -502,6 +545,128 @@ function hydrateAvatarForm() {
     drawStrokeSet(refinedPreviewCanvas,refinedSketchStrokes);
   }
 }
+
+
+function openVerifier() {
+  verifierDrawer.hidden=false;
+  renderVerifier();
+}
+function closeVerifier(){verifierDrawer.hidden=true}
+
+function buildVerifierSession() {
+  const result=noema.createVerification(verifierClaim.value,{domain:verifierDomain.value});
+  if(!result.ok){verifierStatus.textContent=result.reason;return}
+  activeVerification=result.session;
+  verifierStatus.textContent="Verification plan created. Complete the evidence lanes before using a verified-fact label.";
+  renderVerifier();
+}
+
+function renderVerifier() {
+  if(!activeVerification){
+    verifierLanes.innerHTML='<div class="memory-empty">Create a verification plan to see the required research lanes.</div>';
+    verifierTasks.innerHTML='<div class="memory-empty">No active verification session.</div>';
+    verifierEvidence.innerHTML='<div class="memory-empty">No evidence added yet.</div>';
+    verifierVerdict.textContent="Not yet verified";
+    verifierDomainLabel.textContent="Create a verification plan";
+    metricSources.textContent="0";metricFamilies.textContent="0";metricPrimary.textContent="0";metricMissing.textContent="—";
+    return;
+  }
+
+  const summary=noema.verifier.summarize(activeVerification);
+  verifierVerdict.textContent=summary.label;
+  verifierDomainLabel.textContent=`Domain: ${activeVerification.analysis.domain}`;
+  metricSources.textContent=String(summary.sourceCount);
+  metricFamilies.textContent=String(summary.independentFamilies);
+  metricPrimary.textContent=String(summary.primaryCount);
+  metricMissing.textContent=summary.missingRequiredLanes.length ? String(summary.missingRequiredLanes.length) : "0";
+
+  const warnings=[
+    ...summary.warnings,
+    ...(summary.missingRequiredLanes.length ? [`Required evidence lanes still incomplete: ${summary.missingRequiredLanes.join(", ")}.`] : []),
+    ...(!summary.canUseVerifiedLabel ? ["The evidence does not currently satisfy NOEMA's verified-fact gate."] : [])
+  ];
+  verifierWarning.textContent=warnings.join(" ") ||
+    "The evidence currently satisfies the Verifier gate. Keep citations and provenance attached to the final claim.";
+
+  const completed=new Set(activeVerification.completedLaneIds||[]);
+  verifierLanes.innerHTML=(activeVerification.plan.lanes||[]).map(lane=>`
+    <article class="verifier-lane">
+      <strong>${escapeHtml(lane.name)}</strong>
+      <small>${escapeHtml(lane.notes)}</small>
+      <button type="button" class="mini-btn" data-lane="${escapeHtml(lane.id)}">
+        ${completed.has(lane.id) ? "✓ Checked" : "Mark lane checked"}
+      </button>
+    </article>
+  `).join("");
+
+  verifierLanes.querySelectorAll("[data-lane]").forEach(button=>{
+    button.addEventListener("click",()=>{
+      activeVerification=noema.verifier.completeLane(activeVerification,button.dataset.lane);
+      renderVerifier();
+    });
+  });
+
+  verifierTasks.innerHTML=(activeVerification.tasks||[]).map(task=>`
+    <article class="verifier-task">
+      <span class="task-state ${escapeHtml(task.status)}">${escapeHtml(task.status)}</span>
+      <div><strong>${escapeHtml(task.label)}</strong><small>${escapeHtml(task.purpose)}</small></div>
+      <span class="memory-tag">${escapeHtml(task.laneId||"")}</span>
+    </article>
+  `).join("");
+
+  verifierEvidence.innerHTML=(activeVerification.sources||[]).length
+    ? activeVerification.sources.map(source=>`
+      <article class="evidence-row">
+        <strong>${escapeHtml(source.title)}</strong>
+        <div class="meta">${escapeHtml(source.level)} · ${escapeHtml(source.relation)} · ${escapeHtml(source.confidence)} · ${escapeHtml(source.region||source.jurisdiction||"region not recorded")}</div>
+        <div style="margin-top:.3rem;font-size:11px;color:#666">${escapeHtml(source.organization||source.publisher||source.sourceFamily)}</div>
+        ${source.evidenceNotes?`<div style="margin-top:.35rem;font-size:11px;line-height:1.5">${escapeHtml(source.evidenceNotes)}</div>`:""}
+      </article>
+    `).join("")
+    : '<div class="memory-empty">No evidence added yet.</div>';
+}
+
+verifierForm.addEventListener("submit",event=>{event.preventDefault();buildVerifierSession()});
+
+addEvidenceBtn.addEventListener("click",()=>{
+  if(!activeVerification){verifierStatus.textContent="Create a verification plan first.";return}
+  if(!evidenceTitle.value.trim()){verifierStatus.textContent="Give the source a title.";return}
+  activeVerification=noema.verifier.addSource(activeVerification,{
+    title:evidenceTitle.value,
+    organization:evidenceOrganization.value,
+    url:evidenceUrl.value,
+    level:evidenceLevel.value,
+    relation:evidenceRelation.value,
+    independenceFamily:evidenceFamily.value,
+    region:evidenceRegion.value,
+    confidence:evidenceConfidence.value,
+    publicationDate:evidenceDate.value,
+    evidenceNotes:evidenceNotes.value
+  });
+  verifierStatus.textContent="Evidence added and verdict recalculated.";
+  evidenceTitle.value="";evidenceOrganization.value="";evidenceUrl.value="";evidenceFamily.value="";evidenceRegion.value="";evidenceNotes.value="";
+  renderVerifier();
+});
+
+freshnessVerifiedBtn.addEventListener("click",()=>{
+  if(!activeVerification){verifierStatus.textContent="Create a verification plan first.";return}
+  activeVerification=noema.verifier.setFreshness(activeVerification,true);
+  verifierStatus.textContent="Freshness check recorded for this local verification session.";
+  renderVerifier();
+});
+
+saveVerificationBtn.addEventListener("click",()=>{
+  if(!activeVerification){verifierStatus.textContent="There is no verification session to save.";return}
+  const result=noema.saveVerification(activeVerification);
+  if(result.ok){activeVerification=result.session;verifierStatus.textContent="Verification session saved locally."}
+  else verifierStatus.textContent=result.reason;
+  renderVerifier();
+});
+
+verifierBtn.addEventListener("click",openVerifier);
+verifierClose.addEventListener("click",closeVerifier);
+verifierDrawer.addEventListener("click",event=>{if(event.target===verifierDrawer)closeVerifier()});
+
 
 function openAvatarFoundry() {
   const enrollment=noema.getEnrollmentStatus().profile;
@@ -884,6 +1049,8 @@ eraseBtn.addEventListener("click", () => {
   renderProjects();
   renderEnrollment();
   avatarStatus.textContent = "NOEMA local avatar data cleared.";
+  activeVerification = null;
+  renderVerifier();
   refinedSketchStrokes = [];
   sketchPad.clear();
   renderAvatarPreview();

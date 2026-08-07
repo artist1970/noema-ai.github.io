@@ -9,6 +9,24 @@ export const CAPABILITY_STATES = Object.freeze({
 export const NOEMA_CAPABILITIES = Object.freeze({
 
 
+
+  "research.verify": {
+    state: CAPABILITY_STATES.ALLOW,
+    description: "Build a transparent verification plan and evaluate supplied evidence before using a verified-fact label."
+  },
+  "research.verification-save": {
+    state: CAPABILITY_STATES.CONFIRM,
+    description: "Save a local verification session, sources, and verdict through explicit user action."
+  },
+  "research.live-retrieval": {
+    state: CAPABILITY_STATES.UNAVAILABLE,
+    description: "Live multi-source retrieval requires a configured secure research provider or server."
+  },
+  "research.override-verdict-gates": {
+    state: CAPABILITY_STATES.BLOCK,
+    description: "NOEMA and specialist agents may not bypass required evidence, independence, freshness, or domain verification gates."
+  },
+
   "avatar.read": {
     state: CAPABILITY_STATES.ALLOW,
     description: "Read the user's explicitly adopted mentor manifest."

@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="./styles/noema-memory.css">
   <link rel="stylesheet" href="./styles/noema-enrollment.css">
   <link rel="stylesheet" href="./styles/noema-avatar.css">
+  <link rel="stylesheet" href="./styles/noema-verifier.css">
 </head>
 <body>
   <header class="site-header">
@@ -109,7 +110,7 @@
 
   <main class="shell" id="noema-workspace" aria-label="NOEMA workspace">
     <div class="shell-head">
-      <div class="brand">NOEMA / v0.7</div>
+      <div class="brand">NOEMA / v0.8</div>
       <div class="status">Local-first · Private by design</div>
     </div>
 
@@ -131,6 +132,7 @@
           <button class="btn secondary" id="clearBtn">Clear message</button>
           <button class="btn secondary" id="enrollmentBtn">Identity &amp; Enrollment</button>
           <button class="btn secondary" id="avatarBtn">Adopt a Mentor</button>
+          <button class="btn secondary" id="verifierBtn">Verifier Agent</button>
           <button class="btn secondary" id="memoryBtn">Memory &amp; Context</button>
           <button class="btn secondary" id="eraseBtn">Clear NOEMA local data</button>
         </div>
@@ -141,6 +143,134 @@
       <aside class="modules" id="modules" aria-label="Relevant specialist systems"></aside>
     </section>
   </main>
+
+  <div class="verifier-drawer" id="verifierDrawer" hidden>
+    <section class="verifier-panel" role="dialog" aria-modal="true" aria-labelledby="verifierHeading">
+      <header class="verifier-head">
+        <div>
+          <div class="eyebrow">THE VERIFIER · NOEMA RESEARCH GOVERNANCE</div>
+          <h2 id="verifierHeading">Claim Verification</h2>
+          <p>
+            A ranked search result is not proof. The Verifier separates claims from opinion, seeks primary evidence,
+            searches relevant ecosystem archives and domain portals, looks for independent corroboration and contradiction,
+            checks freshness, and only then assigns an evidence status.
+          </p>
+        </div>
+        <button class="verifier-close" id="verifierClose" type="button" aria-label="Close Verifier Agent">×</button>
+      </header>
+
+      <div class="verifier-layout">
+        <div style="display:grid;gap:1rem">
+          <section class="verifier-card">
+            <h3>What should we verify?</h3>
+            <form class="verifier-form" id="verifierForm">
+              <textarea id="verifierClaim" rows="4" maxlength="5000" required placeholder="Enter a factual claim or research question…"></textarea>
+              <div class="verifier-row">
+                <label>Domain
+                  <select id="verifierDomain">
+                    <option value="auto">Detect automatically</option>
+                    <option value="general">General</option>
+                    <option value="news">News / current events</option>
+                    <option value="historical">History / archives</option>
+                    <option value="education">Education</option>
+                    <option value="science">Science</option>
+                    <option value="medical">Medical / health</option>
+                    <option value="legal">Law / legal</option>
+                    <option value="atmospheric">Atmospheric / weather / space weather</option>
+                  </select>
+                </label>
+                <div style="display:flex;align-items:end">
+                  <button class="btn primary" type="submit" style="width:100%">Build Verification Plan</button>
+                </div>
+              </div>
+            </form>
+          </section>
+
+          <section class="verifier-card">
+            <h3>Evidence lanes</h3>
+            <div class="verifier-lanes" id="verifierLanes">
+              <div class="memory-empty">Create a verification plan to see the required research lanes.</div>
+            </div>
+          </section>
+
+          <section class="verifier-card">
+            <h3>Verification tasks</h3>
+            <div class="verifier-task-list" id="verifierTasks">
+              <div class="memory-empty">No active verification session.</div>
+            </div>
+          </section>
+
+          <section class="verifier-card">
+            <h3>Add evidence</h3>
+            <div class="verifier-form">
+              <div class="verifier-row">
+                <label>Source title<input id="evidenceTitle" maxlength="500"></label>
+                <label>Organization / publisher<input id="evidenceOrganization" maxlength="300"></label>
+              </div>
+              <label>URL / DOI / record location<input id="evidenceUrl" maxlength="1600"></label>
+              <div class="verifier-row">
+                <label>Source level
+                  <select id="evidenceLevel">
+                    <option value="primary">Primary</option>
+                    <option value="secondary" selected>Secondary</option>
+                    <option value="tertiary">Tertiary</option>
+                    <option value="unknown">Unknown</option>
+                  </select>
+                </label>
+                <label>Evidence relationship
+                  <select id="evidenceRelation">
+                    <option value="supporting">Supporting</option>
+                    <option value="opposing">Opposing</option>
+                    <option value="contextual">Contextual</option>
+                    <option value="insufficient">Insufficient / ambiguous</option>
+                  </select>
+                </label>
+              </div>
+              <div class="verifier-row">
+                <label>Independence family<input id="evidenceFamily" maxlength="300" placeholder="Underlying institution / wire / publisher"></label>
+                <label>Region / jurisdiction<input id="evidenceRegion" maxlength="180" placeholder="Example: EU, Kenya, Florida, Global"></label>
+              </div>
+              <div class="verifier-row">
+                <label>Confidence
+                  <select id="evidenceConfidence"><option value="high">High</option><option value="medium" selected>Medium</option><option value="low">Low</option></select>
+                </label>
+                <label>Publication date<input id="evidenceDate" type="date"></label>
+              </div>
+              <label>What does this source establish or contradict?<textarea id="evidenceNotes" rows="3" maxlength="5000"></textarea></label>
+              <button class="btn secondary" id="addEvidenceBtn" type="button">Add Evidence Record</button>
+            </div>
+            <div class="evidence-table" id="verifierEvidence" style="margin-top:.75rem"></div>
+          </section>
+        </div>
+
+        <aside class="verdict-card">
+          <div class="memory-section-kicker">Current evidence status</div>
+          <div class="verdict-seal">
+            <div>
+              <strong id="verifierVerdict">Not yet verified</strong>
+              <span id="verifierDomainLabel">Create a verification plan</span>
+            </div>
+          </div>
+          <div class="verifier-metrics">
+            <div class="verifier-metric"><span>Sources</span><strong id="metricSources">0</strong></div>
+            <div class="verifier-metric"><span>Independent families</span><strong id="metricFamilies">0</strong></div>
+            <div class="verifier-metric"><span>Primary sources</span><strong id="metricPrimary">0</strong></div>
+            <div class="verifier-metric"><span>Required lanes missing</span><strong id="metricMissing">—</strong></div>
+          </div>
+          <div class="verifier-warning" id="verifierWarning">
+            NOEMA does not promise mathematical neutrality from imperfect human information.
+            Instead, the Verifier makes source selection, disagreement, uncertainty, provenance, and evidence gaps visible.
+          </div>
+          <div class="foundry-actions">
+            <button class="btn secondary" id="freshnessVerifiedBtn" type="button">Mark Freshness Checked</button>
+            <button class="btn secondary" id="saveVerificationBtn" type="button">Save Verification</button>
+          </div>
+          <div class="foundry-status" id="verifierStatus" aria-live="polite"></div>
+        </aside>
+      </div>
+    </section>
+  </div>
+
 
   <div class="avatar-drawer" id="avatarDrawer" hidden>
     <section class="avatar-panel" role="dialog" aria-modal="true" aria-labelledby="avatarHeading">

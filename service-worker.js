@@ -1,4 +1,4 @@
-const CACHE = "noema-shell-v0.7.0";
+const CACHE = "noema-shell-v0.8.0";
 const SHELL = [
   "./",
   "./index.html",
@@ -7,6 +7,7 @@ const SHELL = [
   "./styles/noema-memory.css",
   "./styles/noema-enrollment.css",
   "./styles/noema-avatar.css",
+  "./styles/noema-verifier.css",
   "./app/noema-app.js",
   "./core/noema-core.js",
   "./core/identity.js",
@@ -22,6 +23,17 @@ const SHELL = [
   "./memory/memory-retriever.js",
   "./memory/project-context-store.js",
   "./memory/sensitive-memory-filter.js",
+  "./research/fact-status.js",
+  "./research/claim-analyzer.js",
+  "./research/ecosystem-evidence-registry.js",
+  "./research/source-policy.js",
+  "./research/source-independence.js",
+  "./research/evidence-matrix.js",
+  "./research/verification-task-handler.js",
+  "./research/verification-plan.js",
+  "./research/verifier-session-store.js",
+  "./research/verifier-agent.js",
+  "./adapters/research-provider-interface.js",
   "./avatars/personality-catalog.js",
   "./avatars/appearance-catalog.js",
   "./avatars/voice-profile.js",

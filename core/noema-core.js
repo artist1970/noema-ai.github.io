@@ -9,6 +9,7 @@ import { MentorRelationshipStore } from "../identity/mentor-relationship-store.j
 import { AccountServerClient } from "../adapters/account-server-client.js";
 import { IdentitySync } from "../sync/identity-sync.js";
 import { AvatarFoundry } from "../avatars/avatar-foundry.js";
+import { VerifierAgent } from "../research/verifier-agent.js";
 import { getConstitution } from "../ethics/constitution.js";
 
 export class NoemaCore {
@@ -41,6 +42,8 @@ export class NoemaCore {
       relationshipStore: this.mentorRelationships,
       enrollmentStore: this.enrollment
     });
+
+    this.verifier = new VerifierAgent({ storage });
 
     this.orchestrator = new ConversationOrchestrator({
       ethicsEngine,
@@ -142,6 +145,18 @@ export class NoemaCore {
     return this.avatarFoundry.current();
   }
 
+  createVerification(claim, options = {}) {
+    const gate = this.checkCapability("research.verify", {});
+    if (!gate.allowed) return { ok: false, reason: gate.reason };
+    return { ok: true, session: this.verifier.createSession(claim, options) };
+  }
+
+  saveVerification(session) {
+    const gate = this.checkCapability("research.verification-save", { confirmed: true });
+    if (!gate.allowed) return { ok: false, reason: gate.reason };
+    return this.verifier.save(session);
+  }
+
   saveMemory(input = {}) {
     const gate = this.checkCapability("memory.record", {
       confirmed: true,
@@ -176,6 +191,7 @@ export class NoemaCore {
     this.enrollment.clear();
     this.mentorRelationships.clear();
     this.avatarFoundry.clear();
+    this.verifier.clear();
   }
 
   getSystemStatus() {

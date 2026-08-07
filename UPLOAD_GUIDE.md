@@ -1,48 +1,46 @@
-# NOEMA v0.7 — Avatar Foundry + Mentor Adoption
+# NOEMA v0.8 — The Verifier Agent
 
 Upload into:
 
 `artist1970/noema-ai.github.io`
 
-preserving all folders.
+preserving folders.
 
-## New files
+## New
 
 ```text
-avatars/
-  appearance-catalog.js
-  personality-catalog.js
-  voice-profile.js
-  sketch-refiner.js
-  sketch-store.js
-  sketch-canvas.js
-  avatar-schema.js
-  avatar-store.js
-  avatar-supervisor.js
-  avatar-renderer.js
-  avatar-foundry.js
+research/
+  fact-status.js
+  claim-analyzer.js
+  ecosystem-evidence-registry.js
+  source-policy.js
+  source-independence.js
+  evidence-matrix.js
+  verification-task-handler.js
+  verification-plan.js
+  verifier-session-store.js
+  verifier-agent.js
 
 adapters/
-  moirai-refinement-adapter.js
-
-schemas/
-  avatar-manifest.schema.json
-  avatar-sketch.schema.json
+  research-provider-interface.js
 
 styles/
-  noema-avatar.css
+  noema-verifier.css
 
 docs/
-  AVATAR_FOUNDRY_ARCHITECTURE.md
-  BAZAAR_ART_LINEAGE.md
-  MOIRAI_AVATAR_REFINEMENT_PROTOCOL.md
+  VERIFIER_AGENT_ARCHITECTURE.md
+  EVIDENCE_LANES.md
+  INTERNATIONAL_SOURCE_POLICY.md
+  DOMAIN_VERIFICATION_STANDARDS.md
+  TASK_HANDLER_LINEAGE.md
 
 tests/
-  avatar-schema.test.mjs
-  avatar-supervisor.test.mjs
-  sketch-refiner.test.mjs
-  avatar-foundry.test.mjs
-  context-avatar.test.mjs
+  claim-analyzer.test.mjs
+  source-independence.test.mjs
+  evidence-matrix.test.mjs
+  verification-plan.test.mjs
+  verification-task-handler.test.mjs
+  verifier-agent.test.mjs
 ```
 
 ## Replace
@@ -50,23 +48,25 @@ tests/
 ```text
 index.html
 app/noema-app.js
-core/context-builder.js
 core/noema-core.js
 permissions/capability-ledger.js
 service-worker.js
 ```
 
-## Release behavior
+## v0.8 behavior
 
-- `Adopt a Mentor` opens the Foundry.
-- Any supported age / learning stage uses the same mentor architecture.
-- Build path: select features.
-- Draw path: create a rough mentor sketch.
-- Bazaar Art-inspired guide layer, brush, opacity, eraser, undo/redo and symmetry assist.
-- Local cleanup smooths rough lines.
-- Original drawing remains preserved.
-- Future Moirai refinement seam exists but is not falsely shown as connected.
-- Appearance and drawings never feed learner/demographic/psychological inference.
-- Mentor adoption requires explicit confirmation.
-- Avatar customization cannot elevate permissions.
-- Cache version: `noema-shell-v0.7.0`.
+- Adds a `Verifier Agent` button.
+- Any factual claim can become a local verification session.
+- Detects research domain.
+- Builds a transparent evidence plan.
+- ARSHIF and Khaemenes context checks are required before the verified-fact gate.
+- Searches are modeled through ARSHIF, Khaemenes, Verifier, Medicament, Firmament and Solanar lanes.
+- Tracks primary/secondary/tertiary source level.
+- Tracks supporting/opposing/contextual/insufficient evidence.
+- Groups repeated sources by underlying independence family.
+- Requires freshness for time-sensitive claims.
+- Requires active contradiction search.
+- Gives conservative evidence statuses rather than binary "true/false".
+- `research.override-verdict-gates` is blocked.
+- Live retrieval remains unconfigured until a secure research provider/server exists.
+- Cache: `noema-shell-v0.8.0`.
