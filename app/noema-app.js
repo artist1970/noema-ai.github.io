@@ -10,10 +10,14 @@ import { listModes, getMode } from "../core/mode-router.js";
 import { createProviderRegistry } from "../providers/provider-registry.js";
 import { NOEMA_PROVIDER_CONFIG } from "../config/provider-config.js";
 import { VoiceController } from "../voice/voice-controller.js";
+import { NaibFacade } from "../front/naib-facade.js";
+import { getNaibIdentity } from "../front/naib-identity.js";
 
 const providerRegistry = createProviderRegistry(NOEMA_PROVIDER_CONFIG);
 const provider = providerRegistry.active();
 const noema = new NoemaCore({ role: "adult", provider });
+const naib = new NaibFacade({ noemaCore:noema });
+const naibIdentity = getNaibIdentity();
 
 let lastResponseText = "";
 let lastConversationResult = null;
@@ -324,7 +328,7 @@ function renderIntelligencePlan(orchestration) {
 }
 
 async function handleRoute() {
-  const result = await noema.respond(messageEl.value, { mode: activeMode });
+  const result = await naib.respond(messageEl.value, { mode: activeMode });
   const route = result.route;
   const providerResult = result.response;
   lastConversationResult = result;
@@ -406,7 +410,7 @@ async function handleRoute() {
       · Constitution: active v${escapeHtml(route.ethics.constitutionVersion)}
     </div>
     <div class="response-trace">
-      NOEMA Director · Mode ${escapeHtml(route.mode.id)}
+      NAIB · Mode ${escapeHtml(route.mode.id)} · Admin: NOEMA
       · Specialists: ${escapeHtml(specialistText)}
       · Tasks settled: ${result.orchestration?.summary?.finished || 0}/${result.orchestration?.summary?.total || 0}
       · Session is transient
@@ -415,7 +419,7 @@ async function handleRoute() {
   `;
 
   if (!route.ethics.blocked) {
-    noema.rememberExchange({
+    naib.rememberExchange({
       user: route.message,
       assistant: providerResult.text,
       mode: route.mode.id
@@ -1228,7 +1232,7 @@ routeBtn.addEventListener("click", handleRoute);
 clearBtn.addEventListener("click", () => {
   messageEl.value = "";
   responseEl.innerHTML =
-    "NOEMA's Intelligence Director is ready. Constitutional policy, context minimization, Verifier routing and the provider protocol are active; the current provider remains the honest local fallback.";
+    "NAIB is ready. NOEMA remains active behind the interface as the administrative intelligence governing Constitution, permissions, memory, Verifier rules, security, and specialist orchestration.";
 });
 
 eraseBtn.addEventListener("click", () => {
