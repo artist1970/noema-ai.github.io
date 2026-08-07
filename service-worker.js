@@ -1,4 +1,4 @@
-const CACHE = "noema-shell-v0.2.0";
+const CACHE = "noema-shell-v0.3.0";
 const SHELL = [
   "./",
   "./index.html",

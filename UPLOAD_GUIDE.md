@@ -1,48 +1,29 @@
-# NOEMA Repository Upload Guide
+# NOEMA v0.3 Header Update
 
-Target:
+Replace exactly these three files in:
 
 `artist1970/noema-ai.github.io`
 
-Upload the **contents** of this ZIP to the repository root while preserving folders.
-
-Expected root:
-
 ```text
-noema-ai.github.io/
-├── index.html
-├── README.md
-├── mentor-manifest.json
-├── manifest.webmanifest
-├── service-worker.js
-├── package.json
-├── adapters/
-├── app/
-├── config/
-├── core/
-├── docs/
-├── memory/
-├── providers/
-├── safety/
-├── styles/
-└── tests/
+index.html
+styles/noema.css
+service-worker.js
 ```
 
-## After upload
+This update adds:
 
-1. Confirm GitHub Pages is publishing from `main` / root.
-2. Open the site and verify the NOEMA shell loads.
-3. In `vervenveda/vervenveda.github.io`, run:
-   `Actions → Mentor Resource Index → Run workflow → main`
-4. The central Mentor registry should then discover the root `mentor-manifest.json`.
+- midnight ecosystem ticker;
+- NOEMA typographic monogram/logo;
+- breadcrumbs;
+- ecosystem dropdown menu;
+- shorter and better-balanced hero;
+- "Enter the intelligence workspace" link;
+- larger workspace typography;
+- refined mode highlighting;
+- public-facing "Local-first · Private by design" status;
+- responsive mobile/tablet header;
+- cache bump to `noema-shell-v0.3.0`.
 
-## Important
+No core Noema logic, memory, provider, Mentor, Sovereign, safety, or routing files are changed.
 
-This package contains:
-- no API keys;
-- no passwords;
-- no Founder-specific Hope Codex memories;
-- no hidden provider credential;
-- no `localStorage.clear()`.
-
-The conversational provider remains intentionally unconnected in v0.2.
+After upload, refresh once. If an old service worker is still controlling the tab, a second reload will pick up the new v0.3 cache.
