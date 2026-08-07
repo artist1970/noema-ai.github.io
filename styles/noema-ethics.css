@@ -1,0 +1,29 @@
+.system-integrity{
+  border-color:rgba(138,105,51,.26);
+  background:
+    linear-gradient(180deg,rgba(255,252,245,.95),rgba(247,239,222,.78));
+}
+.integrity-row{
+  display:flex;
+  align-items:center;
+  gap:.5rem;
+  color:#6f685c;
+  font-size:12px;
+}
+.integrity-dot{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  display:inline-block;
+}
+.integrity-dot.active{
+  background:#5a8b68;
+  box-shadow:0 0 0 3px rgba(90,139,104,.12);
+}
+.integrity-dot.blocked{
+  background:#a4574e;
+  box-shadow:0 0 0 3px rgba(164,87,78,.12);
+}
+.constitution-notice{
+  border-left-color:#8a6933;
+}

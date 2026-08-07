@@ -1,29 +1,45 @@
-# NOEMA v0.3 Header Update
+# NOEMA v0.4 — Constitution + Capability Ledger
 
-Replace exactly these three files in:
+Upload the contents of this package into:
 
 `artist1970/noema-ai.github.io`
 
+## New files
+
+```text
+ethics/constitution.js
+ethics/ethics-engine.js
+ethics/non-manipulation.js
+
+permissions/capability-ledger.js
+permissions/action-gate.js
+
+transparency/route-trace.js
+
+styles/noema-ethics.css
+
+docs/CONSTITUTION.md
+docs/CAPABILITY_LEDGER.md
+```
+
+## Replace existing files
+
 ```text
 index.html
-styles/noema.css
+app/noema-app.js
+core/conversation-orchestrator.js
+core/noema-core.js
+providers/local-placeholder.js
 service-worker.js
 ```
 
-This update adds:
+This update does not alter:
+- Noema identity;
+- local continuity format;
+- mode definitions;
+- module registry;
+- Mentor adapter;
+- Sovereign adapter;
+- GitHub security configuration.
 
-- midnight ecosystem ticker;
-- NOEMA typographic monogram/logo;
-- breadcrumbs;
-- ecosystem dropdown menu;
-- shorter and better-balanced hero;
-- "Enter the intelligence workspace" link;
-- larger workspace typography;
-- refined mode highlighting;
-- public-facing "Local-first · Private by design" status;
-- responsive mobile/tablet header;
-- cache bump to `noema-shell-v0.3.0`.
-
-No core Noema logic, memory, provider, Mentor, Sovereign, safety, or routing files are changed.
-
-After upload, refresh once. If an old service worker is still controlling the tab, a second reload will pick up the new v0.3 cache.
+The service worker cache is bumped to `noema-shell-v0.4.0`.

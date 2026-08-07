@@ -44,7 +44,20 @@ function renderMode(id) {
 }
 
 function renderModules(route) {
-  modulesEl.innerHTML = route.modules.map(module => `
+  const integrity = `
+    <article class="card module-card system-integrity">
+      <div class="module-title">NOEMA Constitution</div>
+      <div class="module-purpose">
+        Ethics kernel active · v${escapeHtml(route.ethics.constitutionVersion)}
+      </div>
+      <div class="integrity-row">
+        <span class="integrity-dot ${route.ethics.blocked ? "blocked" : "active"}"></span>
+        ${route.ethics.blocked ? "Boundary enforced" : "Active"}
+      </div>
+    </article>
+  `;
+
+  const specialists = route.modules.map(module => `
     <article class="card module-card">
       <div class="module-title">${escapeHtml(module.label)}</div>
       <div class="module-purpose">${escapeHtml(module.purpose)}</div>
@@ -54,6 +67,8 @@ function renderModules(route) {
       }
     </article>
   `).join("");
+
+  modulesEl.innerHTML = integrity + specialists;
 }
 
 async function handleRoute() {
@@ -70,18 +85,29 @@ async function handleRoute() {
     ? `<div class="notice"><strong>Privacy:</strong> ${escapeHtml(route.privacy.recommendation)}</div>`
     : "";
 
+  const ethics = route.ethics.needsReview
+    ? `<div class="notice constitution-notice"><strong>Constitution:</strong> ${route.ethics.concerns.map(item => escapeHtml(item.message)).join(" ")}</div>`
+    : "";
+
   responseEl.innerHTML = `
     ${safety}
     ${privacy}
+    ${ethics}
     <strong>${escapeHtml(result.text)}</strong>
-    <div class="meta">Provider: ${escapeHtml(result.provider)} · Model-generated response: ${result.generatedByModel ? "yes" : "no"}</div>
+    <div class="meta">
+      Provider: ${escapeHtml(result.provider)}
+      · Model-generated response: ${result.generatedByModel ? "yes" : "no"}
+      · Constitution: active v${escapeHtml(route.ethics.constitutionVersion)}
+    </div>
   `;
 
-  noema.rememberExchange({
-    user: route.message,
-    assistant: result.text,
-    mode: route.mode.id
-  });
+  if (!route.ethics.blocked) {
+    noema.rememberExchange({
+      user: route.message,
+      assistant: result.text,
+      mode: route.mode.id
+    });
+  }
 }
 
 routeBtn.addEventListener("click", handleRoute);
@@ -89,7 +115,7 @@ routeBtn.addEventListener("click", handleRoute);
 clearBtn.addEventListener("click", () => {
   messageEl.value = "";
   responseEl.innerHTML =
-    "Noema's static shell is ready. A conversational model provider has not been connected yet.";
+    "Noema's local shell is ready. Constitutional policy is active; a conversational model provider has not been connected yet.";
 });
 
 eraseBtn.addEventListener("click", () => {

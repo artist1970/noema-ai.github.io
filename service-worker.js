@@ -1,8 +1,9 @@
-const CACHE = "noema-shell-v0.3.0";
+const CACHE = "noema-shell-v0.4.0";
 const SHELL = [
   "./",
   "./index.html",
   "./styles/noema.css",
+  "./styles/noema-ethics.css",
   "./app/noema-app.js",
   "./core/noema-core.js",
   "./core/identity.js",
@@ -16,7 +17,13 @@ const SHELL = [
   "./providers/provider-interface.js",
   "./providers/local-placeholder.js",
   "./safety/adult-boundaries.js",
-  "./safety/privacy-boundary.js"
+  "./safety/privacy-boundary.js",
+  "./ethics/constitution.js",
+  "./ethics/ethics-engine.js",
+  "./ethics/non-manipulation.js",
+  "./permissions/capability-ledger.js",
+  "./permissions/action-gate.js",
+  "./transparency/route-trace.js"
 ];
 
 self.addEventListener("install", event => {
