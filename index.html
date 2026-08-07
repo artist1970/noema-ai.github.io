@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="./styles/noema-avatar.css">
   <link rel="stylesheet" href="./styles/noema-verifier.css">
   <link rel="stylesheet" href="./styles/noema-conversation.css">
+  <link rel="stylesheet" href="./styles/noema-orchestration.css">
 </head>
 <body>
   <header class="site-header">
@@ -111,7 +112,7 @@
 
   <main class="shell" id="noema-workspace" aria-label="NOEMA workspace">
     <div class="shell-head">
-      <div class="brand">NOEMA / v0.9</div>
+      <div class="brand">NOEMA / v1.0</div>
       <div class="status">Local-first · Private by design</div>
     </div>
 
@@ -161,6 +162,15 @@
             Microphone input starts only when you press Push to talk. Transcripts return here for review and are never auto-sent.
           </div>
         </details>
+
+
+        <section class="plan-panel" id="intelligencePlan" hidden aria-label="NOEMA coordination plan">
+          <div class="plan-head">
+            <strong>Intelligence Plan</strong>
+            <span id="planSummary">0 tasks</span>
+          </div>
+          <div class="plan-list" id="planList"></div>
+        </section>
 
         <div class="response" id="response" aria-live="polite"></div>
       </article>

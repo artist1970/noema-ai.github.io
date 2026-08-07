@@ -3,7 +3,8 @@ export function createIntelligenceTrace({
   delegation={},
   researchDecision={},
   verifierSession=null,
-  providerTrace=null
+  providerTrace=null,
+  orchestration=null
 }={}) {
   return {
     mode:route.mode?.id || "personal",
@@ -26,6 +27,14 @@ export function createIntelligenceTrace({
       primary:delegation?.primary || "NOEMA",
       specialists:[...(delegation?.specialists || [])]
     },
+    orchestration: orchestration
+      ? {
+          totalTasks:orchestration.summary?.total || 0,
+          finishedTasks:orchestration.summary?.finished || 0,
+          handoffCount:(orchestration.tasks || []).filter(t=>t.status==="handoff").length,
+          unavailableCount:(orchestration.tasks || []).filter(t=>t.status==="unavailable").length
+        }
+      : null,
     provider:providerTrace,
     internalReasoningExposed:false
   };

@@ -1,4 +1,4 @@
-const CACHE = "noema-shell-v0.9.0";
+const CACHE = "noema-shell-v1.0.0";
 const SHELL = [
   "./",
   "./index.html",
@@ -9,6 +9,15 @@ const SHELL = [
   "./styles/noema-avatar.css",
   "./styles/noema-verifier.css",
   "./styles/noema-conversation.css",
+  "./styles/noema-orchestration.css",
+  "./specialists/specialist-registry.js",
+  "./orchestration/task-graph.js",
+  "./orchestration/task-planner.js",
+  "./orchestration/mentor-adaptation.js",
+  "./orchestration/specialist-executor.js",
+  "./orchestration/orchestration-engine.js",
+  "./orchestration/specialist-context.js",
+  "./orchestration/response-synthesizer.js",
   "./config/provider-config.js",
   "./providers/noema-protocol.js",
   "./providers/provider-registry.js",

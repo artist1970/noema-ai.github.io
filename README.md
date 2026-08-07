@@ -57,3 +57,8 @@ NOEMA project identity developed collaboratively within the Verve N Veda ecosyst
 ## v0.9 — Intelligence Director
 
 Adds the provider-independent NOEMA Protocol, transient conversation session engine, minimized provider context, automatic Verifier routing, bounded specialist delegation, secure HTTP provider seam, provider trace, and optional browser voice with push-to-talk only.
+
+
+## v1.0 — Integrated Intelligence
+
+Adds visible task orchestration, specialist connection states, bounded local specialist execution, honest handoffs, mentor-aware presentation adaptation, evidence-aware synthesis, and provider context containing settled specialist results.

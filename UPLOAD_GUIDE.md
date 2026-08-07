@@ -1,101 +1,61 @@
-# NOEMA v0.9 — Intelligence Director
+# NOEMA v1.0 — Integrated Intelligence
 
-This package is a **full merged repository**.
+This is a **full merged repository**.
 
-Upload the contents into:
+Upload all contents into:
 
 `artist1970/noema-ai.github.io`
 
 preserving all folders.
 
-## Major new systems
+## New architecture
 
 ```text
-config/provider-config.js
+specialists/
+  specialist-registry.js
 
-conversation/
-  message-schema.js
-  session-engine.js
-  context-envelope.js
-
-providers/
-  noema-protocol.js
-  provider-registry.js
-  http-provider.js
-  provider-response-normalizer.js
-
-core/
-  intelligence-director.js
-
-research/
-  research-trigger.js
-
-delegation/
-  delegation-engine.js
-
-voice/
-  speech-output.js
-  push-to-talk.js
-  voice-controller.js
-
-transparency/
-  provider-trace.js
-  intelligence-trace.js
+orchestration/
+  task-graph.js
+  task-planner.js
+  mentor-adaptation.js
+  specialist-executor.js
+  orchestration-engine.js
+  specialist-context.js
+  response-synthesizer.js
 
 styles/
-  noema-conversation.css
+  noema-orchestration.css
 ```
 
-## Important replacements
+## Replaced / updated
 
 ```text
 index.html
 app/noema-app.js
-core/noema-core.js
+core/intelligence-director.js
+providers/noema-protocol.js
 permissions/capability-ledger.js
-providers/provider-interface.js
-providers/local-placeholder.js
+transparency/intelligence-trace.js
 service-worker.js
-manifest.webmanifest
 package.json
-README.md
+manifest.webmanifest
+VALIDATION.json
 ```
 
-## Current provider state
+## What v1.0 adds
 
-The secure remote provider remains OFF.
-
-```text
-activeProvider: local-placeholder
-remote.enabled: false
-```
-
-No API key or credential is required.
-
-## What works now
-
-- NOEMA Intelligence Director owns the conversation route.
-- Provider-independent request protocol.
-- Minimized provider context.
-- Transient session engine.
-- Automatic Verifier requirement for research/current/civic/high-stakes/domain factual requests.
-- Bounded specialist delegation.
-- Provider response normalization.
-- Provider cannot change permissions or memory.
-- Secure future HTTP provider seam.
-- Optional browser read-aloud.
-- Explicit push-to-talk speech recognition where supported.
-- Transcript review before sending.
-- No background listening.
-- No microphone audio storage.
-- Service-worker cache: `noema-shell-v0.9.0`.
-
-## After upload
-
-Verify:
-1. `NOEMA / v0.9` displays.
-2. ordinary conversation shows `Local fallback`.
-3. a research question shows a Verifier status.
-4. `Push to talk` is visible and does not auto-send.
-5. service worker contains `noema-shell-v0.9.0`.
-6. `VALIDATION.json` reports all tests passed.
+- Visible Intelligence Plan for each request.
+- Dependency-aware task graph.
+- Specialist connection-state registry.
+- Local Verifier integration.
+- Local Mentor adaptation.
+- Bounded decision-support frame.
+- Moirai / PROSE / ARSHIF / PLERA Search transparent handoffs.
+- Hope only when explicitly requested.
+- 333 remains account-restricted.
+- Provider sees settled specialist context rather than a flat module list.
+- NOEMA synthesizes provider response + specialist states + Verifier state.
+- Handoffs are explicitly marked `executed: false`.
+- Fake specialist execution is blocked.
+- Mentor adaptation cannot alter evidence or infer from appearance.
+- Cache: `noema-shell-v1.0.0`.
