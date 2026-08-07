@@ -1,4 +1,4 @@
-# NOEMA — Sovereign Intelligence Director
+# NAIB — Public Intelligence Director
 ## Sovereign Adult Intelligence
 
 **NOEMA** is the adult AI presence and orchestration intelligence of the Verve N Veda / PLERA ecosystem.
@@ -62,3 +62,8 @@ Adds the provider-independent NOEMA Protocol, transient conversation session eng
 ## v1.0 — Integrated Intelligence
 
 Adds visible task orchestration, specialist connection states, bounded local specialist execution, honest handoffs, mentor-aware presentation adaptation, evidence-aware synthesis, and provider context containing settled specialist results.
+
+
+## v1.1 — NAIB public identity
+
+NAIB is now the public-facing intelligence. NOEMA remains the administrative intelligence governing Constitution, permissions, memory, identity, Verifier standards, security, provider boundaries, and specialist authority. Existing `noema_*` data keys remain intact.

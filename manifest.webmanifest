@@ -1,9 +1,9 @@
 {
-  "name": "NOEMA \u2014 Sovereign Intelligence Director",
-  "short_name": "NOEMA",
+  "name": "NAIB \u2014 Public Intelligence Director",
+  "short_name": "NAIB",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#f5f0e6",
   "theme_color": "#101827",
-  "description": "NOEMA Integrated Intelligence \u2014 governed conversation, persistent mentors, task orchestration, research verification, voice, and bounded specialist coordination."
+  "description": "NAIB is the public-facing intelligence of Verve N Veda, governed by the NOEMA administrative intelligence layer."
 }

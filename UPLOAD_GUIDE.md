@@ -1,61 +1,64 @@
-# NOEMA v1.0 — Integrated Intelligence
+# NAIB v1.1 — Public Intelligence / NOEMA Administration
 
-This is a **full merged repository**.
+This package is a full merged repository.
 
-Upload all contents into:
+Upload all contents into the existing repository for now:
 
 `artist1970/noema-ai.github.io`
 
-preserving all folders.
+Do not rename the repository yet.
 
-## New architecture
+The public interface will become NAIB while NOEMA remains the administrative intelligence behind it.
 
-```text
-specialists/
-  specialist-registry.js
-
-orchestration/
-  task-graph.js
-  task-planner.js
-  mentor-adaptation.js
-  specialist-executor.js
-  orchestration-engine.js
-  specialist-context.js
-  response-synthesizer.js
-
-styles/
-  noema-orchestration.css
-```
-
-## Replaced / updated
+## New files
 
 ```text
-index.html
-app/noema-app.js
-core/intelligence-director.js
-providers/noema-protocol.js
-permissions/capability-ledger.js
-transparency/intelligence-trace.js
-service-worker.js
-package.json
-manifest.webmanifest
-VALIDATION.json
+front/
+  naib-identity.js
+  naib-facade.js
+  public-boundary.js
+
+docs/
+  NAIB_NOEMA_ARCHITECTURE.md
+  PUBLIC_IDENTITY_BOUNDARY.md
+  IDENTITY_LINEAGE.md
 ```
 
-## What v1.0 adds
+## Important behavior
 
-- Visible Intelligence Plan for each request.
-- Dependency-aware task graph.
-- Specialist connection-state registry.
-- Local Verifier integration.
-- Local Mentor adaptation.
-- Bounded decision-support frame.
-- Moirai / PROSE / ARSHIF / PLERA Search transparent handoffs.
-- Hope only when explicitly requested.
-- 333 remains account-restricted.
-- Provider sees settled specialist context rather than a flat module list.
-- NOEMA synthesizes provider response + specialist states + Verifier state.
-- Handoffs are explicitly marked `executed: false`.
-- Fake specialist execution is blocked.
-- Mentor adaptation cannot alter evidence or infer from appearance.
-- Cache: `noema-shell-v1.0.0`.
+Existing `noema_*` localStorage keys are intentionally preserved.
+
+Do not delete or rename them.
+
+They now represent NOEMA-managed administrative state.
+
+## Public identity
+
+```text
+NAIB
+Public Intelligence Director
+```
+
+## Administrative identity
+
+```text
+NOEMA
+Administrative Intelligence
+```
+
+## Cache
+
+```text
+naib-shell-v1.1.0
+```
+
+## Current provider state
+
+Still unchanged:
+
+```text
+activeProvider: local-placeholder
+remote.enabled: false
+```
+
+No server, API key, or account infrastructure is required for this release.

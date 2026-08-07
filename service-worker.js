@@ -1,4 +1,4 @@
-const CACHE = "noema-shell-v1.0.0";
+const CACHE = "naib-shell-v1.1.0";
 const SHELL = [
   "./",
   "./index.html",
@@ -10,6 +10,9 @@ const SHELL = [
   "./styles/noema-verifier.css",
   "./styles/noema-conversation.css",
   "./styles/noema-orchestration.css",
+  "./front/naib-identity.js",
+  "./front/naib-facade.js",
+  "./front/public-boundary.js",
   "./specialists/specialist-registry.js",
   "./orchestration/task-graph.js",
   "./orchestration/task-planner.js",

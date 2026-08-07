@@ -12,6 +12,28 @@ export const NOEMA_CAPABILITIES = Object.freeze({
 
 
 
+
+  "naib.converse": {
+    state: CAPABILITY_STATES.ALLOW,
+    description: "NAIB may serve as the public conversational intelligence through the NOEMA administrative core."
+  },
+  "naib.coordinate": {
+    state: CAPABILITY_STATES.ALLOW,
+    description: "NAIB may coordinate approved specialists through NOEMA-governed orchestration."
+  },
+  "naib.admin-access": {
+    state: CAPABILITY_STATES.BLOCK,
+    description: "NAIB may not directly access or alter NOEMA administrative authority, authentication, guardian controls, or protected administrative state."
+  },
+  "naib.override-noema": {
+    state: CAPABILITY_STATES.BLOCK,
+    description: "NAIB may not override NOEMA Constitution, capability gates, Verifier rules, memory governance, or security controls."
+  },
+  "naib.impersonate-admin": {
+    state: CAPABILITY_STATES.BLOCK,
+    description: "NAIB must not present itself as NOEMA's administrative identity or claim administrator authority."
+  },
+
   "orchestration.plan": {
     state: CAPABILITY_STATES.ALLOW,
     description: "Create a transparent task graph from the user's request, mode, project context and verification requirements."
