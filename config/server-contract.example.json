@@ -1,0 +1,10 @@
+{
+  "enabled": false,
+  "baseUrl": "",
+  "apiPrefix": "/api/v1",
+  "expectedHealthPath": "/health",
+  "notes": [
+    "Set enabled=true only when a real HTTPS account server exists.",
+    "Never place passwords, API keys, database credentials, session tokens, or private secrets in this public configuration."
+  ]
+}

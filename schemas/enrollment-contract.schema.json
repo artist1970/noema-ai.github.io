@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://noema.local/schemas/enrollment-contract.schema.json",
+  "title": "NOEMA Enrollment Contract",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "personId",
+    "displayName",
+    "ageBand",
+    "accountPathway",
+    "learning"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "personId": {
+      "type": "string",
+      "minLength": 8
+    },
+    "displayName": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 60
+    },
+    "birthMonth": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 1,
+      "maximum": 12
+    },
+    "birthYear": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 1900
+    },
+    "age": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "ageBand": {
+      "enum": [
+        "child-under-13",
+        "teen-13-17",
+        "adult-18-plus",
+        "unknown"
+      ]
+    },
+    "accountPathway": {
+      "enum": [
+        "guardian-managed-child",
+        "guardian-linked-teen",
+        "independent-adult",
+        "unknown"
+      ]
+    },
+    "learning": {
+      "type": "object",
+      "required": [
+        "gradeLevel",
+        "learningStage",
+        "educationSetting",
+        "favoriteSubject",
+        "interests"
+      ],
+      "properties": {
+        "gradeLevel": {
+          "type": "string"
+        },
+        "learningStage": {
+          "type": "string"
+        },
+        "educationSetting": {
+          "type": "string"
+        },
+        "favoriteSubject": {
+          "type": "string"
+        },
+        "interests": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 8
+        }
+      }
+    }
+  }
+}

@@ -14,6 +14,22 @@ const routeBtn = document.querySelector("#routeBtn");
 const clearBtn = document.querySelector("#clearBtn");
 const eraseBtn = document.querySelector("#eraseBtn");
 
+const enrollmentBtn = document.querySelector("#enrollmentBtn");
+const enrollmentDrawer = document.querySelector("#enrollmentDrawer");
+const enrollmentClose = document.querySelector("#enrollmentClose");
+const enrollmentForm = document.querySelector("#enrollmentForm");
+const enrollDisplayName = document.querySelector("#enrollDisplayName");
+const enrollBirthMonth = document.querySelector("#enrollBirthMonth");
+const enrollBirthYear = document.querySelector("#enrollBirthYear");
+const enrollEducationSetting = document.querySelector("#enrollEducationSetting");
+const enrollGrade = document.querySelector("#enrollGrade");
+const enrollLearningStage = document.querySelector("#enrollLearningStage");
+const enrollFavoriteSubject = document.querySelector("#enrollFavoriteSubject");
+const enrollInterests = document.querySelector("#enrollInterests");
+const enrollmentMessage = document.querySelector("#enrollmentMessage");
+const identitySummary = document.querySelector("#identitySummary");
+const serverStatusPill = document.querySelector("#serverStatusPill");
+
 const memoryBtn = document.querySelector("#memoryBtn");
 const memoryDrawer = document.querySelector("#memoryDrawer");
 const memoryClose = document.querySelector("#memoryClose");
@@ -82,6 +98,18 @@ function renderModules(route) {
     </article>
   `;
 
+  const enrollment = route.context?.enrollment;
+  const enrollmentCard = `
+    <article class="card module-card enrollment-status-card">
+      <div class="module-title">Identity & Enrollment</div>
+      <div class="module-purpose">
+        ${enrollment
+          ? `${escapeHtml(enrollment.displayName)} · ${escapeHtml(enrollment.ageBand)}<br>${escapeHtml(enrollment.learning?.gradeLevel || "not-applicable")}`
+          : "No local enrollment profile yet"}
+      </div>
+    </article>
+  `;
+
   const integrity = `
     <article class="card module-card system-integrity">
       <div class="module-title">NOEMA Constitution</div>
@@ -106,7 +134,7 @@ function renderModules(route) {
     </article>
   `).join("");
 
-  modulesEl.innerHTML = contextCard + integrity + specialists;
+  modulesEl.innerHTML = enrollmentCard + contextCard + integrity + specialists;
 }
 
 async function handleRoute() {
@@ -152,6 +180,104 @@ async function handleRoute() {
     });
   }
 }
+
+
+function openEnrollment() {
+  enrollmentDrawer.hidden = false;
+  renderEnrollment();
+}
+
+function closeEnrollment() {
+  enrollmentDrawer.hidden = true;
+}
+
+function selectedInterests() {
+  return [...enrollInterests.querySelectorAll('input[type="checkbox"]:checked')]
+    .map(input => input.value)
+    .slice(0, 8);
+}
+
+function renderEnrollment() {
+  const status = noema.getEnrollmentStatus();
+  const profile = status.profile;
+  const relationship = status.mentorRelationship;
+  const server = status.sync?.server || {};
+
+  serverStatusPill.textContent = server.enabled ? "Secure host configured" : "Local only";
+
+  if (profile) {
+    enrollDisplayName.value = profile.displayName || "";
+    enrollBirthMonth.value = profile.birthMonth || "";
+    enrollBirthYear.value = profile.birthYear || "";
+    enrollEducationSetting.value = profile.learning?.educationSetting || "independent";
+    enrollGrade.value = profile.learning?.gradeLevel || "not-applicable";
+    enrollLearningStage.value = profile.learning?.learningStage || "";
+    enrollFavoriteSubject.value = profile.learning?.favoriteSubject || "not-sure-yet";
+
+    const interestSet = new Set(profile.learning?.interests || []);
+    enrollInterests.querySelectorAll('input[type="checkbox"]').forEach(input => {
+      input.checked = interestSet.has(input.value);
+    });
+  }
+
+  identitySummary.innerHTML = profile
+    ? `
+      <div class="identity-summary-box">
+        <span>Person</span>
+        <strong>${escapeHtml(profile.displayName)}</strong>
+      </div>
+      <div class="identity-summary-box">
+        <span>Enrollment pathway</span>
+        <strong>${escapeHtml(profile.accountPathway)}</strong>
+      </div>
+      <div class="identity-summary-box">
+        <span>Learning placement</span>
+        <strong>${escapeHtml(profile.learning?.gradeLevel || "not-applicable")}${profile.learning?.learningStage ? ` · ${escapeHtml(profile.learning.learningStage)}` : ""}</strong>
+      </div>
+      <div class="identity-summary-box">
+        <span>Mentor relationship</span>
+        <strong>${relationship ? "Persistent local prototype created" : "Created after enrollment"}</strong>
+      </div>
+      <div class="identity-summary-box">
+        <span>Cross-device persistence</span>
+        <strong>${server.enabled ? "Server seam configured; authentication still required" : "Not active — local browser only"}</strong>
+      </div>
+    `
+    : `
+      <div class="memory-empty">
+        Create the local enrollment profile to establish the person → mentor relationship spine.
+      </div>
+    `;
+}
+
+enrollmentForm.addEventListener("submit", event => {
+  event.preventDefault();
+
+  const result = noema.saveEnrollment({
+    displayName: enrollDisplayName.value,
+    birthMonth: Number(enrollBirthMonth.value),
+    birthYear: Number(enrollBirthYear.value),
+    educationSetting: enrollEducationSetting.value,
+    gradeLevel: enrollGrade.value,
+    learningStage: enrollLearningStage.value,
+    favoriteSubject: enrollFavoriteSubject.value,
+    interests: selectedInterests()
+  });
+
+  enrollmentMessage.textContent = result.reason;
+
+  if (result.ok) {
+    renderEnrollment();
+    handleRoute();
+  }
+});
+
+enrollmentBtn.addEventListener("click", openEnrollment);
+enrollmentClose.addEventListener("click", closeEnrollment);
+enrollmentDrawer.addEventListener("click", event => {
+  if (event.target === enrollmentDrawer) closeEnrollment();
+});
+
 
 function openMemory() {
   memoryDrawer.hidden = false;
@@ -344,6 +470,7 @@ eraseBtn.addEventListener("click", () => {
   renderMode(activeMode);
   renderMemoryLibrary();
   renderProjects();
+  renderEnrollment();
   responseEl.innerHTML =
     "NOEMA local preferences, continuity, Memory Library, and project context were cleared. Other applications were not affected.";
 });
@@ -354,4 +481,5 @@ memoryScope.value = activeMode;
 projectMode.value = activeMode;
 renderMemoryLibrary();
 renderProjects();
+renderEnrollment();
 handleRoute();

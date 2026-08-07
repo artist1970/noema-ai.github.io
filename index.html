@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="./styles/noema.css">
   <link rel="stylesheet" href="./styles/noema-ethics.css">
   <link rel="stylesheet" href="./styles/noema-memory.css">
+  <link rel="stylesheet" href="./styles/noema-enrollment.css">
 </head>
 <body>
   <header class="site-header">
@@ -107,7 +108,7 @@
 
   <main class="shell" id="noema-workspace" aria-label="NOEMA workspace">
     <div class="shell-head">
-      <div class="brand">NOEMA / v0.5</div>
+      <div class="brand">NOEMA / v0.6</div>
       <div class="status">Local-first · Private by design</div>
     </div>
 
@@ -127,6 +128,7 @@
         <div class="actions">
           <button class="btn primary" id="routeBtn">Continue with Noema</button>
           <button class="btn secondary" id="clearBtn">Clear message</button>
+          <button class="btn secondary" id="enrollmentBtn">Identity &amp; Enrollment</button>
           <button class="btn secondary" id="memoryBtn">Memory &amp; Context</button>
           <button class="btn secondary" id="eraseBtn">Clear NOEMA local data</button>
         </div>
@@ -137,6 +139,159 @@
       <aside class="modules" id="modules" aria-label="Relevant specialist systems"></aside>
     </section>
   </main>
+
+  <div class="enrollment-drawer" id="enrollmentDrawer" hidden>
+    <section class="enrollment-panel" role="dialog" aria-modal="true" aria-labelledby="enrollmentHeading">
+      <header class="enrollment-head">
+        <div>
+          <div class="eyebrow">Identity Spine · Local Prototype</div>
+          <h2 id="enrollmentHeading">Identity &amp; Enrollment</h2>
+          <p>
+            Create the local identity profile that a future secure NOEMA account server can synchronize.
+            No password or authentication secret is collected by this GitHub Pages build.
+          </p>
+        </div>
+        <button class="enrollment-close" id="enrollmentClose" type="button" aria-label="Close enrollment">×</button>
+      </header>
+
+      <div class="enrollment-layout">
+        <section class="enrollment-card">
+          <h3>Person &amp; Learning Profile</h3>
+          <form class="enrollment-form" id="enrollmentForm">
+            <div class="enrollment-row">
+              <label>
+                Display name
+                <input id="enrollDisplayName" maxlength="60" required placeholder="The name you want Noema to use">
+              </label>
+              <label>
+                Education setting
+                <select id="enrollEducationSetting">
+                  <option value="preschool">Preschool</option>
+                  <option value="k12-school">K–12 school</option>
+                  <option value="homeschool">Homeschool</option>
+                  <option value="college">College</option>
+                  <option value="higher-learning">Higher learning</option>
+                  <option value="professional">Professional learning</option>
+                  <option value="independent">Independent study</option>
+                  <option value="not-currently-enrolled">Not currently enrolled</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="enrollment-row three">
+              <label>
+                Birth month
+                <select id="enrollBirthMonth" required>
+                  <option value="">Month</option>
+                  <option value="1">January</option><option value="2">February</option>
+                  <option value="3">March</option><option value="4">April</option>
+                  <option value="5">May</option><option value="6">June</option>
+                  <option value="7">July</option><option value="8">August</option>
+                  <option value="9">September</option><option value="10">October</option>
+                  <option value="11">November</option><option value="12">December</option>
+                </select>
+              </label>
+              <label>
+                Birth year
+                <input id="enrollBirthYear" type="number" min="1900" required inputmode="numeric" placeholder="Year">
+              </label>
+              <label>
+                Grade / stage
+                <select id="enrollGrade">
+                  <option value="preschool">Preschool</option>
+                  <option value="kindergarten">Kindergarten</option>
+                  <option value="grade-01">Grade 1</option><option value="grade-02">Grade 2</option>
+                  <option value="grade-03">Grade 3</option><option value="grade-04">Grade 4</option>
+                  <option value="grade-05">Grade 5</option><option value="grade-06">Grade 6</option>
+                  <option value="grade-07">Grade 7</option><option value="grade-08">Grade 8</option>
+                  <option value="grade-09">Grade 9</option><option value="grade-10">Grade 10</option>
+                  <option value="grade-11">Grade 11</option><option value="grade-12">Grade 12</option>
+                  <option value="college">College</option>
+                  <option value="graduate">Graduate</option>
+                  <option value="professional">Professional</option>
+                  <option value="adult-continuing">Adult continuing education</option>
+                  <option value="independent">Independent study</option>
+                  <option value="not-applicable">Not applicable</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="enrollment-row">
+              <label>
+                Current learning stage
+                <input id="enrollLearningStage" maxlength="80" placeholder="Example: Algebra II, early reading, college biology">
+              </label>
+              <label>
+                Favorite subject
+                <select id="enrollFavoriteSubject">
+                  <option value="not-sure-yet">Not sure yet</option>
+                  <option value="mathematics">Mathematics</option>
+                  <option value="science">Science</option>
+                  <option value="language-arts">Language Arts / Reading</option>
+                  <option value="social-studies">Social Studies</option>
+                  <option value="history">History</option>
+                  <option value="art">Art</option>
+                  <option value="music">Music</option>
+                  <option value="technology">Technology</option>
+                  <option value="languages">Languages</option>
+                  <option value="physical-education">Physical Education</option>
+                  <option value="not-applicable">Not applicable</option>
+                </select>
+              </label>
+            </div>
+
+            <div>
+              <div class="memory-section-kicker">A few interests</div>
+              <div class="interest-grid" id="enrollInterests">
+                <label class="interest-option"><input type="checkbox" value="music"> Music</label>
+                <label class="interest-option"><input type="checkbox" value="cooking"> Cooking</label>
+                <label class="interest-option"><input type="checkbox" value="reading"> Reading</label>
+                <label class="interest-option"><input type="checkbox" value="art"> Art</label>
+                <label class="interest-option"><input type="checkbox" value="writing"> Writing</label>
+                <label class="interest-option"><input type="checkbox" value="science"> Science</label>
+                <label class="interest-option"><input type="checkbox" value="mathematics"> Mathematics</label>
+                <label class="interest-option"><input type="checkbox" value="history"> History</label>
+                <label class="interest-option"><input type="checkbox" value="nature"> Nature</label>
+                <label class="interest-option"><input type="checkbox" value="animals"> Animals</label>
+                <label class="interest-option"><input type="checkbox" value="space"> Space</label>
+                <label class="interest-option"><input type="checkbox" value="technology"> Technology</label>
+                <label class="interest-option"><input type="checkbox" value="building"> Building</label>
+                <label class="interest-option"><input type="checkbox" value="games"> Games</label>
+                <label class="interest-option"><input type="checkbox" value="sports"> Sports</label>
+                <label class="interest-option"><input type="checkbox" value="languages"> Languages</label>
+              </div>
+            </div>
+
+            <div class="enrollment-note">
+              <strong>Age and learning level are separate.</strong>
+              Age selects the account/guardian pathway. It never determines intelligence, ability, course difficulty, or academic potential.
+              Avatar appearance will be stored separately and will not be used for learner inference.
+            </div>
+
+            <button class="btn primary" type="submit">Save Local Enrollment Profile</button>
+            <div class="enrollment-message" id="enrollmentMessage" aria-live="polite"></div>
+          </form>
+        </section>
+
+        <aside class="enrollment-card">
+          <div class="memory-section-kicker">Identity status</div>
+          <h3>Persistent Relationship Spine</h3>
+          <div id="identitySummary" class="identity-summary"></div>
+
+          <div class="server-seam">
+            <strong>Future Secure Account Server</strong>
+            <p>
+              This release includes a server adapter and HTTPS-only configuration seam.
+              It is disabled until a real account host is deliberately connected.
+              Authentication secrets are never stored in this public application.
+            </p>
+            <span class="server-pill" id="serverStatusPill">Local only</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </div>
+
 
   <div class="memory-drawer" id="memoryDrawer" hidden>
     <section class="memory-panel" role="dialog" aria-modal="true" aria-labelledby="memoryHeading">

@@ -9,6 +9,8 @@ export function buildNoemaContext({
   continuity = [],
   memories = [],
   activeProject = null,
+  enrollmentProfile = null,
+  mentorRelationship = null,
   query = "",
   provider = null
 } = {}) {
@@ -18,6 +20,23 @@ export function buildNoemaContext({
     activeProject
   }, 8);
 
+  const identityContext = enrollmentProfile
+    ? {
+        personId: enrollmentProfile.personId,
+        displayName: enrollmentProfile.displayName,
+        ageBand: enrollmentProfile.ageBand,
+        accountPathway: enrollmentProfile.accountPathway,
+        learning: {
+          gradeLevel: enrollmentProfile.learning?.gradeLevel || "not-applicable",
+          learningStage: enrollmentProfile.learning?.learningStage || "",
+          educationSetting: enrollmentProfile.learning?.educationSetting || "independent",
+          favoriteSubject: enrollmentProfile.learning?.favoriteSubject || "not-sure-yet",
+          interests: [...(enrollmentProfile.learning?.interests || [])]
+        },
+        guardian: enrollmentProfile.guardian || null
+      }
+    : null;
+
   return {
     identity: getNoemaIdentity(),
     persona: buildPersonaContext(preferences.persona || {}),
@@ -25,12 +44,12 @@ export function buildNoemaContext({
     mode,
     preferences,
 
-    // Short-term continuity: bounded conversational buffer.
     continuity: Array.isArray(continuity) ? continuity.slice(-12) : [],
 
-    // Long-term memory: only explicitly saved items relevant to this context.
     memory: {
-      activeCount: Array.isArray(memories) ? memories.filter(item => item?.active !== false).length : 0,
+      activeCount: Array.isArray(memories)
+        ? memories.filter(item => item?.active !== false).length
+        : 0,
       relevant: relevantMemories
     },
 
@@ -42,6 +61,17 @@ export function buildNoemaContext({
           mode: activeProject.mode,
           status: activeProject.status,
           tags: [...(activeProject.tags || [])]
+        }
+      : null,
+
+    enrollment: identityContext,
+
+    mentorRelationship: mentorRelationship
+      ? {
+          relationshipId: mentorRelationship.relationshipId,
+          mentorId: mentorRelationship.mentorId,
+          relationshipType: mentorRelationship.relationshipType,
+          supervisor: mentorRelationship.supervisor
         }
       : null,
 

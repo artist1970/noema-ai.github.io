@@ -7,6 +7,28 @@ export const CAPABILITY_STATES = Object.freeze({
 });
 
 export const NOEMA_CAPABILITIES = Object.freeze({
+
+  "identity.read": {
+    state: CAPABILITY_STATES.ALLOW,
+    description: "Read the local NOEMA enrollment profile for contextual routing."
+  },
+  "identity.write": {
+    state: CAPABILITY_STATES.CONFIRM,
+    description: "Create or update a local enrollment profile with explicit user action."
+  },
+  "guardian.link": {
+    state: CAPABILITY_STATES.CONFIRM,
+    description: "Create or change a guardian relationship only through an explicit enrollment action."
+  },
+  "account.remote-auth": {
+    state: CAPABILITY_STATES.UNAVAILABLE,
+    description: "Remote authentication remains unavailable until a secure HTTPS account server is deliberately configured."
+  },
+  "account.cross-device-sync": {
+    state: CAPABILITY_STATES.UNAVAILABLE,
+    description: "Cross-device identity sync remains unavailable until a secure account server is connected."
+  },
+
   "conversation.respond": {
     state: CAPABILITY_STATES.ALLOW,
     description: "Respond conversationally within active policy."

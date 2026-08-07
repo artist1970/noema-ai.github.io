@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://noema.local/schemas/mentor-relationship.schema.json",
+  "title": "NOEMA Person to Mentor Relationship",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "relationshipId",
+    "personId",
+    "mentorId",
+    "relationshipType",
+    "supervisor"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "relationshipId": {
+      "type": "string"
+    },
+    "personId": {
+      "type": "string"
+    },
+    "mentorId": {
+      "type": "string"
+    },
+    "relationshipType": {
+      "const": "adopted-mentor"
+    },
+    "supervisor": {
+      "const": "noema"
+    },
+    "createdAt": {
+      "type": "string"
+    },
+    "updatedAt": {
+      "type": "string"
+    }
+  }
+}
