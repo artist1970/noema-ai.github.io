@@ -7,10 +7,16 @@ import { PRIMARY_TEMPERAMENTS, MENTOR_TRAITS, COLLABORATION_STYLES, getTemperame
 import { HAIR_STYLES, HAIR_COLORS, EYE_COLORS, SKIN_TONES, OUTFIT_STYLES, ACCENT_COLORS } from "../avatars/appearance-catalog.js";
 import { NoemaCore } from "../core/noema-core.js";
 import { listModes, getMode } from "../core/mode-router.js";
-import { LocalPlaceholderProvider } from "../providers/local-placeholder.js";
+import { createProviderRegistry } from "../providers/provider-registry.js";
+import { NOEMA_PROVIDER_CONFIG } from "../config/provider-config.js";
+import { VoiceController } from "../voice/voice-controller.js";
 
-const provider = new LocalPlaceholderProvider();
+const providerRegistry = createProviderRegistry(NOEMA_PROVIDER_CONFIG);
+const provider = providerRegistry.active();
 const noema = new NoemaCore({ role: "adult", provider });
+
+let lastResponseText = "";
+let lastConversationResult = null;
 
 const modesEl = document.querySelector("#modes");
 const hintEl = document.querySelector("#modeHint");
@@ -20,6 +26,13 @@ const responseEl = document.querySelector("#response");
 const routeBtn = document.querySelector("#routeBtn");
 const clearBtn = document.querySelector("#clearBtn");
 const eraseBtn = document.querySelector("#eraseBtn");
+
+const voiceTalkBtn = document.querySelector("#voiceTalkBtn");
+const readResponseBtn = document.querySelector("#readResponseBtn");
+const noemaVoiceSelect = document.querySelector("#noemaVoiceSelect");
+const noemaVoiceRate = document.querySelector("#noemaVoiceRate");
+const noemaVoicePitch = document.querySelector("#noemaVoicePitch");
+const voiceStatus = document.querySelector("#voiceStatus");
 
 const verifierBtn = document.querySelector("#verifierBtn");
 const verifierDrawer = document.querySelector("#verifierDrawer");
@@ -192,6 +205,26 @@ function renderModules(route) {
     </article>
   `;
 
+  const providerStatus = provider.status();
+  const providerCard = `
+    <article class="card module-card provider-card">
+      <div class="module-title">Conversation Provider</div>
+      <div class="module-purpose">
+        ${escapeHtml(providerStatus.label || providerStatus.id)}
+        · ${providerStatus.connected ? "connected" : "local fallback"}
+      </div>
+    </article>
+  `;
+
+  const directorCard = `
+    <article class="card module-card director-card">
+      <div class="module-title">Intelligence Director</div>
+      <div class="module-purpose">
+        NOEMA governs routing, context minimization, specialist delegation, research verification, provider boundaries and voice permissions.
+      </div>
+    </article>
+  `;
+
   const verifierCard = `
     <article class="card module-card verifier-context-card">
       <div class="module-title">The Verifier Agent</div>
@@ -249,14 +282,17 @@ function renderModules(route) {
     </article>
   `).join("");
 
-  modulesEl.innerHTML = verifierCard + avatarCard + enrollmentCard + contextCard + integrity + specialists;
+  modulesEl.innerHTML = directorCard + providerCard + verifierCard + avatarCard + enrollmentCard + contextCard + integrity + specialists;
 }
 
 async function handleRoute() {
-  const route = noema.route(messageEl.value, { mode: activeMode });
-  renderModules(route);
+  const result = await noema.respond(messageEl.value, { mode: activeMode });
+  const route = result.route;
+  const providerResult = result.response;
+  lastConversationResult = result;
+  lastResponseText = providerResult.text || "";
 
-  const result = await provider.respond({ route });
+  renderModules(route);
 
   const safety = route.safety.highStakes
     ? `<div class="notice"><strong>Care boundary:</strong> This request may involve ${route.safety.categories.join(", ")} information. Current or qualified sources may be required.</div>`
@@ -274,28 +310,58 @@ async function handleRoute() {
     ? `<div class="memory-context-note">Context used: ${route.context.memory.relevant.length} explicitly retained memory item${route.context.memory.relevant.length === 1 ? "" : "s"}.</div>`
     : "";
 
+  const research = result.research?.required
+    ? `<div class="response-research">
+        <strong>Verifier status:</strong>
+        ${escapeHtml(result.research.status)}
+        · Domain: ${escapeHtml(result.research.domain)}
+        ${result.research.verifiedLabelAllowed
+          ? "· Verified-fact gate satisfied."
+          : "· This response must not be represented as a verified fact until the evidence gates are satisfied."}
+      </div>`
+    : "";
+
+  const citations = providerResult.citations?.length
+    ? `<div class="response-citations">${
+        providerResult.citations.map(item =>
+          `<a href="${escapeHtml(item.url)}" target="_blank" rel="noopener">${escapeHtml(item.label || item.url)}</a>`
+        ).join("")
+      }</div>`
+    : "";
+
+  const specialistText = result.delegation?.specialists?.length
+    ? result.delegation.specialists.join(", ")
+    : "none";
+
   responseEl.innerHTML = `
     ${safety}
     ${privacy}
     ${ethics}
-    <strong>${escapeHtml(result.text)}</strong>
+    <strong>${escapeHtml(providerResult.text)}</strong>
+    ${research}
+    ${citations}
     ${recalled}
     <div class="meta">
-      Provider: ${escapeHtml(result.provider)}
-      · Model-generated response: ${result.generatedByModel ? "yes" : "no"}
+      Provider: ${escapeHtml(providerResult.provider)}
+      · Model-generated response: ${providerResult.generatedByModel ? "yes" : "no"}
       · Constitution: active v${escapeHtml(route.ethics.constitutionVersion)}
+    </div>
+    <div class="response-trace">
+      NOEMA Director · Mode ${escapeHtml(route.mode.id)}
+      · Specialists: ${escapeHtml(specialistText)}
+      · Session is transient
+      · Internal chain-of-thought is not requested or exposed
     </div>
   `;
 
   if (!route.ethics.blocked) {
     noema.rememberExchange({
       user: route.message,
-      assistant: result.text,
+      assistant: providerResult.text,
       mode: route.mode.id
     });
   }
 }
-
 
 
 function optionize(items, selected="") {
@@ -1031,17 +1097,86 @@ memoryDrawer.addEventListener("click", event => {
   if (event.target === memoryDrawer) closeMemory();
 });
 
+
+const voice = new VoiceController({
+  onTranscript: ({finalText, interimText}) => {
+    if (finalText) {
+      const prefix = messageEl.value.trim();
+      messageEl.value = `${prefix}${prefix ? " " : ""}${finalText}`.trim();
+      voiceStatus.textContent = "Transcript added to the composer for review. It has not been sent.";
+    } else if (interimText) {
+      voiceStatus.textContent = `Listening: ${interimText}`;
+    }
+  },
+  onState: ({state,error}) => {
+    voiceTalkBtn.classList.toggle("listening", state === "listening");
+    voiceTalkBtn.textContent = state === "listening" ? "Listening…" : "Push to talk";
+    if (state === "unavailable") voiceStatus.textContent = "Speech recognition is not available in this browser.";
+    else if (state === "error") voiceStatus.textContent = `Voice input stopped: ${error || "recognition error"}.`;
+    else if (state === "idle") voiceStatus.textContent = "Voice input stopped. Review the transcript before sending.";
+  }
+});
+
+function populateNoemaVoices() {
+  const current = voice.preferences.voiceURI || "";
+  const voices = voice.voices();
+  noemaVoiceSelect.innerHTML = '<option value="">Automatic</option>' +
+    voices.map(v => `<option value="${escapeHtml(v.voiceURI)}">${escapeHtml(v.name)} · ${escapeHtml(v.lang)}</option>`).join("");
+  if ([...noemaVoiceSelect.options].some(option => option.value === current)) {
+    noemaVoiceSelect.value = current;
+  }
+}
+
+noemaVoiceRate.value = voice.preferences.rate;
+noemaVoicePitch.value = voice.preferences.pitch;
+
+noemaVoiceSelect.addEventListener("change", () => voice.save({voiceURI:noemaVoiceSelect.value}));
+noemaVoiceRate.addEventListener("input", () => voice.save({rate:Number(noemaVoiceRate.value)}));
+noemaVoicePitch.addEventListener("input", () => voice.save({pitch:Number(noemaVoicePitch.value)}));
+
+voiceTalkBtn.addEventListener("click", () => {
+  const gate = noema.checkCapability("voice.listen", {confirmed:true});
+  if (!gate.allowed) {
+    voiceStatus.textContent = gate.reason;
+    return;
+  }
+  const status = voice.status();
+  if (status.speechInput && voice.pushToTalk.listening) voice.stopListening();
+  else {
+    const started = voice.startListening();
+    if (!started.ok) voiceStatus.textContent = started.reason;
+  }
+});
+
+readResponseBtn.addEventListener("click", () => {
+  const gate = noema.checkCapability("voice.speak", {});
+  if (!gate.allowed) {
+    voiceStatus.textContent = gate.reason;
+    return;
+  }
+  const spoken = voice.speak(lastResponseText);
+  voiceStatus.textContent = spoken.ok ? "Reading the visible response aloud." : spoken.reason;
+});
+
+if ("speechSynthesis" in window) {
+  speechSynthesis.addEventListener?.("voiceschanged", populateNoemaVoices);
+}
+populateNoemaVoices();
+
 routeBtn.addEventListener("click", handleRoute);
 
 clearBtn.addEventListener("click", () => {
   messageEl.value = "";
   responseEl.innerHTML =
-    "Noema's local shell is ready. Constitutional policy is active; a conversational model provider has not been connected yet.";
+    "NOEMA's Intelligence Director is ready. Constitutional policy, context minimization, Verifier routing and the provider protocol are active; the current provider remains the honest local fallback.";
 });
 
 eraseBtn.addEventListener("click", () => {
   if (!confirm("Clear all NOEMA local preferences, short-term continuity, long-term Memory Library, and project context on this browser?")) return;
   noema.clearNoemaData();
+  voice.clear();
+  lastResponseText = "";
+  lastConversationResult = null;
   activeMode = "personal";
   renderModes();
   renderMode(activeMode);

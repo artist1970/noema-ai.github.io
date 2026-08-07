@@ -11,6 +11,7 @@ import { IdentitySync } from "../sync/identity-sync.js";
 import { AvatarFoundry } from "../avatars/avatar-foundry.js";
 import { VerifierAgent } from "../research/verifier-agent.js";
 import { getConstitution } from "../ethics/constitution.js";
+import { IntelligenceDirector } from "./intelligence-director.js";
 
 export class NoemaCore {
   constructor({
@@ -49,6 +50,12 @@ export class NoemaCore {
       ethicsEngine,
       capabilityLedger
     });
+
+    this.director = new IntelligenceDirector({
+      core: this,
+      provider: this.provider
+    });
+
     this.lastRoute = null;
   }
 
@@ -82,6 +89,14 @@ export class NoemaCore {
     route.context = this.getContext(route.mode.id, route.message);
     this.lastRoute = route;
     return route;
+  }
+
+  async respond(message, options = {}) {
+    return this.director.respond(message, options);
+  }
+
+  getConversationStatus() {
+    return this.director.status();
   }
 
   checkCapability(capabilityId, options = {}) {
@@ -192,6 +207,7 @@ export class NoemaCore {
     this.mentorRelationships.clear();
     this.avatarFoundry.clear();
     this.verifier.clear();
+    this.director.resetSession();
   }
 
   getSystemStatus() {
@@ -206,6 +222,7 @@ export class NoemaCore {
         id: this.provider?.id || "",
         connected: this.provider?.connected === true
       },
+      conversation: this.director.status(),
       accountServer: this.accountServer.status(),
       enrollment: this.getEnrollmentStatus(),
       avatar: this.avatarFoundry.current(),

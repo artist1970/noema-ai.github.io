@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#101827">
-  <meta name="description" content="NOEMA — Sovereign Adult Intelligence for the Verve N Veda ecosystem.">
-  <title>NOEMA — Sovereign Adult Intelligence</title>
+  <meta name="description" content="NOEMA — Sovereign Intelligence Director for conversation, learning, research, creativity, family mentors, and governed specialist systems.">
+  <title>NOEMA — Sovereign Intelligence Director</title>
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="stylesheet" href="./styles/noema.css">
   <link rel="stylesheet" href="./styles/noema-ethics.css">
@@ -13,12 +13,13 @@
   <link rel="stylesheet" href="./styles/noema-enrollment.css">
   <link rel="stylesheet" href="./styles/noema-avatar.css">
   <link rel="stylesheet" href="./styles/noema-verifier.css">
+  <link rel="stylesheet" href="./styles/noema-conversation.css">
 </head>
 <body>
   <header class="site-header">
     <div class="ticker" aria-label="NOEMA ecosystem ticker">
       <div class="ticker-track">
-        <span>NOEMA · SOVEREIGN ADULT INTELLIGENCE</span>
+        <span>NOEMA · SOVEREIGN INTELLIGENCE DIRECTOR</span>
         <span>VERVE N VEDA · PLERA</span>
         <span>HOPE · CONVERSATIONAL LINEAGE</span>
         <span>MOIRAI · VISUAL INTELLIGENCE</span>
@@ -29,7 +30,7 @@
         <span>PLERA SEARCH · DISCOVERY</span>
         <span>333 NETWORK · CONNECTION</span>
 
-        <span aria-hidden="true">NOEMA · SOVEREIGN ADULT INTELLIGENCE</span>
+        <span aria-hidden="true">NOEMA · SOVEREIGN INTELLIGENCE DIRECTOR</span>
         <span aria-hidden="true">VERVE N VEDA · PLERA</span>
         <span aria-hidden="true">HOPE · CONVERSATIONAL LINEAGE</span>
         <span aria-hidden="true">MOIRAI · VISUAL INTELLIGENCE</span>
@@ -96,10 +97,10 @@
     <div class="hero-inner">
       <div class="eyebrow">Verve N Veda · PLERA Intelligence</div>
       <h1>NOEMA</h1>
-      <div class="tagline">Sovereign Adult Intelligence</div>
+      <div class="tagline">Sovereign Intelligence Director</div>
       <p class="intro">
-        Thoughtful conversation, family intelligence, research, creative direction,
-        learning, practical tools, and specialist systems through one adult AI presence.
+        Thoughtful conversation, persistent mentors, learning, research, creative direction,
+        practical tools, and governed specialist systems through one coherent intelligence layer.
       </p>
       <a class="hero-enter" href="#noema-workspace">
         Enter the intelligence workspace
@@ -110,7 +111,7 @@
 
   <main class="shell" id="noema-workspace" aria-label="NOEMA workspace">
     <div class="shell-head">
-      <div class="brand">NOEMA / v0.8</div>
+      <div class="brand">NOEMA / v0.9</div>
       <div class="status">Local-first · Private by design</div>
     </div>
 
@@ -136,6 +137,30 @@
           <button class="btn secondary" id="memoryBtn">Memory &amp; Context</button>
           <button class="btn secondary" id="eraseBtn">Clear NOEMA local data</button>
         </div>
+
+
+        <details class="voice-console" id="voiceConsole">
+          <summary>Voice · optional browser controls</summary>
+          <div class="voice-controls">
+            <button class="btn secondary voice-talk" id="voiceTalkBtn" type="button">Push to talk</button>
+            <button class="btn secondary" id="readResponseBtn" type="button">Read response</button>
+            <label>
+              Device voice
+              <select id="noemaVoiceSelect"><option value="">Automatic</option></select>
+            </label>
+            <label>
+              Speaking rate
+              <input id="noemaVoiceRate" type="range" min=".65" max="1.35" step=".05" value=".95">
+            </label>
+            <label>
+              Pitch
+              <input id="noemaVoicePitch" type="range" min=".7" max="1.3" step=".05" value="1">
+            </label>
+          </div>
+          <div class="voice-status" id="voiceStatus">
+            Microphone input starts only when you press Push to talk. Transcripts return here for review and are never auto-sent.
+          </div>
+        </details>
 
         <div class="response" id="response" aria-live="polite"></div>
       </article>

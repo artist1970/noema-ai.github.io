@@ -1,4 +1,4 @@
-# NOEMA
+# NOEMA — Sovereign Intelligence Director
 ## Sovereign Adult Intelligence
 
 **NOEMA** is the adult AI presence and orchestration intelligence of the Verve N Veda / PLERA ecosystem.
@@ -52,3 +52,8 @@ The repository deliberately does **not** contain an embedded API key or pretend 
 Verve N Veda · PLERA · Khaemenes Academy
 
 NOEMA project identity developed collaboratively within the Verve N Veda ecosystem.
+
+
+## v0.9 — Intelligence Director
+
+Adds the provider-independent NOEMA Protocol, transient conversation session engine, minimized provider context, automatic Verifier routing, bounded specialist delegation, secure HTTP provider seam, provider trace, and optional browser voice with push-to-talk only.

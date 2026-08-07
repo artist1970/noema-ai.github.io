@@ -1,72 +1,101 @@
-# NOEMA v0.8 — The Verifier Agent
+# NOEMA v0.9 — Intelligence Director
 
-Upload into:
+This package is a **full merged repository**.
+
+Upload the contents into:
 
 `artist1970/noema-ai.github.io`
 
-preserving folders.
+preserving all folders.
 
-## New
+## Major new systems
 
 ```text
-research/
-  fact-status.js
-  claim-analyzer.js
-  ecosystem-evidence-registry.js
-  source-policy.js
-  source-independence.js
-  evidence-matrix.js
-  verification-task-handler.js
-  verification-plan.js
-  verifier-session-store.js
-  verifier-agent.js
+config/provider-config.js
 
-adapters/
-  research-provider-interface.js
+conversation/
+  message-schema.js
+  session-engine.js
+  context-envelope.js
+
+providers/
+  noema-protocol.js
+  provider-registry.js
+  http-provider.js
+  provider-response-normalizer.js
+
+core/
+  intelligence-director.js
+
+research/
+  research-trigger.js
+
+delegation/
+  delegation-engine.js
+
+voice/
+  speech-output.js
+  push-to-talk.js
+  voice-controller.js
+
+transparency/
+  provider-trace.js
+  intelligence-trace.js
 
 styles/
-  noema-verifier.css
-
-docs/
-  VERIFIER_AGENT_ARCHITECTURE.md
-  EVIDENCE_LANES.md
-  INTERNATIONAL_SOURCE_POLICY.md
-  DOMAIN_VERIFICATION_STANDARDS.md
-  TASK_HANDLER_LINEAGE.md
-
-tests/
-  claim-analyzer.test.mjs
-  source-independence.test.mjs
-  evidence-matrix.test.mjs
-  verification-plan.test.mjs
-  verification-task-handler.test.mjs
-  verifier-agent.test.mjs
+  noema-conversation.css
 ```
 
-## Replace
+## Important replacements
 
 ```text
 index.html
 app/noema-app.js
 core/noema-core.js
 permissions/capability-ledger.js
+providers/provider-interface.js
+providers/local-placeholder.js
 service-worker.js
+manifest.webmanifest
+package.json
+README.md
 ```
 
-## v0.8 behavior
+## Current provider state
 
-- Adds a `Verifier Agent` button.
-- Any factual claim can become a local verification session.
-- Detects research domain.
-- Builds a transparent evidence plan.
-- ARSHIF and Khaemenes context checks are required before the verified-fact gate.
-- Searches are modeled through ARSHIF, Khaemenes, Verifier, Medicament, Firmament and Solanar lanes.
-- Tracks primary/secondary/tertiary source level.
-- Tracks supporting/opposing/contextual/insufficient evidence.
-- Groups repeated sources by underlying independence family.
-- Requires freshness for time-sensitive claims.
-- Requires active contradiction search.
-- Gives conservative evidence statuses rather than binary "true/false".
-- `research.override-verdict-gates` is blocked.
-- Live retrieval remains unconfigured until a secure research provider/server exists.
-- Cache: `noema-shell-v0.8.0`.
+The secure remote provider remains OFF.
+
+```text
+activeProvider: local-placeholder
+remote.enabled: false
+```
+
+No API key or credential is required.
+
+## What works now
+
+- NOEMA Intelligence Director owns the conversation route.
+- Provider-independent request protocol.
+- Minimized provider context.
+- Transient session engine.
+- Automatic Verifier requirement for research/current/civic/high-stakes/domain factual requests.
+- Bounded specialist delegation.
+- Provider response normalization.
+- Provider cannot change permissions or memory.
+- Secure future HTTP provider seam.
+- Optional browser read-aloud.
+- Explicit push-to-talk speech recognition where supported.
+- Transcript review before sending.
+- No background listening.
+- No microphone audio storage.
+- Service-worker cache: `noema-shell-v0.9.0`.
+
+## After upload
+
+Verify:
+1. `NOEMA / v0.9` displays.
+2. ordinary conversation shows `Local fallback`.
+3. a research question shows a Verifier status.
+4. `Push to talk` is visible and does not auto-send.
+5. service worker contains `noema-shell-v0.9.0`.
+6. `VALIDATION.json` reports all tests passed.

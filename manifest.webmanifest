@@ -1,9 +1,9 @@
 {
-  "name": "NOEMA \u2014 Sovereign Adult Intelligence",
+  "name": "NOEMA \u2014 Sovereign Intelligence Director",
   "short_name": "NOEMA",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#f5f0e6",
   "theme_color": "#101827",
-  "description": "Adult AI presence and orchestration intelligence for the Verve N Veda ecosystem."
+  "description": "Local-first intelligence director with governed conversation, mentors, research verification, and specialist systems."
 }

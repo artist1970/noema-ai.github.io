@@ -1,7 +1,14 @@
 export class NoemaProvider {
-  constructor({ id = "unconnected" } = {}) {
-    this.id = id;
-    this.connected = false;
+  constructor({
+    id="unconnected",
+    label="Unconnected provider",
+    kind="placeholder",
+    connected=false
+  }={}) {
+    this.id=id;
+    this.label=label;
+    this.kind=kind;
+    this.connected=connected===true;
   }
 
   async respond() {
@@ -10,8 +17,11 @@ export class NoemaProvider {
 
   status() {
     return {
-      id: this.id,
-      connected: this.connected
+      id:this.id,
+      label:this.label,
+      kind:this.kind,
+      connected:this.connected,
+      generatedByModel:false
     };
   }
 }

@@ -10,6 +10,56 @@ export const NOEMA_CAPABILITIES = Object.freeze({
 
 
 
+
+  "provider.invoke": {
+    state: CAPABILITY_STATES.ALLOW,
+    description: "Invoke the active provider only after NOEMA routing, Constitution, privacy, safety, research and context-minimization layers."
+  },
+  "provider.configure-remote": {
+    state: CAPABILITY_STATES.ADMIN,
+    description: "Changing the canonical remote provider endpoint requires administrator-controlled deployment."
+  },
+  "provider.store-credentials": {
+    state: CAPABILITY_STATES.BLOCK,
+    description: "Public NOEMA browser code may not store model-provider credentials, passwords, bearer tokens or database secrets."
+  },
+  "provider.change-permissions": {
+    state: CAPABILITY_STATES.BLOCK,
+    description: "A model provider may not change NOEMA, guardian, account, memory or specialist permissions."
+  },
+  "provider.write-memory": {
+    state: CAPABILITY_STATES.BLOCK,
+    description: "A provider response cannot directly write long-term NOEMA memory."
+  },
+  "provider.override-verifier": {
+    state: CAPABILITY_STATES.BLOCK,
+    description: "A conversational provider may not bypass The Verifier evidence gates or self-assign verified-fact status."
+  },
+  "voice.speak": {
+    state: CAPABILITY_STATES.ALLOW,
+    description: "Read visible NOEMA text aloud through browser speech synthesis."
+  },
+  "voice.listen": {
+    state: CAPABILITY_STATES.CONFIRM,
+    description: "Start one explicit user-initiated push-to-talk recognition session; transcript is returned to the composer for review."
+  },
+  "voice.background-listen": {
+    state: CAPABILITY_STATES.BLOCK,
+    description: "NOEMA may not listen continuously or activate ambient/background microphone capture."
+  },
+  "voice.store-audio": {
+    state: CAPABILITY_STATES.BLOCK,
+    description: "NOEMA v0.9 does not record or persist microphone audio."
+  },
+  "specialist.delegate": {
+    state: CAPABILITY_STATES.ALLOW,
+    description: "NOEMA may route a request to bounded specialist systems while retaining supervisory policy."
+  },
+  "specialist.direct-mutation": {
+    state: CAPABILITY_STATES.BLOCK,
+    description: "Specialist outputs are advisory proposals and cannot directly mutate NOEMA permissions, authentication, memory or constitutional policy."
+  },
+
   "research.verify": {
     state: CAPABILITY_STATES.ALLOW,
     description: "Build a transparent verification plan and evaluate supplied evidence before using a verified-fact label."
