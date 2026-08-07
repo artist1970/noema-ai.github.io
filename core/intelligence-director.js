@@ -6,12 +6,16 @@ import {assessResearchRequirement} from "../research/research-trigger.js";
 import {buildDelegation} from "../delegation/delegation-engine.js";
 import {createProviderTrace} from "../transparency/provider-trace.js";
 import {createIntelligenceTrace} from "../transparency/intelligence-trace.js";
+import {OrchestrationEngine} from "../orchestration/orchestration-engine.js";
+import {buildSpecialistContext} from "../orchestration/specialist-context.js";
+import {synthesizeIntegratedResponse} from "../orchestration/response-synthesizer.js";
 
 export class IntelligenceDirector {
   constructor({core,provider}={}) {
     this.core=core;
     this.provider=provider;
     this.session=new SessionEngine();
+    this.orchestration=new OrchestrationEngine({core});
   }
 
   async respond(message, options={}) {
@@ -28,6 +32,15 @@ export class IntelligenceDirector {
     const delegation=buildDelegation(route,{
       researchRequired:researchDecision.required
     });
+
+    const coordinated=this.orchestration.coordinate({
+      message:route.message,
+      route,
+      researchDecision,
+      verifierSession
+    });
+
+    const specialistContext=buildSpecialistContext(coordinated);
 
     const researchState=researchDecision.required
       ? {
@@ -55,6 +68,10 @@ export class IntelligenceDirector {
       contextEnvelope,
       research:researchState,
       delegation,
+      orchestration:{
+        taskCount:coordinated.summary.total,
+        tasks:specialistContext
+      },
       safety:{
         blocked:route.ethics?.blocked,
         needsReview:route.ethics?.needsReview,
@@ -86,6 +103,13 @@ export class IntelligenceDirector {
       generatedByModel:response.generatedByModel
     });
 
+    const integrated=synthesizeIntegratedResponse({
+      providerResponse:response,
+      orchestration:coordinated,
+      research:researchState,
+      route
+    });
+
     const providerTrace=createProviderTrace({
       providerStatus:this.provider?.status?.() || {},
       request,
@@ -98,12 +122,15 @@ export class IntelligenceDirector {
       delegation,
       researchDecision,
       verifierSession,
-      providerTrace
+      providerTrace,
+      orchestration:coordinated
     });
 
     return {
       route,
-      response,
+      response:integrated,
+      providerResponse:response,
+      orchestration:coordinated,
       research:{
         ...researchState,
         session:verifierSession

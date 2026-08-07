@@ -33,6 +33,9 @@ const noemaVoiceSelect = document.querySelector("#noemaVoiceSelect");
 const noemaVoiceRate = document.querySelector("#noemaVoiceRate");
 const noemaVoicePitch = document.querySelector("#noemaVoicePitch");
 const voiceStatus = document.querySelector("#voiceStatus");
+const intelligencePlan = document.querySelector("#intelligencePlan");
+const planSummary = document.querySelector("#planSummary");
+const planList = document.querySelector("#planList");
 
 const verifierBtn = document.querySelector("#verifierBtn");
 const verifierDrawer = document.querySelector("#verifierDrawer");
@@ -205,6 +208,15 @@ function renderModules(route) {
     </article>
   `;
 
+  const integrationCard = `
+    <article class="card module-card integration-card">
+      <div class="module-title">Integrated Intelligence</div>
+      <div class="module-purpose">
+        Visible task planning · bounded local specialists · honest handoffs · evidence-aware synthesis.
+      </div>
+    </article>
+  `;
+
   const providerStatus = provider.status();
   const providerCard = `
     <article class="card module-card provider-card">
@@ -282,7 +294,33 @@ function renderModules(route) {
     </article>
   `).join("");
 
-  modulesEl.innerHTML = directorCard + providerCard + verifierCard + avatarCard + enrollmentCard + contextCard + integrity + specialists;
+  modulesEl.innerHTML = integrationCard + directorCard + providerCard + verifierCard + avatarCard + enrollmentCard + contextCard + integrity + specialists;
+}
+
+
+function renderIntelligencePlan(orchestration) {
+  const tasks=orchestration?.tasks || [];
+  if(!tasks.length){
+    intelligencePlan.hidden=true;
+    planList.innerHTML="";
+    planSummary.textContent="0 tasks";
+    return;
+  }
+
+  intelligencePlan.hidden=false;
+  const finished=orchestration.summary?.finished || 0;
+  planSummary.textContent=`${finished}/${tasks.length} settled`;
+
+  planList.innerHTML=tasks.map(task=>`
+    <article class="plan-task">
+      <span class="plan-state ${escapeHtml(task.status)}">${escapeHtml(task.status)}</span>
+      <div>
+        <strong>${escapeHtml(task.label)}</strong>
+        <small>${escapeHtml(task.purpose)}</small>
+      </div>
+      <span class="plan-specialist">${escapeHtml(task.specialistId || "noema")}</span>
+    </article>
+  `).join("");
 }
 
 async function handleRoute() {
@@ -293,6 +331,7 @@ async function handleRoute() {
   lastResponseText = providerResult.text || "";
 
   renderModules(route);
+  renderIntelligencePlan(result.orchestration);
 
   const safety = route.safety.highStakes
     ? `<div class="notice"><strong>Care boundary:</strong> This request may involve ${route.safety.categories.join(", ")} information. Current or qualified sources may be required.</div>`
@@ -333,6 +372,24 @@ async function handleRoute() {
     ? result.delegation.specialists.join(", ")
     : "none";
 
+  const handoffs = result.response?.coordination?.handoffs || [];
+  const handoffStrip = handoffs.length
+    ? `<div class="handoff-strip">${
+        handoffs.map(item =>
+          `<a href="${escapeHtml(item.url)}" target="_blank" rel="noopener">${escapeHtml(item.specialistId)} handoff ↗</a>`
+        ).join("")
+      }</div>`
+    : "";
+
+  const adaptation = result.response?.coordination?.mentorAdaptation;
+  const adaptationNote = adaptation?.available
+    ? `<div class="mentor-adaptation-note">
+        Mentor-aware presentation active for ${escapeHtml(adaptation.audience)} context.
+        ${adaptation.mentorName ? ` Companion: ${escapeHtml(adaptation.mentorName)}.` : ""}
+        Evidence and difficulty standards remain unchanged.
+      </div>`
+    : "";
+
   responseEl.innerHTML = `
     ${safety}
     ${privacy}
@@ -340,6 +397,8 @@ async function handleRoute() {
     <strong>${escapeHtml(providerResult.text)}</strong>
     ${research}
     ${citations}
+    ${handoffStrip}
+    ${adaptationNote}
     ${recalled}
     <div class="meta">
       Provider: ${escapeHtml(providerResult.provider)}
@@ -349,6 +408,7 @@ async function handleRoute() {
     <div class="response-trace">
       NOEMA Director · Mode ${escapeHtml(route.mode.id)}
       · Specialists: ${escapeHtml(specialistText)}
+      · Tasks settled: ${result.orchestration?.summary?.finished || 0}/${result.orchestration?.summary?.total || 0}
       · Session is transient
       · Internal chain-of-thought is not requested or exposed
     </div>
@@ -1177,6 +1237,7 @@ eraseBtn.addEventListener("click", () => {
   voice.clear();
   lastResponseText = "";
   lastConversationResult = null;
+  renderIntelligencePlan(null);
   activeMode = "personal";
   renderModes();
   renderMode(activeMode);
