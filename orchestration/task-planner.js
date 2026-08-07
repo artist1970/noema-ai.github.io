@@ -47,8 +47,8 @@ export function buildTaskPlan({
   }
 
   if(needsResources) {
-    tasks.push(task("resources","Discover approved resources","resource-director",
-      "Search the approved Khaemenes Academy, ARSHIF, and PLERA Search manifests with audience, preference, hierarchy, provenance, and freshness rules.",
+    tasks.push(task("resources","Discover federated learning resources","resource-director",
+      "Search the learner's Khaemenes stage first, then Academy courses, approved workshops and learning extensions, educational games, archives, and PLERA research with audience, preference, provenance, curriculum-weight, and freshness rules.",
       [researchDecision.required ? "verify" : "understand"]));
   }
 

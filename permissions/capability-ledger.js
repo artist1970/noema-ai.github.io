@@ -180,6 +180,40 @@ export const NOEMA_CAPABILITIES = Object.freeze({
     description: "Respond conversationally within active policy."
   },
 
+
+  "learning-federation.discover": {
+    state: CAPABILITY_STATES.ALLOW,
+    description: "Discover eligible learning resources across the learner's Khaemenes stage, Academy, and approved extension inventories."
+  },
+  "learning-federation.use-school-context": {
+    state: CAPABILITY_STATES.ALLOW,
+    description: "Use explicit enrollment grade/stage to prioritize the matching Khaemenes school without inferring academic ability."
+  },
+  "learning-federation.rank-educational-game": {
+    state: CAPABILITY_STATES.ALLOW,
+    description: "Rank a game as educational only when learning objectives are established by source-supplied skills or explicit approved metadata."
+  },
+  "learning-federation.invent-learning-objective": {
+    state: CAPABILITY_STATES.BLOCK,
+    description: "NOEMA and NAIB may not invent a learning objective merely to make a game, tool, workshop, or resource appear educational."
+  },
+  "learning-federation.game-over-course": {
+    state: CAPABILITY_STATES.BLOCK,
+    description: "A game may not outrank direct matching coursework by default. User intent for a game or practice activity may change ranking."
+  },
+  "learning-federation.health-without-verifier": {
+    state: CAPABILITY_STATES.BLOCK,
+    description: "High-stakes factual or personalized health guidance may not bypass NOEMA's medical Verifier requirements because a Medicament learning resource was discovered."
+  },
+  "learning-federation.dynamic-finance-without-freshness": {
+    state: CAPABILITY_STATES.BLOCK,
+    description: "Dynamic finance, employment, market, or job-search resources retain freshness-required status."
+  },
+  "learning-federation.fake-source-manifest": {
+    state: CAPABILITY_STATES.BLOCK,
+    description: "NOEMA-approved inventory snapshots may not be described as source-owned mentor manifests."
+  },
+
   "resources.discover-approved": {
     state: CAPABILITY_STATES.ALLOW,
     description: "Discover mentor-eligible resources from approved ecosystem manifests subject to audience, role, preference, provenance and hierarchy rules."
