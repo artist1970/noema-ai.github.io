@@ -1,4 +1,4 @@
-const CACHE = "naib-shell-v1.2.0";
+const CACHE = "naib-shell-v1.3.0";
 const SHELL = [
   "./",
   "./index.html",
@@ -10,6 +10,16 @@ const SHELL = [
   "./styles/noema-verifier.css",
   "./styles/noema-conversation.css",
   "./styles/noema-orchestration.css",
+  "./resources/federation-source-registry.js",
+  "./resources/learning-metadata.js",
+  "./resources/educational-game-policy.js",
+  "./resources/learning-context.js",
+  "./resources/course-resource-graph.js",
+  "./resources/resource-groups.js",
+  "./resources/domain-learning-policy.js",
+  "./resources/learning-federation.js",
+  "./resources/snapshots/federation-snapshots.js",
+  "./adapters/learning-federation-adapter.js",
   "./resources/execution-state.js",
   "./resources/approved-manifest-sources.js",
   "./resources/resource-manifest.js",

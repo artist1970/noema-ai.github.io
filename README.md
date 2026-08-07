@@ -72,3 +72,8 @@ NAIB is now the public-facing intelligence. NOEMA remains the administrative int
 ## v1.2 — Specialist Runtime & Resource Discovery
 
 Connects approved Khaemenes Academy, ARSHIF, and PLERA Search resource manifests through NOEMA-governed discovery. Adds audience/preference/freshness gating, manifest provenance, a specialist adapter contract, visible resource results, and explicit EXECUTED / DISCOVERED / HANDOFF / UNAVAILABLE states.
+
+
+## v1.3 — Learning Federation & Course Graph
+
+Adds stage-aware Khaemenes school priority, source-owned school manifests, a no-invention course/resource graph, Finance/Medicament/Bazaar Art/Arcade learning inventories with explicit administrative provenance, educational-game objective gating, grouped learning results, and high-stakes health / dynamic-finance safeguards.

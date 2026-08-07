@@ -1,81 +1,83 @@
-# NAIB v1.2 — Specialist Runtime & Resource Discovery
+# NAIB v1.3 — Learning Federation & Course Graph
 
-This is a full merged repository.
+This is a **full merged repository**.
 
 Upload all contents into the existing repository:
 
 `artist1970/noema-ai.github.io`
 
-Keep the repository name unchanged for this release.
+Keep the repository name unchanged.
 
-## New runtime
+## New architecture
 
 ```text
 resources/
-  execution-state.js
-  approved-manifest-sources.js
-  resource-manifest.js
-  resource-manifest-loader.js
-  resource-eligibility.js
-  resource-ranker.js
-  resource-director.js
+  federation-source-registry.js
+  learning-metadata.js
+  educational-game-policy.js
+  learning-context.js
+  course-resource-graph.js
+  resource-groups.js
+  domain-learning-policy.js
+  learning-federation.js
   snapshots/
-    manifest-snapshots.js
-    khaemenes-academy.manifest.json
-    arshif.manifest.json
-    plera-search.manifest.json
-
-specialists/
-  adapter-contract.js
+    federation-snapshots.js
+    *.federation.json
 
 adapters/
-  khaemenes-resource-adapter.js
-  arshif-resource-adapter.js
-  plera-search-resource-adapter.js
+  learning-federation-adapter.js
 ```
 
-## Public behavior
-
-NAIB can now surface a visible Resource Discovery panel.
-
-Each result states:
-- source;
-- discovery state;
-- manifest provenance;
-- freshness requirement.
-
-## Approved source order
+## Connected source-owned manifests
 
 ```text
-current lesson        future adapter slot
-current course        future adapter slot
-current school        future adapter slot
-Khaemenes Academy     connected
-ARSHIF                 connected
-PLERA Search           connected outer research layer
+Khaemenes Preschool
+Khaemenes Kindergarten
+Khaemenes Elementary
+Khaemenes Middle
+Khaemenes High
+Khaemenes Higher Learning
+Khaemenes Linguistics
+Khaemenes Academy
+ARSHIF
+PLERA Search
 ```
 
-## Safety rules
-
-- audience/role gates cannot be bypassed;
-- preference-gated resources remain gated;
-- sensitive preferences are not inferred;
-- dynamic resources retain freshness requirements;
-- discovered resources are not automatically verified;
-- live public manifest reads use no credentials;
-- snapshot fallback keeps the application local-first.
-
-## Provider
-
-Still:
+## NOEMA-approved inventory snapshots
 
 ```text
-activeProvider: local-placeholder
-remote.enabled: false
+Verve N Veda Finance
+Medicament Hub
+Bazaar Art
+Arcade · Learning Selection
 ```
+
+These inventory snapshots are never described as source-owned manifests.
+
+## Ranking
+
+```text
+current school
+→ Academy/course
+→ practice/workshops/extensions
+→ educational games
+→ archives
+→ outer research
+```
+
+A game never outranks direct coursework by default.
+
+## Safety
+
+- no invented lesson/unit routes;
+- no invented learning objectives;
+- audience and role gates preserved;
+- faith/preference gates preserved;
+- health high-stakes Verifier policy preserved;
+- finance/current resources preserve freshness requirements;
+- DISCOVERED ≠ VERIFIED;
+- remote provider remains disabled.
 
 ## Cache
 
-```text
-naib-shell-v1.2.0
-```
+`naib-shell-v1.3.0`
