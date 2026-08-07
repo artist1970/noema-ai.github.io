@@ -32,14 +32,34 @@ export const NOEMA_CAPABILITIES = Object.freeze({
     state: CAPABILITY_STATES.ALLOW,
     description: "Store low-risk NOEMA interface preferences using namespaced local storage."
   },
+  "memory.read": {
+    state: CAPABILITY_STATES.ALLOW,
+    description: "Read explicitly retained NOEMA memory for relevant context."
+  },
   "memory.record": {
     state: CAPABILITY_STATES.CONFIRM,
     description: "Retain longer-term personal continuity beyond transient conversation.",
     conditions: ["user-visible", "removable", "purpose-limited"]
   },
+  "memory.edit": {
+    state: CAPABILITY_STATES.CONFIRM,
+    description: "Edit a retained memory with explicit user action."
+  },
   "memory.delete": {
     state: CAPABILITY_STATES.CONFIRM,
     description: "Delete retained NOEMA continuity or memory."
+  },
+  "memory.export": {
+    state: CAPABILITY_STATES.ALLOW,
+    description: "Export the user's local NOEMA Memory Library as a portable JSON file."
+  },
+  "projects.read": {
+    state: CAPABILITY_STATES.ALLOW,
+    description: "Read NOEMA-local project context."
+  },
+  "projects.write": {
+    state: CAPABILITY_STATES.CONFIRM,
+    description: "Create or edit persistent project context with explicit user action."
   },
   "files.read": {
     state: CAPABILITY_STATES.ALLOW,
@@ -97,8 +117,6 @@ export const NOEMA_CAPABILITIES = Object.freeze({
 
 export class CapabilityLedger {
   constructor({ overrides = {} } = {}) {
-    // Overrides may make a capability stricter, but not weaken blocked/admin
-    // constitutional capabilities from an ordinary runtime context.
     this.capabilities = { ...NOEMA_CAPABILITIES };
 
     for (const [id, proposed] of Object.entries(overrides || {})) {

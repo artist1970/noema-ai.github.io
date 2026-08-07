@@ -1,9 +1,10 @@
-const CACHE = "noema-shell-v0.4.0";
+const CACHE = "noema-shell-v0.5.0";
 const SHELL = [
   "./",
   "./index.html",
   "./styles/noema.css",
   "./styles/noema-ethics.css",
+  "./styles/noema-memory.css",
   "./app/noema-app.js",
   "./core/noema-core.js",
   "./core/identity.js",
@@ -14,6 +15,11 @@ const SHELL = [
   "./core/module-registry.js",
   "./memory/preference-store.js",
   "./memory/continuity-store.js",
+  "./memory/memory-schema.js",
+  "./memory/memory-store.js",
+  "./memory/memory-retriever.js",
+  "./memory/project-context-store.js",
+  "./memory/sensitive-memory-filter.js",
   "./providers/provider-interface.js",
   "./providers/local-placeholder.js",
   "./safety/adult-boundaries.js",

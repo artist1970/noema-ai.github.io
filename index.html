@@ -9,6 +9,7 @@
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="stylesheet" href="./styles/noema.css">
   <link rel="stylesheet" href="./styles/noema-ethics.css">
+  <link rel="stylesheet" href="./styles/noema-memory.css">
 </head>
 <body>
   <header class="site-header">
@@ -106,7 +107,7 @@
 
   <main class="shell" id="noema-workspace" aria-label="NOEMA workspace">
     <div class="shell-head">
-      <div class="brand">NOEMA / v0.4</div>
+      <div class="brand">NOEMA / v0.5</div>
       <div class="status">Local-first · Private by design</div>
     </div>
 
@@ -126,6 +127,7 @@
         <div class="actions">
           <button class="btn primary" id="routeBtn">Continue with Noema</button>
           <button class="btn secondary" id="clearBtn">Clear message</button>
+          <button class="btn secondary" id="memoryBtn">Memory &amp; Context</button>
           <button class="btn secondary" id="eraseBtn">Clear NOEMA local data</button>
         </div>
 
@@ -135,6 +137,133 @@
       <aside class="modules" id="modules" aria-label="Relevant specialist systems"></aside>
     </section>
   </main>
+
+  <div class="memory-drawer" id="memoryDrawer" hidden>
+    <section class="memory-panel" role="dialog" aria-modal="true" aria-labelledby="memoryHeading">
+      <header class="memory-panel-head">
+        <div>
+          <div class="eyebrow">Visible · Editable · Removable</div>
+          <h2 id="memoryHeading">Memory &amp; Context</h2>
+          <p>
+            Conversation does not automatically become long-term memory.
+            Only items explicitly saved here enter NOEMA's Memory Library.
+          </p>
+        </div>
+        <button class="memory-close" id="memoryClose" type="button" aria-label="Close memory panel">×</button>
+      </header>
+
+      <div class="memory-grid">
+        <section class="memory-section">
+          <div class="memory-section-head">
+            <div>
+              <span class="memory-section-kicker">Long-term memory</span>
+              <h3>Memory Library</h3>
+            </div>
+            <div class="memory-tools">
+              <span id="memoryCount">0 retained</span>
+              <button type="button" class="mini-btn" id="exportMemoryBtn">Export JSON</button>
+            </div>
+          </div>
+
+          <form class="memory-form" id="memoryForm">
+            <div class="memory-form-row">
+              <label>
+                Title
+                <input id="memoryTitle" maxlength="120" placeholder="A useful label">
+              </label>
+              <label>
+                Kind
+                <select id="memoryKind">
+                  <option value="preference">Preference</option>
+                  <option value="project">Project</option>
+                  <option value="goal">Goal</option>
+                  <option value="decision">Decision</option>
+                  <option value="reference">Reference</option>
+                  <option value="continuity">Continuity</option>
+                </select>
+              </label>
+              <label>
+                Scope
+                <select id="memoryScope">
+                  <option value="personal">Personal</option>
+                  <option value="family">Family</option>
+                  <option value="learning">Learning</option>
+                  <option value="research">Research</option>
+                  <option value="creative">Creative</option>
+                  <option value="work">Work</option>
+                  <option value="civic">Civic</option>
+                  <option value="archive">Archive</option>
+                  <option value="global">Global</option>
+                </select>
+              </label>
+            </div>
+
+            <label>
+              What should Noema remember?
+              <textarea id="memoryContent" maxlength="1600" required placeholder="Store only something you intentionally want available in future context."></textarea>
+            </label>
+
+            <label>
+              Tags <span class="soft-label">comma separated</span>
+              <input id="memoryTags" placeholder="design, mathematics, preference">
+            </label>
+
+            <div class="memory-save-row">
+              <button class="btn primary" type="submit">Save to Memory</button>
+              <span id="memoryStatus" class="memory-status" aria-live="polite"></span>
+            </div>
+          </form>
+
+          <div id="memoryList" class="memory-list"></div>
+        </section>
+
+        <aside class="memory-section project-section">
+          <div class="memory-section-head">
+            <div>
+              <span class="memory-section-kicker">Working context</span>
+              <h3>Projects</h3>
+            </div>
+            <span class="active-project-pill" id="activeProjectLabel">No active project</span>
+          </div>
+
+          <form id="projectForm" class="project-form">
+            <label>
+              Project name
+              <input id="projectTitle" maxlength="100" required placeholder="NOEMA, Mathematics, Campaign site…">
+            </label>
+            <label>
+              Project summary
+              <textarea id="projectSummary" maxlength="900" placeholder="What is this project trying to accomplish?"></textarea>
+            </label>
+            <label>
+              Primary mode
+              <select id="projectMode">
+                <option value="personal">Personal</option>
+                <option value="family">Family</option>
+                <option value="learning">Learning</option>
+                <option value="research">Research</option>
+                <option value="creative">Creative</option>
+                <option value="work">Work</option>
+                <option value="civic">Civic</option>
+                <option value="archive">Archive</option>
+              </select>
+            </label>
+            <button class="btn primary" type="submit">Create Project Context</button>
+          </form>
+
+          <div id="projectList" class="project-list"></div>
+
+          <div class="memory-explainer">
+            <strong>Three layers of continuity</strong>
+            <div><span>1</span> Current conversation — working context</div>
+            <div><span>2</span> Recent continuity — bounded local buffer</div>
+            <div><span>3</span> Memory Library — explicitly retained</div>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </div>
+
 
   <footer>
     Jennifer Kay Pearl · Verve N Veda · PLERA · Khaemenes Academy

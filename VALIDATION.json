@@ -1,39 +1,32 @@
 {
-  "version": "0.4.0",
-  "createdAt": "2026-08-07T16:32:16.498275+00:00",
-  "newFiles": [
-    "ethics/constitution.js",
-    "ethics/ethics-engine.js",
-    "ethics/non-manipulation.js",
-    "permissions/capability-ledger.js",
-    "permissions/action-gate.js",
-    "transparency/route-trace.js",
-    "styles/noema-ethics.css",
-    "docs/CONSTITUTION.md",
-    "docs/CAPABILITY_LEDGER.md",
-    "tests/ethics.test.mjs",
-    "tests/capability-ledger.test.mjs",
-    "tests/orchestrator-ethics.test.mjs"
-  ],
-  "replacementFiles": [
-    "index.html",
-    "app/noema-app.js",
-    "core/conversation-orchestrator.js",
-    "core/noema-core.js",
-    "providers/local-placeholder.js",
-    "service-worker.js"
-  ],
+  "version": "0.5.0",
+  "createdAt": "2026-08-07T16:43:39.924783+00:00",
+  "architecture": {
+    "shortTermContinuitySeparated": true,
+    "longTermMemoryExplicitOnly": true,
+    "memoryProvenance": true,
+    "memoryEditable": true,
+    "memoryRemovable": true,
+    "memoryPortableJson": true,
+    "projectContext": true,
+    "contextualRetrieval": true,
+    "credentialLikeMemoryRejected": true,
+    "localBrowserOnly": true
+  },
   "checks": {
-    "constitutionActive": true,
-    "selfAuthorizationBlocked": true,
-    "ethicsDisableBlocked": true,
-    "adminCanonicalDeploy": true,
-    "routeTraceAdded": true,
+    "explicitLongTermMemory": true,
+    "threeLayerUI": true,
+    "memoryLibraryVisible": true,
+    "projectContextVisible": true,
+    "secretMemoryFilter": true,
+    "jsonExport": true,
+    "contextRetrieval": true,
+    "capabilityLedgerUpdated": true,
     "noGlobalStorageClear": true,
     "cacheBumped": true
   },
   "testsPassed": true,
-  "testOutput": "TAP version 13\n# Subtest: ordinary resource search is allowed\nok 1 - ordinary resource search is allowed\n  ---\n  duration_ms: 0.710014\n  type: 'test'\n  ...\n# Subtest: message send requires confirmation\nok 2 - message send requires confirmation\n  ---\n  duration_ms: 0.13464\n  type: 'test'\n  ...\n# Subtest: canonical deployment requires administrator approval\nok 3 - canonical deployment requires administrator approval\n  ---\n  duration_ms: 0.110694\n  type: 'test'\n  ...\n# Subtest: self privilege elevation remains blocked even with adminAuthorized flag\nok 4 - self privilege elevation remains blocked even with adminAuthorized flag\n  ---\n  duration_ms: 0.184063\n  type: 'test'\n  ...\n# Subtest: NOEMA marks high-stakes adult requests\nok 5 - NOEMA marks high-stakes adult requests\n  ---\n  duration_ms: 2.984901\n  type: 'test'\n  ...\n# Subtest: NOEMA flags credential-like privacy content\nok 6 - NOEMA flags credential-like privacy content\n  ---\n  duration_ms: 0.684126\n  type: 'test'\n  ...\n# Subtest: NOEMA keeps Hope distinct from identity\nok 7 - NOEMA keeps Hope distinct from identity\n  ---\n  duration_ms: 0.237873\n  type: 'test'\n  ...\n# Subtest: constitution exposes stable principles\nok 8 - constitution exposes stable principles\n  ---\n  duration_ms: 0.626911\n  type: 'test'\n  ...\n# Subtest: ordinary request passes constitutional gate\nok 9 - ordinary request passes constitutional gate\n  ---\n  duration_ms: 0.635193\n  type: 'test'\n  ...\n# Subtest: self-authorization bypass is blocked\nok 10 - self-authorization bypass is blocked\n  ---\n  duration_ms: 0.406614\n  type: 'test'\n  ...\n# Subtest: covert action receives ethics review\nok 11 - covert action receives ethics review\n  ---\n  duration_ms: 0.254758\n  type: 'test'\n  ...\n# Subtest: NOEMA has her own adult intelligence identity\nok 12 - NOEMA has her own adult intelligence identity\n  ---\n  duration_ms: 0.629364\n  type: 'test'\n  ...\n# Subtest: creative requests route to Moirai-capable mode\nok 13 - creative requests route to Moirai-capable mode\n  ---\n  duration_ms: 0.211263\n  type: 'test'\n  ...\n# Subtest: NOEMA preference reset does not clear other apps\nok 14 - NOEMA preference reset does not clear other apps\n  ---\n  duration_ms: 0.845475\n  type: 'test'\n  ...\n# Subtest: continuity is bounded and namespaced\nok 15 - continuity is bounded and namespaced\n  ---\n  duration_ms: 1.747685\n  type: 'test'\n  ...\n# Subtest: route includes constitution trace\nok 16 - route includes constitution trace\n  ---\n  duration_ms: 2.799436\n  type: 'test'\n  ...\n# Subtest: blocked constitutional request does not require provider\nok 17 - blocked constitutional request does not require provider\n  ---\n  duration_ms: 0.887829\n  type: 'test'\n  ...\n1..17\n# tests 17\n# suites 0\n# pass 17\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 107.437296\n",
+  "testOutput": "TAP version 13\n# Subtest: ordinary resource search is allowed\nok 1 - ordinary resource search is allowed\n  ---\n  duration_ms: 1.98682\n  type: 'test'\n  ...\n# Subtest: message send requires confirmation\nok 2 - message send requires confirmation\n  ---\n  duration_ms: 0.219857\n  type: 'test'\n  ...\n# Subtest: canonical deployment requires administrator approval\nok 3 - canonical deployment requires administrator approval\n  ---\n  duration_ms: 0.240377\n  type: 'test'\n  ...\n# Subtest: self privilege elevation remains blocked even with adminAuthorized flag\nok 4 - self privilege elevation remains blocked even with adminAuthorized flag\n  ---\n  duration_ms: 0.266756\n  type: 'test'\n  ...\n# Subtest: context separates recent continuity from explicit memory\nok 5 - context separates recent continuity from explicit memory\n  ---\n  duration_ms: 1.01662\n  type: 'test'\n  ...\n# Subtest: NOEMA marks high-stakes adult requests\nok 6 - NOEMA marks high-stakes adult requests\n  ---\n  duration_ms: 3.299999\n  type: 'test'\n  ...\n# Subtest: NOEMA flags credential-like privacy content\nok 7 - NOEMA flags credential-like privacy content\n  ---\n  duration_ms: 1.114305\n  type: 'test'\n  ...\n# Subtest: NOEMA keeps Hope distinct from identity\nok 8 - NOEMA keeps Hope distinct from identity\n  ---\n  duration_ms: 0.460684\n  type: 'test'\n  ...\n# Subtest: constitution exposes stable principles\nok 9 - constitution exposes stable principles\n  ---\n  duration_ms: 0.752617\n  type: 'test'\n  ...\n# Subtest: ordinary request passes constitutional gate\nok 10 - ordinary request passes constitutional gate\n  ---\n  duration_ms: 0.655683\n  type: 'test'\n  ...\n# Subtest: self-authorization bypass is blocked\nok 11 - self-authorization bypass is blocked\n  ---\n  duration_ms: 0.404311\n  type: 'test'\n  ...\n# Subtest: covert action receives ethics review\nok 12 - covert action receives ethics review\n  ---\n  duration_ms: 0.310391\n  type: 'test'\n  ...\n# Subtest: NOEMA has her own adult intelligence identity\nok 13 - NOEMA has her own adult intelligence identity\n  ---\n  duration_ms: 0.635012\n  type: 'test'\n  ...\n# Subtest: creative requests route to Moirai-capable mode\nok 14 - creative requests route to Moirai-capable mode\n  ---\n  duration_ms: 0.215179\n  type: 'test'\n  ...\n# Subtest: long-term memory requires confirmation\nok 15 - long-term memory requires confirmation\n  ---\n  duration_ms: 0.746639\n  type: 'test'\n  ...\n# Subtest: confirmed memory is retained with provenance\nok 16 - confirmed memory is retained with provenance\n  ---\n  duration_ms: 0.899695\n  type: 'test'\n  ...\n# Subtest: obvious credentials are rejected from ordinary memory\nok 17 - obvious credentials are rejected from ordinary memory\n  ---\n  duration_ms: 0.296029\n  type: 'test'\n  ...\n# Subtest: memory can be edited and deleted explicitly\nok 18 - memory can be edited and deleted explicitly\n  ---\n  duration_ms: 0.321607\n  type: 'test'\n  ...\n# Subtest: retrieval favors query and mode relevant memory\nok 19 - retrieval favors query and mode relevant memory\n  ---\n  duration_ms: 1.390985\n  type: 'test'\n  ...\n# Subtest: NOEMA preference reset does not clear other apps\nok 20 - NOEMA preference reset does not clear other apps\n  ---\n  duration_ms: 1.246271\n  type: 'test'\n  ...\n# Subtest: continuity is bounded and namespaced\nok 21 - continuity is bounded and namespaced\n  ---\n  duration_ms: 3.059843\n  type: 'test'\n  ...\n# Subtest: route includes constitution trace\nok 22 - route includes constitution trace\n  ---\n  duration_ms: 2.725537\n  type: 'test'\n  ...\n# Subtest: blocked constitutional request does not require provider\nok 23 - blocked constitutional request does not require provider\n  ---\n  duration_ms: 0.779687\n  type: 'test'\n  ...\n# Subtest: new project becomes active context\nok 24 - new project becomes active context\n  ---\n  duration_ms: 1.060564\n  type: 'test'\n  ...\n1..24\n# tests 24\n# suites 0\n# pass 24\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 193.728557\n",
   "errors": [],
   "valid": true
 }

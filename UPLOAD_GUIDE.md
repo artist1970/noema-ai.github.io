@@ -1,25 +1,24 @@
-# NOEMA v0.4 — Constitution + Capability Ledger
+# NOEMA v0.5 — Memory + Context
 
-Upload the contents of this package into:
+Upload the contents of this package to:
 
 `artist1970/noema-ai.github.io`
+
+while preserving folders.
 
 ## New files
 
 ```text
-ethics/constitution.js
-ethics/ethics-engine.js
-ethics/non-manipulation.js
+memory/memory-schema.js
+memory/memory-store.js
+memory/memory-retriever.js
+memory/project-context-store.js
+memory/sensitive-memory-filter.js
 
-permissions/capability-ledger.js
-permissions/action-gate.js
+styles/noema-memory.css
 
-transparency/route-trace.js
-
-styles/noema-ethics.css
-
-docs/CONSTITUTION.md
-docs/CAPABILITY_LEDGER.md
+docs/MEMORY_ARCHITECTURE.md
+docs/PROJECT_CONTEXT.md
 ```
 
 ## Replace existing files
@@ -27,19 +26,24 @@ docs/CAPABILITY_LEDGER.md
 ```text
 index.html
 app/noema-app.js
-core/conversation-orchestrator.js
+core/context-builder.js
 core/noema-core.js
-providers/local-placeholder.js
+permissions/capability-ledger.js
 service-worker.js
 ```
 
-This update does not alter:
-- Noema identity;
-- local continuity format;
-- mode definitions;
-- module registry;
-- Mentor adapter;
-- Sovereign adapter;
-- GitHub security configuration.
+## New behavior
 
-The service worker cache is bumped to `noema-shell-v0.4.0`.
+- `Memory & Context` button in the NOEMA workspace.
+- Explicit Memory Library.
+- Editable/deleteable retained items.
+- Memory provenance and timestamps.
+- Memory scopes and tags.
+- JSON export.
+- Project Context with one active project.
+- Context-aware memory retrieval.
+- Credential-like information rejected from ordinary long-term memory.
+- Existing short-term continuity remains bounded at 24 exchanges.
+- Cache moves to `noema-shell-v0.5.0`.
+
+No conversational model is connected by this package.
