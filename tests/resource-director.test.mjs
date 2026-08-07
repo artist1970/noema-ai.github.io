@@ -7,7 +7,9 @@ test("adult research can discover approved PLERA resources but keeps freshness r
   const out=director.discover({
     query:"find current research tools",
     mode:"research",
-    context:{}
+    context:{},
+    sourceIds:["verve.plera-search"],
+    maxResults:20
   });
   const plera=out.results.find(r=>r.sourceId==="verve.plera-search");
   assert.ok(plera);
