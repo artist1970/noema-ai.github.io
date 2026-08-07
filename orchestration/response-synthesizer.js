@@ -31,6 +31,10 @@ export function synthesizeIntegratedResponse({
     .find(t=>t.specialistId==="sovereign" && t.status==="complete")
     ?.output || null;
 
+  const resources=(orchestration.tasks || [])
+    .find(t=>t.specialistId==="resource-director" && t.status==="complete")
+    ?.output || null;
+
   return {
     text:clean(providerResponse.text),
     provider:providerResponse.provider || "",
@@ -46,7 +50,8 @@ export function synthesizeIntegratedResponse({
       handoffs,
       unavailable,
       mentorAdaptation:mentor,
-      decisionSupport:decision
+      decisionSupport:decision,
+      resources
     },
 
     research:{

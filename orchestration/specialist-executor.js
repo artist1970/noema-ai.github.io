@@ -56,6 +56,38 @@ export class SpecialistExecutor {
 
     const s=getSpecialist(specialistId);
 
+    if(specialistId==="resource-director") {
+      if(!this.core?.resourceDirector) {
+        return {
+          status:"unavailable",
+          output:{
+            type:"resource-discovery",
+            specialistId,
+            executionState:"UNAVAILABLE",
+            reason:"Resource Director is not available."
+          }
+        };
+      }
+
+      const discovery=this.core.resourceDirector.discover({
+        query:message,
+        mode:route.mode?.id || "personal",
+        context,
+        maxResults:8
+      });
+
+      return {
+        status:"complete",
+        output:{
+          type:"resource-discovery",
+          specialistId,
+          executionState:"EXECUTED",
+          discoveryState:"DISCOVERED",
+          ...discovery
+        }
+      };
+    }
+
     if(specialistId==="verifier") {
       return {
         status:"complete",

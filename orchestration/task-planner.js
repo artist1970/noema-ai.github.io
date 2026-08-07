@@ -36,10 +36,20 @@ export function buildTaskPlan({
     mode==="archive" ||
     has(q,/\b(archive|histor|reference|old record|primary source|manuscript)\b/i);
 
+  const needsResources =
+    ["learning","research","archive","family"].includes(mode) ||
+    has(q,/\b(find|resource|lesson|course|study|learn|research|search|archive|reading|tool|practice)\b/i);
+
   if(researchDecision.required) {
     tasks.push(task("verify","Build evidence requirements","verifier",
       "Create the Verifier session, domain requirements, evidence lanes, freshness requirements and contradiction check.",
       ["understand"]));
+  }
+
+  if(needsResources) {
+    tasks.push(task("resources","Discover approved resources","resource-director",
+      "Search the approved Khaemenes Academy, ARSHIF, and PLERA Search manifests with audience, preference, hierarchy, provenance, and freshness rules.",
+      [researchDecision.required ? "verify" : "understand"]));
   }
 
   if(needsLearning) {

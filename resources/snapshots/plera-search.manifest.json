@@ -1,0 +1,183 @@
+{
+  "version": 1,
+  "sourceId": "verve.plera-search",
+  "name": "PLERA Search",
+  "classification": "research-information",
+  "mentorSearchable": true,
+  "audiences": [
+    "high",
+    "higher-learning",
+    "adult",
+    "parent"
+  ],
+  "roles": [
+    "student",
+    "parent",
+    "educator"
+  ],
+  "homepage": "https://vervenveda.com/PLERASearch.github.io/",
+  "repository": "vervenveda/PLERASearch.github.io",
+  "resources": [
+    {
+      "id": "plera-search-home",
+      "title": "PLERA Search",
+      "description": "",
+      "url": "https://vervenveda.com/PLERASearch.github.io/",
+      "audiences": [
+        "high",
+        "higher-learning",
+        "adult",
+        "parent"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "research",
+        "navigation"
+      ],
+      "skills": [
+        "research-navigation"
+      ],
+      "tags": [
+        "search",
+        "research",
+        "current-info"
+      ],
+      "mentorEligible": true,
+      "featured": true,
+      "requiresFreshnessCheck": true,
+      "dynamicContent": true
+    },
+    {
+      "id": "search-gate",
+      "title": "PLERA Search Gate",
+      "description": "",
+      "url": "https://vervenveda.com/PLERASearch.github.io/apps/PLERA_Search_Gate_index.html",
+      "audiences": [
+        "high",
+        "higher-learning",
+        "adult",
+        "parent"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "research"
+      ],
+      "skills": [
+        "search",
+        "research-navigation"
+      ],
+      "tags": [
+        "search",
+        "research",
+        "current-info"
+      ],
+      "mentorEligible": true,
+      "minutes": 10,
+      "energy": "curious",
+      "requiresFreshnessCheck": true,
+      "dynamicContent": true
+    },
+    {
+      "id": "search-pro",
+      "title": "PLERA Search Pro",
+      "description": "",
+      "url": "https://vervenveda.com/PLERASearch.github.io/apps/PLERA_search_pro_index.html",
+      "audiences": [
+        "higher-learning",
+        "adult",
+        "parent"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "research"
+      ],
+      "skills": [
+        "advanced-search",
+        "research-navigation"
+      ],
+      "tags": [
+        "search",
+        "research",
+        "current-info"
+      ],
+      "mentorEligible": true,
+      "minutes": 15,
+      "energy": "focused",
+      "requiresFreshnessCheck": true,
+      "dynamicContent": true
+    },
+    {
+      "id": "insurance-gate",
+      "title": "Insurance Resource Gate",
+      "description": "",
+      "url": "https://vervenveda.com/PLERASearch.github.io/apps/Insurance_index.html",
+      "audiences": [
+        "adult",
+        "parent"
+      ],
+      "roles": [
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "practical-resources"
+      ],
+      "skills": [
+        "resource-navigation"
+      ],
+      "tags": [
+        "insurance",
+        "adult-resource",
+        "current-info"
+      ],
+      "mentorEligible": true,
+      "minutes": 10,
+      "energy": "steady",
+      "requiresFreshnessCheck": true,
+      "dynamicContent": true
+    },
+    {
+      "id": "shopping-gate",
+      "title": "Shopping Resource Gate",
+      "description": "",
+      "url": "https://vervenveda.com/PLERASearch.github.io/apps/Shopping_index.html",
+      "audiences": [
+        "adult",
+        "parent"
+      ],
+      "roles": [
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "practical-resources"
+      ],
+      "skills": [
+        "resource-navigation"
+      ],
+      "tags": [
+        "shopping",
+        "adult-resource",
+        "current-info"
+      ],
+      "mentorEligible": true,
+      "minutes": 10,
+      "energy": "steady",
+      "requiresFreshnessCheck": true,
+      "dynamicContent": true
+    }
+  ],
+  "mentorNotes": "PLERA Search is the outer research layer after internal Khaemenes and approved Verve N Veda resources are considered."
+}

@@ -1,0 +1,224 @@
+{
+  "version": 1,
+  "sourceId": "verve.arshif",
+  "name": "ARSHIF Archives",
+  "classification": "creative-cultural",
+  "mentorSearchable": true,
+  "audiences": [
+    "middle",
+    "high",
+    "higher-learning",
+    "adult",
+    "parent"
+  ],
+  "roles": [
+    "student",
+    "parent",
+    "educator"
+  ],
+  "homepage": "https://vervenveda.com/Arshif.github.io/",
+  "repository": "vervenveda/Arshif.github.io",
+  "resources": [
+    {
+      "id": "arshif-home",
+      "title": "ARSHIF Archives",
+      "description": "",
+      "url": "https://vervenveda.com/Arshif.github.io/",
+      "audiences": [
+        "middle",
+        "high",
+        "higher-learning",
+        "adult",
+        "parent"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "archives",
+        "reading",
+        "culture"
+      ],
+      "skills": [],
+      "tags": [
+        "archive",
+        "reading",
+        "culture"
+      ],
+      "mentorEligible": true,
+      "featured": true
+    },
+    {
+      "id": "reading-room",
+      "title": "ARSHIF Reading Room",
+      "description": "",
+      "url": "https://vervenveda.com/Arshif.github.io/apps/Reading_room_index.html",
+      "audiences": [
+        "middle",
+        "high",
+        "higher-learning",
+        "adult"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "reading",
+        "archives"
+      ],
+      "skills": [
+        "reading",
+        "reflection"
+      ],
+      "tags": [
+        "reading-room",
+        "archive"
+      ],
+      "mentorEligible": true,
+      "minutes": 20,
+      "energy": "gentle"
+    },
+    {
+      "id": "bible-history",
+      "title": "Bible & History",
+      "description": "",
+      "url": "https://vervenveda.com/Arshif.github.io/apps/Bible_and_History_index.html",
+      "audiences": [
+        "high",
+        "higher-learning",
+        "adult"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "history",
+        "textual-study"
+      ],
+      "skills": [
+        "historical-context",
+        "reading"
+      ],
+      "tags": [
+        "history",
+        "bible",
+        "faith"
+      ],
+      "mentorEligible": true,
+      "minutes": 25,
+      "energy": "steady",
+      "requiresPreferenceMatch": [
+        "faith",
+        "biblical-study"
+      ]
+    },
+    {
+      "id": "bible-context",
+      "title": "Bible Context",
+      "description": "",
+      "url": "https://vervenveda.com/Arshif.github.io/apps/Bible_context_index.html",
+      "audiences": [
+        "high",
+        "higher-learning",
+        "adult"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "history",
+        "textual-study"
+      ],
+      "skills": [
+        "contextual-reading"
+      ],
+      "tags": [
+        "bible",
+        "history",
+        "faith"
+      ],
+      "mentorEligible": true,
+      "minutes": 20,
+      "energy": "steady",
+      "requiresPreferenceMatch": [
+        "faith",
+        "biblical-study"
+      ]
+    },
+    {
+      "id": "foundations-faith",
+      "title": "Foundations of Faith",
+      "description": "",
+      "url": "https://vervenveda.com/Arshif.github.io/apps/Foundations_of_faith_index.html",
+      "audiences": [
+        "high",
+        "higher-learning",
+        "adult"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "faith-study"
+      ],
+      "skills": [
+        "reflection",
+        "textual-study"
+      ],
+      "tags": [
+        "faith",
+        "religion"
+      ],
+      "mentorEligible": true,
+      "minutes": 20,
+      "energy": "gentle",
+      "requiresPreferenceMatch": [
+        "faith"
+      ]
+    },
+    {
+      "id": "truth-tribe-kids",
+      "title": "Truth Tribe Kids",
+      "description": "",
+      "url": "https://vervenveda.com/Arshif.github.io/apps/Truth_tribe_kids_index.html",
+      "audiences": [
+        "elementary",
+        "middle"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "faith-study",
+        "reading"
+      ],
+      "skills": [
+        "reading",
+        "reflection"
+      ],
+      "tags": [
+        "faith",
+        "kids"
+      ],
+      "mentorEligible": true,
+      "minutes": 15,
+      "energy": "gentle",
+      "requiresPreferenceMatch": [
+        "faith"
+      ]
+    }
+  ],
+  "mentorNotes": "Faith-specific resources carry preference metadata and should not be proactively recommended without a matching learner/family preference once that resolver rule is enabled."
+}

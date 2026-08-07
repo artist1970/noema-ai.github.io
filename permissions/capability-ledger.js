@@ -179,6 +179,40 @@ export const NOEMA_CAPABILITIES = Object.freeze({
     state: CAPABILITY_STATES.ALLOW,
     description: "Respond conversationally within active policy."
   },
+
+  "resources.discover-approved": {
+    state: CAPABILITY_STATES.ALLOW,
+    description: "Discover mentor-eligible resources from approved ecosystem manifests subject to audience, role, preference, provenance and hierarchy rules."
+  },
+  "resources.refresh-public-manifests": {
+    state: CAPABILITY_STATES.ALLOW,
+    description: "Read approved public HTTPS resource manifests without credentials; fall back to packaged snapshots when live retrieval is unavailable."
+  },
+  "resources.open-discovered": {
+    state: CAPABILITY_STATES.ALLOW,
+    description: "Present a user-initiated navigation link to an eligible discovered resource."
+  },
+  "resources.bypass-audience": {
+    state: CAPABILITY_STATES.BLOCK,
+    description: "NAIB and NOEMA may not bypass audience or role eligibility to surface a restricted resource."
+  },
+  "resources.infer-sensitive-preference": {
+    state: CAPABILITY_STATES.BLOCK,
+    description: "Resource discovery may not infer religion or other sensitive preferences from appearance, demographics, or unrelated behavior."
+  },
+  "resources.ignore-preference-gate": {
+    state: CAPABILITY_STATES.BLOCK,
+    description: "Preference-gated resources may not be proactively recommended without an explicit request-local or user-provided matching preference."
+  },
+  "resources.treat-discovery-as-verification": {
+    state: CAPABILITY_STATES.BLOCK,
+    description: "A discovered resource, search result, or navigation tool may not be treated as verified evidence merely because it ranked highly."
+  },
+  "resources.dynamic-without-freshness": {
+    state: CAPABILITY_STATES.BLOCK,
+    description: "Dynamic/current-information resources must retain their freshness-required status until a freshness-capable verification step is completed."
+  },
+
   "resources.search": {
     state: CAPABILITY_STATES.ALLOW,
     description: "Search approved ecosystem resources subject to Mentor policy and freshness requirements."
