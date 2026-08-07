@@ -39,8 +39,10 @@ export class IntelligenceDirector {
       /\b(find|resource|lesson|course|study|learn|research|search|archive|reading|tool)\b/i.test(route.message || "");
 
     if (resourceLikely && this.core.resourceDirector) {
-      resourceRefresh=await this.core.resourceDirector.refresh({
-        allowNetwork:true,
+      resourceRefresh=await this.core.resourceDirector.refreshForRequest({
+        query:route.message,
+        mode:route.mode?.id || "personal",
+        context:route.context || {},
         timeoutMs:3500
       });
     }

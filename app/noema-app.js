@@ -335,6 +335,7 @@ function renderIntelligencePlan(orchestration) {
 function renderResourceDiscovery(discovery) {
   const data=discovery?.coordination?.resources || discovery || null;
   const results=data?.results || [];
+  const groups=data?.groups || [];
 
   if(!data || !results.length) {
     resourcePanel.hidden=true;
@@ -344,32 +345,61 @@ function renderResourceDiscovery(discovery) {
   }
 
   resourcePanel.hidden=false;
-  resourceSummary.textContent=`${results.length} eligible result${results.length===1?"":"s"} · audience ${data.audience || "unknown"}`;
+  const lc=data.learningContext || {};
+  const schoolText=lc.currentSchoolSourceId
+    ? ` · school ${lc.currentSchoolSourceId}`
+    : "";
+  resourceSummary.textContent=
+    `${results.length} eligible result${results.length===1?"":"s"} · audience ${data.audience || "unknown"}${schoolText}`;
 
-  resourceResults.innerHTML=results.map(item=>{
+  const renderItem=item=>{
     const freshness=item.requiresFreshnessCheck
       ? `<span class="freshness-required">freshness required</span>`
       : `<span>stable resource</span>`;
     const source=`<span>${escapeHtml(item.sourceName || item.sourceId || "")}</span>`;
     const state=`<span>${escapeHtml(item.executionState || "DISCOVERED")}</span>`;
     const provenance=`<span>${escapeHtml(item.manifestProvenance || "snapshot")}</span>`;
+    const type=`<span>${escapeHtml(item.resourceType || "resource")}</span>`;
+    const value=item.learningValue && item.learningValue!=="unknown"
+      ? `<span>${escapeHtml(item.learningValue)}</span>` : "";
+    const health=item.verifierRequired
+      ? `<span class="freshness-required">Verifier required</span>` : "";
+    const objectives=(item.learningObjectives || []).length
+      ? `<small>Learning: ${escapeHtml(item.learningObjectives.join(" · "))}</small>`
+      : "";
+
     return `
       <article class="resource-result">
         <div>
           <strong>${escapeHtml(item.title)}</strong>
           ${item.description ? `<small>${escapeHtml(item.description)}</small>` : ""}
-          <div class="resource-meta">${source}${state}${freshness}${provenance}</div>
+          ${objectives}
+          <div class="resource-meta">${source}${state}${type}${value}${freshness}${health}${provenance}</div>
         </div>
         <a href="${escapeHtml(item.url)}" target="_blank" rel="noopener">Open resource ↗</a>
       </article>
     `;
-  }).join("");
+  };
+
+  if(groups.length) {
+    resourceResults.innerHTML=groups.map(group=>`
+      <section class="resource-group">
+        <h4>${escapeHtml(group.label)}</h4>
+        <div class="resource-group-list">
+          ${(group.results || []).map(renderItem).join("")}
+        </div>
+      </section>
+    `).join("");
+  } else {
+    resourceResults.innerHTML=results.map(renderItem).join("");
+  }
 
   const withheld=Number(data.withheldCount || 0);
+  const gap=data.coverage?.gap ? ` ${data.coverage.gap}` : "";
   resourceFoot.textContent=
-    `${withheld} resource${withheld===1?"":"s"} withheld by audience, role, or preference rules. ` +
-    `Current lesson/course/school resources will outrank the central Academy when those sources are connected. ` +
-    `Discovery is navigation, not verification.`;
+    `${withheld} resource${withheld===1?"":"s"} withheld by audience, role, preference, or educational-game rules. ` +
+    `School/course resources outrank extensions; games do not outrank direct coursework by default. ` +
+    `Discovery is navigation, not verification.${gap}`;
 }
 
 async function handleRoute() {
