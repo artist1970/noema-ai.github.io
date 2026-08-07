@@ -1,0 +1,392 @@
+{
+  "version": 1,
+  "sourceId": "verve.bazaar-art",
+  "name": "Bazaar Art",
+  "classification": "creative-education",
+  "mentorSearchable": true,
+  "audiences": [
+    "elementary",
+    "middle",
+    "high",
+    "higher-learning",
+    "adult",
+    "parent"
+  ],
+  "roles": [
+    "student",
+    "parent",
+    "educator"
+  ],
+  "homepage": "https://vervenveda.com/bazaarart.github.io/",
+  "repository": "vervenveda/bazaarart.github.io",
+  "inventoryAuthority": "noema-approved-inventory-snapshot",
+  "resources": [
+    {
+      "id": "bazaar-art-resources",
+      "title": "Art Resources",
+      "description": "",
+      "url": "https://vervenveda.com/bazaarart.github.io/apps/Art_resources_index.html",
+      "audiences": [
+        "elementary",
+        "middle",
+        "high",
+        "higher-learning",
+        "adult",
+        "parent"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "art"
+      ],
+      "skills": [],
+      "tags": [
+        "art",
+        "resources"
+      ],
+      "mentorEligible": true,
+      "resourceType": "reference",
+      "learningValue": "extension"
+    },
+    {
+      "id": "art-education-portal",
+      "title": "Class Art Education Portal",
+      "description": "",
+      "url": "https://vervenveda.com/bazaarart.github.io/apps/Class_art_education_portal_index.html",
+      "audiences": [
+        "elementary",
+        "middle",
+        "high",
+        "higher-learning",
+        "adult"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "art"
+      ],
+      "skills": [],
+      "tags": [
+        "art",
+        "education"
+      ],
+      "mentorEligible": true,
+      "resourceType": "portal",
+      "learningValue": "core"
+    },
+    {
+      "id": "art-101",
+      "title": "Class Art 101",
+      "description": "",
+      "url": "https://vervenveda.com/bazaarart.github.io/apps/Class_art_101_index.html",
+      "audiences": [
+        "middle",
+        "high",
+        "higher-learning",
+        "adult"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "art"
+      ],
+      "skills": [],
+      "tags": [
+        "art",
+        "class"
+      ],
+      "mentorEligible": true,
+      "resourceType": "course",
+      "learningValue": "core"
+    },
+    {
+      "id": "art-201",
+      "title": "Class Art 201",
+      "description": "",
+      "url": "https://vervenveda.com/bazaarart.github.io/apps/Class_art_201_index.html",
+      "audiences": [
+        "high",
+        "higher-learning",
+        "adult"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "art"
+      ],
+      "skills": [],
+      "tags": [
+        "art",
+        "class"
+      ],
+      "mentorEligible": true,
+      "resourceType": "course",
+      "learningValue": "core"
+    },
+    {
+      "id": "art-301",
+      "title": "Class Art 301",
+      "description": "",
+      "url": "https://vervenveda.com/bazaarart.github.io/apps/Class_art_301_index.html",
+      "audiences": [
+        "high",
+        "higher-learning",
+        "adult"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "art"
+      ],
+      "skills": [],
+      "tags": [
+        "art",
+        "class"
+      ],
+      "mentorEligible": true,
+      "resourceType": "course",
+      "learningValue": "core"
+    },
+    {
+      "id": "elementary-art-atlas",
+      "title": "Elementary Art Atlas",
+      "description": "",
+      "url": "https://vervenveda.com/bazaarart.github.io/apps/Elementary_Art_Atlas_index.html",
+      "audiences": [
+        "elementary"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "art"
+      ],
+      "skills": [],
+      "tags": [
+        "art",
+        "elementary"
+      ],
+      "mentorEligible": true,
+      "resourceType": "course",
+      "learningValue": "core"
+    },
+    {
+      "id": "music-reading-101",
+      "title": "Music Reading 101",
+      "description": "",
+      "url": "https://vervenveda.com/bazaarart.github.io/apps/Class_music_reading_101_index.html",
+      "audiences": [
+        "middle",
+        "high",
+        "higher-learning",
+        "adult"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "music"
+      ],
+      "skills": [],
+      "tags": [
+        "music",
+        "reading",
+        "class"
+      ],
+      "mentorEligible": true,
+      "resourceType": "course",
+      "learningValue": "core"
+    },
+    {
+      "id": "music-theory-201",
+      "title": "Music Theory 201",
+      "description": "",
+      "url": "https://vervenveda.com/bazaarart.github.io/apps/Class_music_theory_201_index.html",
+      "audiences": [
+        "high",
+        "higher-learning",
+        "adult"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "music"
+      ],
+      "skills": [],
+      "tags": [
+        "music",
+        "theory",
+        "class"
+      ],
+      "mentorEligible": true,
+      "resourceType": "course",
+      "learningValue": "core"
+    },
+    {
+      "id": "music-staff",
+      "title": "Music Staff",
+      "description": "",
+      "url": "https://vervenveda.com/bazaarart.github.io/apps/Class_music_staff_index.html",
+      "audiences": [
+        "middle",
+        "high",
+        "higher-learning",
+        "adult"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "music"
+      ],
+      "skills": [],
+      "tags": [
+        "music",
+        "staff"
+      ],
+      "mentorEligible": true,
+      "resourceType": "practice",
+      "learningValue": "supplemental"
+    },
+    {
+      "id": "geometry-sanctuary",
+      "title": "Geometry Sanctuary",
+      "description": "",
+      "url": "https://vervenveda.com/bazaarart.github.io/apps/Geometry_sancturay_index.html",
+      "audiences": [
+        "middle",
+        "high",
+        "higher-learning",
+        "adult"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "art",
+        "mathematics"
+      ],
+      "skills": [],
+      "tags": [
+        "geometry",
+        "creative"
+      ],
+      "mentorEligible": true,
+      "resourceType": "tool",
+      "learningValue": "supplemental"
+    },
+    {
+      "id": "palette-forge",
+      "title": "Palette Forge",
+      "description": "",
+      "url": "https://vervenveda.com/bazaarart.github.io/apps/Game_palette_forge_index.html",
+      "audiences": [
+        "elementary",
+        "middle",
+        "high",
+        "adult"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "art"
+      ],
+      "skills": [],
+      "tags": [
+        "palette",
+        "game",
+        "creative"
+      ],
+      "mentorEligible": true,
+      "resourceType": "game",
+      "learningValue": "unknown"
+    },
+    {
+      "id": "word-alchemy",
+      "title": "Word Alchemy Game",
+      "description": "",
+      "url": "https://vervenveda.com/bazaarart.github.io/apps/Word_alchemy_game_index.html",
+      "audiences": [
+        "middle",
+        "high",
+        "adult"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "language-literacy",
+        "creative-writing"
+      ],
+      "skills": [],
+      "tags": [
+        "words",
+        "game",
+        "creative"
+      ],
+      "mentorEligible": true,
+      "resourceType": "game",
+      "learningValue": "unknown"
+    },
+    {
+      "id": "simple-color-studio",
+      "title": "Simple Color Studio",
+      "description": "",
+      "url": "https://vervenveda.com/bazaarart.github.io/apps/Art_simple_color_studio_index.html",
+      "audiences": [
+        "elementary",
+        "middle",
+        "high",
+        "adult"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "art"
+      ],
+      "skills": [],
+      "tags": [
+        "color",
+        "studio"
+      ],
+      "mentorEligible": true,
+      "resourceType": "tool",
+      "learningValue": "supplemental"
+    }
+  ],
+  "mentorNotes": "NOEMA-approved inventory snapshot derived from the live Bazaar Art repository. Games without explicit learning objectives remain learningValue=unknown and cannot be promoted as educational games."
+}

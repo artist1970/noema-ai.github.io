@@ -1,0 +1,271 @@
+{
+  "version": 1,
+  "sourceId": "khaemenes.elementary",
+  "name": "Khaemenes Elementary",
+  "classification": "educational",
+  "mentorSearchable": true,
+  "audiences": [
+    "elementary",
+    "parent"
+  ],
+  "roles": [
+    "student",
+    "parent",
+    "educator"
+  ],
+  "homepage": "https://vervenveda.com/Khaemenes_Elementary.github.io/",
+  "repository": "vervenveda/Khaemenes_Elementary.github.io",
+  "resources": [
+    {
+      "id": "elementary-home",
+      "title": "Khaemenes Elementary",
+      "description": "",
+      "url": "https://vervenveda.com/Khaemenes_Elementary.github.io/",
+      "audiences": [
+        "elementary",
+        "parent"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "education",
+        "navigation"
+      ],
+      "skills": [],
+      "tags": [
+        "elementary",
+        "learning-home"
+      ],
+      "mentorEligible": true,
+      "featured": true
+    },
+    {
+      "id": "geometry-game",
+      "title": "Elementary Geometry Game",
+      "description": "",
+      "url": "https://vervenveda.com/Khaemenes_Elementary.github.io/apps/elementary_geometry_game_index.html",
+      "audiences": [
+        "elementary"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "mathematics"
+      ],
+      "skills": [
+        "geometry",
+        "spatial-reasoning"
+      ],
+      "tags": [
+        "math",
+        "game"
+      ],
+      "mentorEligible": true,
+      "minutes": 15,
+      "energy": "playful"
+    },
+    {
+      "id": "kindness-quest",
+      "title": "Kindness Quest",
+      "description": "",
+      "url": "https://vervenveda.com/Khaemenes_Elementary.github.io/apps/elementary_kindness_quest_index.html",
+      "audiences": [
+        "elementary"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "social-emotional"
+      ],
+      "skills": [
+        "kindness",
+        "reflection"
+      ],
+      "tags": [
+        "sel",
+        "character"
+      ],
+      "mentorEligible": true,
+      "minutes": 12,
+      "energy": "gentle"
+    },
+    {
+      "id": "vocabulary-garden",
+      "title": "Vocabulary Garden",
+      "description": "",
+      "url": "https://vervenveda.com/Khaemenes_Elementary.github.io/apps/elementary_vocabulary_garden_index.html",
+      "audiences": [
+        "elementary"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "language-literacy"
+      ],
+      "skills": [
+        "vocabulary",
+        "reading"
+      ],
+      "tags": [
+        "words",
+        "literacy"
+      ],
+      "mentorEligible": true,
+      "minutes": 15,
+      "energy": "steady"
+    },
+    {
+      "id": "weather-portal",
+      "title": "Elementary Weather Portal",
+      "description": "",
+      "url": "https://vervenveda.com/Khaemenes_Elementary.github.io/apps/elementary_weather_portal_index.html",
+      "audiences": [
+        "elementary"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "science"
+      ],
+      "skills": [
+        "weather",
+        "observation"
+      ],
+      "tags": [
+        "science",
+        "weather"
+      ],
+      "mentorEligible": true,
+      "minutes": 15,
+      "energy": "curious"
+    },
+    {
+      "id": "emotional-garden",
+      "title": "Emotional Garden",
+      "description": "",
+      "url": "https://vervenveda.com/Khaemenes_Elementary.github.io/apps/emotional_garden_index.html",
+      "audiences": [
+        "elementary"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "social-emotional"
+      ],
+      "skills": [
+        "feelings-vocabulary",
+        "reflection"
+      ],
+      "tags": [
+        "sel",
+        "feelings"
+      ],
+      "mentorEligible": true,
+      "minutes": 10,
+      "energy": "gentle"
+    },
+    {
+      "id": "learn-new-word",
+      "title": "Learn a New Word · Elementary",
+      "description": "",
+      "url": "https://vervenveda.com/Khaemenes_Elementary.github.io/apps/learn_a_new_word_elementary_index.html",
+      "audiences": [
+        "elementary"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "language-literacy"
+      ],
+      "skills": [
+        "vocabulary",
+        "word-learning"
+      ],
+      "tags": [
+        "words",
+        "literacy"
+      ],
+      "mentorEligible": true,
+      "minutes": 8,
+      "energy": "steady"
+    },
+    {
+      "id": "little-kitchen-helper",
+      "title": "Little Kitchen Helper",
+      "description": "",
+      "url": "https://vervenveda.com/Khaemenes_Elementary.github.io/apps/little_kitchen_helper_index.html",
+      "audiences": [
+        "elementary"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "life-skills"
+      ],
+      "skills": [
+        "following-directions",
+        "practical-learning"
+      ],
+      "tags": [
+        "life-skills",
+        "family",
+        "off-screen"
+      ],
+      "mentorEligible": true,
+      "minutes": 20,
+      "energy": "active"
+    },
+    {
+      "id": "lunar-phase-explorer",
+      "title": "Lunar Phase Explorer",
+      "description": "",
+      "url": "https://vervenveda.com/Khaemenes_Elementary.github.io/apps/lunar_phase_explorer_index.html",
+      "audiences": [
+        "elementary"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "science"
+      ],
+      "skills": [
+        "moon-phases",
+        "observation"
+      ],
+      "tags": [
+        "space",
+        "science"
+      ],
+      "mentorEligible": true,
+      "minutes": 15,
+      "energy": "curious"
+    }
+  ]
+}

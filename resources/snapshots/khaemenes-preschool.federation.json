@@ -1,0 +1,75 @@
+{
+  "version": 1,
+  "sourceId": "khaemenes.preschool",
+  "name": "Khaemenes Preschool · Crechè",
+  "classification": "educational",
+  "mentorSearchable": true,
+  "audiences": [
+    "preschool",
+    "parent"
+  ],
+  "roles": [
+    "student",
+    "parent",
+    "educator"
+  ],
+  "homepage": "https://vervenveda.com/Khaemenes_Preschool.github.io/",
+  "repository": "vervenveda/Khaemenes_Preschool.github.io",
+  "resources": [
+    {
+      "id": "preschool-family-home",
+      "title": "Crechè Family Home",
+      "description": "Preschool family learning home with the shared activity catalog.",
+      "url": "https://vervenveda.com/Khaemenes_Preschool.github.io/",
+      "audiences": [
+        "preschool",
+        "parent"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "early-learning",
+        "family-learning"
+      ],
+      "skills": [],
+      "tags": [
+        "preschool",
+        "play",
+        "activities"
+      ],
+      "mentorEligible": true,
+      "featured": true
+    },
+    {
+      "id": "preschool-mentor",
+      "title": "Preschool Mentor",
+      "description": "Guided Preschool Mentor with guardian authorization, local progress, and age-appropriate activities.",
+      "url": "https://vervenveda.com/Khaemenes_Preschool.github.io/mentor/",
+      "audiences": [
+        "preschool",
+        "parent"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "early-learning",
+        "mentor"
+      ],
+      "skills": [],
+      "tags": [
+        "mentor",
+        "guided-learning",
+        "parent"
+      ],
+      "mentorEligible": true,
+      "featured": true
+    }
+  ],
+  "mentorNotes": "The Preschool Mentor also consumes its own shared preschool activity catalog; the central manifest intentionally exposes only the major entry points."
+}

@@ -1,0 +1,157 @@
+{
+  "version": 1,
+  "sourceId": "khaemenes.high",
+  "name": "Khaemenes Academy High School",
+  "classification": "educational",
+  "mentorSearchable": true,
+  "audiences": [
+    "high",
+    "parent"
+  ],
+  "roles": [
+    "student",
+    "parent",
+    "educator"
+  ],
+  "homepage": "https://vervenveda.com/Khaemenes_High.github.io/",
+  "repository": "vervenveda/Khaemenes_High.github.io",
+  "resources": [
+    {
+      "id": "high-home",
+      "title": "Khaemenes Academy High School",
+      "description": "",
+      "url": "https://vervenveda.com/Khaemenes_High.github.io/",
+      "audiences": [
+        "high",
+        "parent"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "education",
+        "navigation"
+      ],
+      "skills": [],
+      "tags": [
+        "high-school",
+        "course-navigation"
+      ],
+      "mentorEligible": true,
+      "featured": true
+    },
+    {
+      "id": "high-language-arts",
+      "title": "High School Language Arts",
+      "description": "",
+      "url": "https://vervenveda.com/Khaemenes_High.github.io/courses/language-arts/",
+      "audiences": [
+        "high"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "language-arts"
+      ],
+      "skills": [
+        "reading",
+        "writing",
+        "analysis"
+      ],
+      "tags": [
+        "english",
+        "literature",
+        "composition"
+      ],
+      "mentorEligible": true
+    },
+    {
+      "id": "high-mathematics",
+      "title": "High School Mathematics",
+      "description": "",
+      "url": "https://vervenveda.com/Khaemenes_High.github.io/courses/mathematics/",
+      "audiences": [
+        "high"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "mathematics"
+      ],
+      "skills": [
+        "mathematical-reasoning"
+      ],
+      "tags": [
+        "math",
+        "pre-algebra",
+        "algebra",
+        "geometry"
+      ],
+      "mentorEligible": true
+    },
+    {
+      "id": "high-science",
+      "title": "High School Science",
+      "description": "",
+      "url": "https://vervenveda.com/Khaemenes_High.github.io/courses/science/",
+      "audiences": [
+        "high"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "science"
+      ],
+      "skills": [
+        "scientific-reasoning",
+        "evidence"
+      ],
+      "tags": [
+        "science",
+        "laboratory",
+        "inquiry"
+      ],
+      "mentorEligible": true
+    },
+    {
+      "id": "high-social-studies",
+      "title": "High School Social Studies",
+      "description": "",
+      "url": "https://vervenveda.com/Khaemenes_High.github.io/courses/social-studies/",
+      "audiences": [
+        "high"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "social-studies",
+        "civics",
+        "history"
+      ],
+      "skills": [
+        "historical-analysis",
+        "civic-literacy"
+      ],
+      "tags": [
+        "history",
+        "civics",
+        "social-studies"
+      ],
+      "mentorEligible": true
+    }
+  ]
+}

@@ -11,15 +11,15 @@ export const SPECIALISTS = Object.freeze({
 
   resourceDirector: {
     id:"resource-director",
-    label:"Resource Director",
+    label:"Learning Resource Federation",
     state:SPECIALIST_STATES.LOCAL,
-    category:"resource-discovery",
-    purposes:["learning","research","archive","resource","search","family"],
+    category:"learning-resource-discovery",
+    purposes:["learning","research","archive","resource","search","family","workshop","game","course"],
     audiences:["child","student","adult"],
     requiresAccount:false,
     canExecuteLocally:true,
-    authority:"approved-resource-discovery",
-    notes:"Discovers approved ecosystem resources from validated public manifests. Discovery is not claim verification."
+    authority:"approved-learning-federation",
+    notes:"Prioritizes the learner's Khaemenes stage, then Academy and approved learning extensions. Games require learning metadata. Discovery is not claim verification."
   },
   verifier: {
     id:"verifier",

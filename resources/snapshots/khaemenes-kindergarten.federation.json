@@ -1,0 +1,272 @@
+{
+  "version": 1,
+  "sourceId": "khaemenes.kindergarten",
+  "name": "Khaemenes Kinder Garden",
+  "classification": "educational",
+  "mentorSearchable": true,
+  "audiences": [
+    "kindergarten",
+    "parent"
+  ],
+  "roles": [
+    "student",
+    "parent",
+    "educator"
+  ],
+  "homepage": "https://vervenveda.com/Khaemenes_KinderGarden.github.io/",
+  "repository": "vervenveda/Khaemenes_KinderGarden.github.io",
+  "resources": [
+    {
+      "id": "kindergarten-home",
+      "title": "Khaemenes Kinder Garden",
+      "description": "",
+      "url": "https://vervenveda.com/Khaemenes_KinderGarden.github.io/",
+      "audiences": [
+        "kindergarten",
+        "parent"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "education",
+        "navigation"
+      ],
+      "skills": [],
+      "tags": [
+        "kindergarten",
+        "learning-home"
+      ],
+      "mentorEligible": true,
+      "featured": true
+    },
+    {
+      "id": "abc-curriculum",
+      "title": "ABC Curriculum",
+      "description": "",
+      "url": "https://vervenveda.com/Khaemenes_KinderGarden.github.io/apps/ABC_curriculum_index.html",
+      "audiences": [
+        "kindergarten"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "language-literacy"
+      ],
+      "skills": [
+        "letters",
+        "early-reading"
+      ],
+      "tags": [
+        "alphabet",
+        "literacy"
+      ],
+      "mentorEligible": true,
+      "minutes": 15,
+      "energy": "steady"
+    },
+    {
+      "id": "abc-spelling-soup",
+      "title": "ABC Spelling Soup",
+      "description": "",
+      "url": "https://vervenveda.com/Khaemenes_KinderGarden.github.io/apps/ABC_spelling_soup_index.html",
+      "audiences": [
+        "kindergarten"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "language-literacy"
+      ],
+      "skills": [
+        "letters",
+        "spelling"
+      ],
+      "tags": [
+        "word-play",
+        "literacy"
+      ],
+      "mentorEligible": true,
+      "minutes": 10,
+      "energy": "playful"
+    },
+    {
+      "id": "abc-story",
+      "title": "ABC Story",
+      "description": "",
+      "url": "https://vervenveda.com/Khaemenes_KinderGarden.github.io/apps/ABC_story_index.html",
+      "audiences": [
+        "kindergarten"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "language-literacy"
+      ],
+      "skills": [
+        "story",
+        "letter-recognition"
+      ],
+      "tags": [
+        "storytelling",
+        "literacy"
+      ],
+      "mentorEligible": true,
+      "minutes": 10,
+      "energy": "gentle"
+    },
+    {
+      "id": "math-curriculum",
+      "title": "Kindergarten Math Curriculum",
+      "description": "",
+      "url": "https://vervenveda.com/Khaemenes_KinderGarden.github.io/apps/Math_curriculum_index.html",
+      "audiences": [
+        "kindergarten"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "mathematics"
+      ],
+      "skills": [
+        "number-sense",
+        "early-math"
+      ],
+      "tags": [
+        "math",
+        "curriculum"
+      ],
+      "mentorEligible": true,
+      "minutes": 20,
+      "energy": "steady"
+    },
+    {
+      "id": "numbers-1-12",
+      "title": "Numbers 1–12",
+      "description": "",
+      "url": "https://vervenveda.com/Khaemenes_KinderGarden.github.io/apps/Numbers_1-12_index.html",
+      "audiences": [
+        "kindergarten"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "mathematics"
+      ],
+      "skills": [
+        "counting",
+        "number-recognition"
+      ],
+      "tags": [
+        "numbers",
+        "counting"
+      ],
+      "mentorEligible": true,
+      "minutes": 8,
+      "energy": "playful"
+    },
+    {
+      "id": "spelling-safari",
+      "title": "Spelling Safari",
+      "description": "",
+      "url": "https://vervenveda.com/Khaemenes_KinderGarden.github.io/apps/Spelling_safari_index.html",
+      "audiences": [
+        "kindergarten"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "language-literacy"
+      ],
+      "skills": [
+        "spelling",
+        "phonics"
+      ],
+      "tags": [
+        "words",
+        "spelling"
+      ],
+      "mentorEligible": true,
+      "minutes": 10,
+      "energy": "playful"
+    },
+    {
+      "id": "weather-compass",
+      "title": "Weather Compass",
+      "description": "",
+      "url": "https://vervenveda.com/Khaemenes_KinderGarden.github.io/apps/Weather_compass_index.html",
+      "audiences": [
+        "kindergarten"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "science",
+        "wonder"
+      ],
+      "skills": [
+        "observation",
+        "weather"
+      ],
+      "tags": [
+        "weather",
+        "science"
+      ],
+      "mentorEligible": true,
+      "minutes": 10,
+      "energy": "curious"
+    },
+    {
+      "id": "pe-curriculum",
+      "title": "Kinder Movement & PE",
+      "description": "",
+      "url": "https://vervenveda.com/Khaemenes_KinderGarden.github.io/apps/PE_curriculum_index.html",
+      "audiences": [
+        "kindergarten"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "movement",
+        "physical-learning"
+      ],
+      "skills": [
+        "gross-motor",
+        "movement"
+      ],
+      "tags": [
+        "movement",
+        "off-screen"
+      ],
+      "mentorEligible": true,
+      "minutes": 15,
+      "energy": "active"
+    }
+  ]
+}

@@ -1,0 +1,410 @@
+{
+  "version": 1,
+  "sourceId": "verve.medicament",
+  "name": "Medicament Hub",
+  "classification": "health-education",
+  "mentorSearchable": true,
+  "audiences": [
+    "elementary",
+    "high",
+    "higher-learning",
+    "adult",
+    "parent"
+  ],
+  "roles": [
+    "student",
+    "parent",
+    "educator"
+  ],
+  "homepage": "https://vervenveda.com/medicament-hub.github.io/",
+  "repository": "vervenveda/medicament-hub.github.io",
+  "inventoryAuthority": "noema-approved-inventory-snapshot",
+  "resources": [
+    {
+      "id": "medicament-home",
+      "title": "Medicament Hub",
+      "description": "",
+      "url": "https://vervenveda.com/medicament-hub.github.io/",
+      "audiences": [
+        "high",
+        "higher-learning",
+        "adult",
+        "parent"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "health-education"
+      ],
+      "skills": [],
+      "tags": [
+        "health",
+        "education",
+        "navigation"
+      ],
+      "mentorEligible": true,
+      "resourceType": "portal",
+      "learningValue": "extension",
+      "highStakesDomain": "medical"
+    },
+    {
+      "id": "pe-42week",
+      "title": "High School Physical Education · 42 Week",
+      "description": "",
+      "url": "https://vervenveda.com/medicament-hub.github.io/academy/High_School_Physical_Education_42week_index.html",
+      "audiences": [
+        "high"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "physical-education",
+        "health-education"
+      ],
+      "skills": [],
+      "tags": [
+        "pe",
+        "course"
+      ],
+      "mentorEligible": true,
+      "resourceType": "course",
+      "learningValue": "core",
+      "highStakesDomain": "medical"
+    },
+    {
+      "id": "pe-resource-hub",
+      "title": "PE Resource Hub",
+      "description": "",
+      "url": "https://vervenveda.com/medicament-hub.github.io/tools/PE_Resource_Hub_index.html",
+      "audiences": [
+        "high",
+        "adult",
+        "parent"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "physical-education",
+        "health-education"
+      ],
+      "skills": [],
+      "tags": [
+        "pe",
+        "resources"
+      ],
+      "mentorEligible": true,
+      "resourceType": "portal",
+      "learningValue": "supplemental",
+      "highStakesDomain": "medical"
+    },
+    {
+      "id": "health-trivia",
+      "title": "Health is Wealth Mini Trivia",
+      "description": "",
+      "url": "https://vervenveda.com/medicament-hub.github.io/tools/Health_is_Wealth_Mini_Trivia_index.html",
+      "audiences": [
+        "high",
+        "adult"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "health-education"
+      ],
+      "skills": [],
+      "tags": [
+        "health",
+        "trivia",
+        "game"
+      ],
+      "mentorEligible": true,
+      "resourceType": "game",
+      "learningValue": "supplemental",
+      "highStakesDomain": "medical"
+    },
+    {
+      "id": "elementary-psychology-explorer",
+      "title": "Noetic Elementary Psychology Explorer",
+      "description": "",
+      "url": "https://vervenveda.com/medicament-hub.github.io/tools/Noetic_Elementary_Psychology_Explorer_index.html",
+      "audiences": [
+        "elementary"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "social-emotional",
+        "psychology-education"
+      ],
+      "skills": [],
+      "tags": [
+        "psychology",
+        "learning"
+      ],
+      "mentorEligible": true,
+      "resourceType": "tool",
+      "learningValue": "supplemental",
+      "highStakesDomain": "medical"
+    },
+    {
+      "id": "kids-feelings-emotions",
+      "title": "Noetic Kids Feelings & Emotions",
+      "description": "",
+      "url": "https://vervenveda.com/medicament-hub.github.io/tools/Noetic_Kids_Feelings_Emotions_index.html",
+      "audiences": [
+        "elementary"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "social-emotional"
+      ],
+      "skills": [
+        "feelings-vocabulary"
+      ],
+      "tags": [
+        "feelings",
+        "emotions"
+      ],
+      "mentorEligible": true,
+      "resourceType": "practice",
+      "learningValue": "supplemental",
+      "highStakesDomain": "medical"
+    },
+    {
+      "id": "pe-grade-09-study",
+      "title": "PE Grade 9 Study Guide",
+      "description": "",
+      "url": "https://vervenveda.com/medicament-hub.github.io/academy/PE_grade_9/study_guide_index.html",
+      "audiences": [
+        "high"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "physical-education",
+        "health-education"
+      ],
+      "skills": [],
+      "tags": [
+        "grade-9",
+        "study-guide"
+      ],
+      "mentorEligible": true,
+      "resourceType": "reference",
+      "learningValue": "core",
+      "highStakesDomain": "medical"
+    },
+    {
+      "id": "pe-grade-09-quiz",
+      "title": "PE Grade 9 Quizzes",
+      "description": "",
+      "url": "https://vervenveda.com/medicament-hub.github.io/academy/PE_grade_9/quizzes_index.html",
+      "audiences": [
+        "high"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "physical-education",
+        "health-education"
+      ],
+      "skills": [],
+      "tags": [
+        "grade-9",
+        "quiz"
+      ],
+      "mentorEligible": true,
+      "resourceType": "quiz",
+      "learningValue": "practice",
+      "highStakesDomain": "medical"
+    },
+    {
+      "id": "pe-grade-10-study",
+      "title": "PE Grade 10 Study Guide",
+      "description": "",
+      "url": "https://vervenveda.com/medicament-hub.github.io/academy/PE_grade_10/study_guide_index.html",
+      "audiences": [
+        "high"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "physical-education",
+        "health-education"
+      ],
+      "skills": [],
+      "tags": [
+        "grade-10",
+        "study-guide"
+      ],
+      "mentorEligible": true,
+      "resourceType": "reference",
+      "learningValue": "core",
+      "highStakesDomain": "medical"
+    },
+    {
+      "id": "pe-grade-10-quiz",
+      "title": "PE Grade 10 Quizzes",
+      "description": "",
+      "url": "https://vervenveda.com/medicament-hub.github.io/academy/PE_grade_10/quizzes_index.html",
+      "audiences": [
+        "high"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "physical-education",
+        "health-education"
+      ],
+      "skills": [],
+      "tags": [
+        "grade-10",
+        "quiz"
+      ],
+      "mentorEligible": true,
+      "resourceType": "quiz",
+      "learningValue": "practice",
+      "highStakesDomain": "medical"
+    },
+    {
+      "id": "pe-grade-11-study",
+      "title": "PE Grade 11 Study Guide",
+      "description": "",
+      "url": "https://vervenveda.com/medicament-hub.github.io/academy/PE_grade_11/study_guide_index.html",
+      "audiences": [
+        "high"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "physical-education",
+        "health-education"
+      ],
+      "skills": [],
+      "tags": [
+        "grade-11",
+        "study-guide"
+      ],
+      "mentorEligible": true,
+      "resourceType": "reference",
+      "learningValue": "core",
+      "highStakesDomain": "medical"
+    },
+    {
+      "id": "pe-grade-11-quiz",
+      "title": "PE Grade 11 Quizzes",
+      "description": "",
+      "url": "https://vervenveda.com/medicament-hub.github.io/academy/PE_grade_11/quizzes_index.html",
+      "audiences": [
+        "high"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "physical-education",
+        "health-education"
+      ],
+      "skills": [],
+      "tags": [
+        "grade-11",
+        "quiz"
+      ],
+      "mentorEligible": true,
+      "resourceType": "quiz",
+      "learningValue": "practice",
+      "highStakesDomain": "medical"
+    },
+    {
+      "id": "pe-grade-12-study",
+      "title": "PE Grade 12 Study Guide",
+      "description": "",
+      "url": "https://vervenveda.com/medicament-hub.github.io/academy/PE_grade_12/study_guide_index.html",
+      "audiences": [
+        "high"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "physical-education",
+        "health-education"
+      ],
+      "skills": [],
+      "tags": [
+        "grade-12",
+        "study-guide"
+      ],
+      "mentorEligible": true,
+      "resourceType": "reference",
+      "learningValue": "core",
+      "highStakesDomain": "medical"
+    },
+    {
+      "id": "pe-grade-12-quiz",
+      "title": "PE Grade 12 Quizzes",
+      "description": "",
+      "url": "https://vervenveda.com/medicament-hub.github.io/academy/PE_grade_12/quizzes_index.html",
+      "audiences": [
+        "high"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "physical-education",
+        "health-education"
+      ],
+      "skills": [],
+      "tags": [
+        "grade-12",
+        "quiz"
+      ],
+      "mentorEligible": true,
+      "resourceType": "quiz",
+      "learningValue": "practice",
+      "highStakesDomain": "medical"
+    }
+  ],
+  "mentorNotes": "Health education discovery is not medical verification. Personalized diagnosis/treatment/nutrition questions remain governed by NOEMA's medical Verifier lane."
+}

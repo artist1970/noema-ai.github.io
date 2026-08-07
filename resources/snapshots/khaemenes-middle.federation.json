@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "sourceId": "khaemenes.middle",
+  "name": "Khaemenes Middle School",
+  "classification": "educational",
+  "mentorSearchable": true,
+  "audiences": [
+    "middle",
+    "parent"
+  ],
+  "roles": [
+    "student",
+    "parent",
+    "educator"
+  ],
+  "homepage": "https://vervenveda.com/Khaemenes_Middle.github.io/",
+  "repository": "vervenveda/Khaemenes_Middle.github.io",
+  "resources": [
+    {
+      "id": "middle-home",
+      "title": "Khaemenes Middle School",
+      "description": "",
+      "url": "https://vervenveda.com/Khaemenes_Middle.github.io/",
+      "audiences": [
+        "middle",
+        "parent"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "education",
+        "navigation"
+      ],
+      "skills": [],
+      "tags": [
+        "middle-school",
+        "course-navigation"
+      ],
+      "mentorEligible": true,
+      "featured": true
+    }
+  ],
+  "mentorNotes": "First-wave manifest exposes the verified school portal. Individual middle-school resources can be added as the repository expands."
+}

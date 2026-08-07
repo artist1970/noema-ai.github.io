@@ -1,0 +1,316 @@
+{
+  "version": 1,
+  "sourceId": "khaemenes.higher-learning",
+  "name": "Khaemenes Higher Learning",
+  "classification": "educational",
+  "mentorSearchable": true,
+  "audiences": [
+    "higher-learning",
+    "adult"
+  ],
+  "roles": [
+    "student",
+    "parent",
+    "educator"
+  ],
+  "homepage": "https://vervenveda.com/Khaemenes_Higher_Learning.github.io/",
+  "repository": "vervenveda/Khaemenes_Higher_Learning.github.io",
+  "resources": [
+    {
+      "id": "higher-home",
+      "title": "Khaemenes Higher Learning",
+      "description": "",
+      "url": "https://vervenveda.com/Khaemenes_Higher_Learning.github.io/",
+      "audiences": [
+        "higher-learning",
+        "adult"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "education",
+        "navigation"
+      ],
+      "skills": [],
+      "tags": [
+        "higher-learning",
+        "advanced-study"
+      ],
+      "mentorEligible": true,
+      "featured": true
+    },
+    {
+      "id": "higher-math-catalog",
+      "title": "Higher Mathematics Course Catalog",
+      "description": "",
+      "url": "https://vervenveda.com/Khaemenes_Higher_Learning.github.io/courses/",
+      "audiences": [
+        "higher-learning",
+        "adult"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "mathematics"
+      ],
+      "skills": [
+        "advanced-mathematics"
+      ],
+      "tags": [
+        "course-catalog",
+        "mathematics"
+      ],
+      "mentorEligible": true,
+      "featured": true
+    },
+    {
+      "id": "intro-proofs",
+      "title": "Introduction to Proofs",
+      "description": "",
+      "url": "https://vervenveda.com/Khaemenes_Higher_Learning.github.io/courses/introduction-to-proofs/",
+      "audiences": [
+        "higher-learning",
+        "adult"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "mathematics"
+      ],
+      "skills": [
+        "proof",
+        "logic"
+      ],
+      "tags": [
+        "advanced-math",
+        "course"
+      ],
+      "mentorEligible": true
+    },
+    {
+      "id": "linear-algebra",
+      "title": "Linear Algebra",
+      "description": "",
+      "url": "https://vervenveda.com/Khaemenes_Higher_Learning.github.io/courses/linear-algebra/",
+      "audiences": [
+        "higher-learning",
+        "adult"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "mathematics"
+      ],
+      "skills": [
+        "vectors",
+        "matrices"
+      ],
+      "tags": [
+        "advanced-math",
+        "course"
+      ],
+      "mentorEligible": true
+    },
+    {
+      "id": "calculus-ii",
+      "title": "Calculus II",
+      "description": "",
+      "url": "https://vervenveda.com/Khaemenes_Higher_Learning.github.io/courses/calculus-ii/",
+      "audiences": [
+        "higher-learning",
+        "adult"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "mathematics"
+      ],
+      "skills": [
+        "calculus",
+        "integration"
+      ],
+      "tags": [
+        "advanced-math",
+        "course"
+      ],
+      "mentorEligible": true
+    },
+    {
+      "id": "differential-equations",
+      "title": "Differential Equations",
+      "description": "",
+      "url": "https://vervenveda.com/Khaemenes_Higher_Learning.github.io/courses/differential-equations/",
+      "audiences": [
+        "higher-learning",
+        "adult"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "mathematics"
+      ],
+      "skills": [
+        "differential-equations"
+      ],
+      "tags": [
+        "advanced-math",
+        "course"
+      ],
+      "mentorEligible": true
+    },
+    {
+      "id": "discrete-math",
+      "title": "Discrete Mathematics",
+      "description": "",
+      "url": "https://vervenveda.com/Khaemenes_Higher_Learning.github.io/courses/discrete-mathematics/",
+      "audiences": [
+        "higher-learning",
+        "adult"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "mathematics"
+      ],
+      "skills": [
+        "logic",
+        "combinatorics"
+      ],
+      "tags": [
+        "advanced-math",
+        "course"
+      ],
+      "mentorEligible": true
+    },
+    {
+      "id": "abstract-algebra",
+      "title": "Abstract Algebra",
+      "description": "",
+      "url": "https://vervenveda.com/Khaemenes_Higher_Learning.github.io/courses/abstract-algebra/",
+      "audiences": [
+        "higher-learning",
+        "adult"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "mathematics"
+      ],
+      "skills": [
+        "groups",
+        "rings",
+        "algebra"
+      ],
+      "tags": [
+        "advanced-math",
+        "course"
+      ],
+      "mentorEligible": true
+    },
+    {
+      "id": "statistics",
+      "title": "Statistics",
+      "description": "",
+      "url": "https://vervenveda.com/Khaemenes_Higher_Learning.github.io/courses/statistics/",
+      "audiences": [
+        "higher-learning",
+        "adult"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "mathematics"
+      ],
+      "skills": [
+        "statistics",
+        "probability"
+      ],
+      "tags": [
+        "advanced-math",
+        "course"
+      ],
+      "mentorEligible": true
+    },
+    {
+      "id": "real-complex-analysis",
+      "title": "Real & Complex Analysis",
+      "description": "",
+      "url": "https://vervenveda.com/Khaemenes_Higher_Learning.github.io/courses/real-complex-analysis/",
+      "audiences": [
+        "higher-learning",
+        "adult"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "mathematics"
+      ],
+      "skills": [
+        "analysis",
+        "complex-analysis"
+      ],
+      "tags": [
+        "advanced-math",
+        "course"
+      ],
+      "mentorEligible": true
+    },
+    {
+      "id": "topology-geometry",
+      "title": "Topology & Differential Geometry",
+      "description": "",
+      "url": "https://vervenveda.com/Khaemenes_Higher_Learning.github.io/courses/topology-differential-geometry/",
+      "audiences": [
+        "higher-learning",
+        "adult"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "mathematics"
+      ],
+      "skills": [
+        "topology",
+        "geometry"
+      ],
+      "tags": [
+        "advanced-math",
+        "course"
+      ],
+      "mentorEligible": true
+    }
+  ]
+}

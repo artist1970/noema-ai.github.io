@@ -1,4 +1,5 @@
 import {normalizeResourceManifest,resourceManifestValid} from "./resource-manifest.js";
+import {FEDERATION_SOURCE_KINDS} from "./federation-source-registry.js";
 
 async function fetchJson(url,{timeoutMs=3500,fetchImpl=globalThis.fetch}={}) {
   if(typeof fetchImpl!=="function") throw new Error("fetch-unavailable");
@@ -25,9 +26,12 @@ export class ResourceManifestLoader {
     this.snapshot=normalizeResourceManifest(snapshot || {});
     this.fetchImpl=fetchImpl || globalThis.fetch;
     this.current=this.snapshot;
+
+    const adminInventory=this.source.sourceKind===FEDERATION_SOURCE_KINDS.ADMIN_INVENTORY;
     this.provenance={
       sourceId:this.source.id || this.snapshot.sourceId,
-      mode:"snapshot",
+      sourceKind:this.source.sourceKind || "unknown",
+      mode:adminInventory ? "admin-approved-inventory-snapshot" : "source-manifest-snapshot",
       refreshed:false,
       refreshedAt:null,
       error:null
@@ -42,16 +46,23 @@ export class ResourceManifestLoader {
   }
 
   async refresh({allowNetwork=true,timeoutMs=3500}={}) {
-    if(!allowNetwork || !this.source.url) return this.get();
+    const adminInventory=this.source.sourceKind===FEDERATION_SOURCE_KINDS.ADMIN_INVENTORY;
+
+    if(adminInventory || !allowNetwork || !this.source.url) {
+      return this.get();
+    }
+
     try {
       const raw=await fetchJson(this.source.url,{timeoutMs,fetchImpl:this.fetchImpl});
       const normalized=normalizeResourceManifest(raw);
       if(!resourceManifestValid(normalized)) throw new Error("invalid-resource-manifest");
       if(normalized.sourceId!==this.source.id) throw new Error("manifest-source-id-mismatch");
+
       this.current=normalized;
       this.provenance={
         sourceId:this.source.id,
-        mode:"live-manifest",
+        sourceKind:this.source.sourceKind,
+        mode:"live-source-manifest",
         refreshed:true,
         refreshedAt:new Date().toISOString(),
         error:null
@@ -60,7 +71,8 @@ export class ResourceManifestLoader {
       this.current=this.snapshot;
       this.provenance={
         sourceId:this.source.id || this.snapshot.sourceId,
-        mode:"snapshot-fallback",
+        sourceKind:this.source.sourceKind,
+        mode:"source-manifest-snapshot-fallback",
         refreshed:false,
         refreshedAt:null,
         error:String(error?.message || error).slice(0,300)

@@ -1,0 +1,142 @@
+{
+  "version": 1,
+  "sourceId": "khaemenes.academy",
+  "name": "Khaemenes Academy",
+  "classification": "educational",
+  "mentorSearchable": true,
+  "audiences": [
+    "preschool",
+    "kindergarten",
+    "elementary",
+    "middle",
+    "high",
+    "higher-learning",
+    "adult",
+    "parent"
+  ],
+  "roles": [
+    "student",
+    "parent",
+    "educator"
+  ],
+  "homepage": "https://vervenveda.com/Khaemenes_Academy.github.io/",
+  "repository": "vervenveda/Khaemenes_Academy.github.io",
+  "resources": [
+    {
+      "id": "academy-home",
+      "title": "Khaemenes Academy",
+      "description": "Main Khaemenes Academy gateway for families and learners.",
+      "url": "https://vervenveda.com/Khaemenes_Academy.github.io/",
+      "audiences": [
+        "preschool",
+        "kindergarten",
+        "elementary",
+        "middle",
+        "high",
+        "higher-learning",
+        "adult",
+        "parent"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "education",
+        "navigation"
+      ],
+      "skills": [],
+      "tags": [
+        "academy",
+        "school-navigation"
+      ],
+      "mentorEligible": true,
+      "featured": true
+    },
+    {
+      "id": "homeschool-compass",
+      "title": "Homeschool Compass",
+      "description": "Parent-facing homeschool planning and guidance resource.",
+      "url": "https://vervenveda.com/Khaemenes_Academy.github.io/Parent_resources/Homeschool_compass_index.html",
+      "audiences": [
+        "adult",
+        "parent"
+      ],
+      "roles": [
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "family-learning",
+        "education",
+        "planning"
+      ],
+      "skills": [
+        "planning",
+        "home-education-navigation"
+      ],
+      "tags": [
+        "parent",
+        "homeschool",
+        "planning"
+      ],
+      "mentorEligible": true
+    },
+    {
+      "id": "transcript-generator",
+      "title": "Transcript Generator",
+      "description": "Parent-facing academic record preparation tool.",
+      "url": "https://vervenveda.com/Khaemenes_Academy.github.io/Parent_resources/Transcript_generator_index.html",
+      "audiences": [
+        "adult",
+        "parent"
+      ],
+      "roles": [
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "family-learning",
+        "academic-records"
+      ],
+      "skills": [
+        "record-keeping"
+      ],
+      "tags": [
+        "parent",
+        "transcript",
+        "records"
+      ],
+      "mentorEligible": true
+    },
+    {
+      "id": "diploma-generator",
+      "title": "Diploma Generator",
+      "description": "Parent-facing diploma preparation tool for appropriate educational recordkeeping.",
+      "url": "https://vervenveda.com/Khaemenes_Academy.github.io/Parent_resources/Diploma_generator_index.html",
+      "audiences": [
+        "adult",
+        "parent"
+      ],
+      "roles": [
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "family-learning",
+        "academic-records"
+      ],
+      "skills": [
+        "record-keeping"
+      ],
+      "tags": [
+        "parent",
+        "diploma",
+        "records"
+      ],
+      "mentorEligible": true
+    }
+  ],
+  "mentorNotes": "Central Academy gateway. Child-facing Mentors should prefer the learner's current school repository before routing here."
+}

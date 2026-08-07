@@ -1,0 +1,245 @@
+{
+  "version": 1,
+  "sourceId": "khaemenes.linguistics",
+  "name": "Khaemenes Academy Linguistics · Polyglot",
+  "classification": "educational",
+  "mentorSearchable": true,
+  "audiences": [
+    "elementary",
+    "middle",
+    "high",
+    "higher-learning",
+    "adult",
+    "parent"
+  ],
+  "roles": [
+    "student",
+    "parent",
+    "educator"
+  ],
+  "homepage": "https://vervenveda.com/Khaemenes_Linguistics.github.io/",
+  "repository": "vervenveda/Khaemenes_Linguistics.github.io",
+  "resources": [
+    {
+      "id": "linguistics-home",
+      "title": "Khaemenes Linguistics · Polyglot",
+      "description": "",
+      "url": "https://vervenveda.com/Khaemenes_Linguistics.github.io/",
+      "audiences": [
+        "elementary",
+        "middle",
+        "high",
+        "higher-learning",
+        "adult",
+        "parent"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "languages",
+        "linguistics"
+      ],
+      "skills": [],
+      "tags": [
+        "polyglot",
+        "language-learning"
+      ],
+      "mentorEligible": true,
+      "featured": true
+    },
+    {
+      "id": "arabic-365",
+      "title": "Arabic 365",
+      "description": "",
+      "url": "https://vervenveda.com/Khaemenes_Linguistics.github.io/apps/Arabic_365_index.html",
+      "audiences": [
+        "middle",
+        "high",
+        "higher-learning",
+        "adult"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "languages"
+      ],
+      "skills": [
+        "arabic",
+        "vocabulary"
+      ],
+      "tags": [
+        "arabic",
+        "daily-practice"
+      ],
+      "mentorEligible": true,
+      "minutes": 15,
+      "energy": "steady"
+    },
+    {
+      "id": "arabic-daily",
+      "title": "Arabic Daily",
+      "description": "",
+      "url": "https://vervenveda.com/Khaemenes_Linguistics.github.io/apps/Arabic_daily_index.html",
+      "audiences": [
+        "middle",
+        "high",
+        "higher-learning",
+        "adult"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "languages"
+      ],
+      "skills": [
+        "arabic",
+        "practice"
+      ],
+      "tags": [
+        "arabic",
+        "daily-practice"
+      ],
+      "mentorEligible": true,
+      "minutes": 10,
+      "energy": "steady"
+    },
+    {
+      "id": "arabic-memory",
+      "title": "Arabic Memory Game",
+      "description": "",
+      "url": "https://vervenveda.com/Khaemenes_Linguistics.github.io/apps/Arabic_memory_game_index.html",
+      "audiences": [
+        "elementary",
+        "middle",
+        "high"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "languages"
+      ],
+      "skills": [
+        "arabic",
+        "memory"
+      ],
+      "tags": [
+        "arabic",
+        "game"
+      ],
+      "mentorEligible": true,
+      "minutes": 10,
+      "energy": "playful"
+    },
+    {
+      "id": "arabic-numbers",
+      "title": "Arabic Numbers",
+      "description": "",
+      "url": "https://vervenveda.com/Khaemenes_Linguistics.github.io/apps/Arabic_numbers_index.html",
+      "audiences": [
+        "elementary",
+        "middle",
+        "high"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "languages",
+        "mathematics"
+      ],
+      "skills": [
+        "arabic",
+        "numbers"
+      ],
+      "tags": [
+        "arabic",
+        "numbers"
+      ],
+      "mentorEligible": true,
+      "minutes": 10,
+      "energy": "playful"
+    },
+    {
+      "id": "esl-course",
+      "title": "ESL Course",
+      "description": "",
+      "url": "https://vervenveda.com/Khaemenes_Linguistics.github.io/apps/ESL_course_index.html",
+      "audiences": [
+        "middle",
+        "high",
+        "higher-learning",
+        "adult"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "languages"
+      ],
+      "skills": [
+        "english",
+        "esl"
+      ],
+      "tags": [
+        "english",
+        "language-learning"
+      ],
+      "mentorEligible": true,
+      "minutes": 20,
+      "energy": "steady"
+    },
+    {
+      "id": "quran-root-explorer",
+      "title": "Arabic Qur'an Root Explorer",
+      "description": "",
+      "url": "https://vervenveda.com/Khaemenes_Linguistics.github.io/apps/Arabic_Quran_root_explorer_index.html",
+      "audiences": [
+        "high",
+        "higher-learning",
+        "adult"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "languages",
+        "textual-study"
+      ],
+      "skills": [
+        "arabic-roots",
+        "text-analysis"
+      ],
+      "tags": [
+        "arabic",
+        "quranic-study",
+        "faith"
+      ],
+      "mentorEligible": true,
+      "minutes": 20,
+      "energy": "steady",
+      "requiresPreferenceMatch": [
+        "faith",
+        "quranic-study"
+      ]
+    }
+  ],
+  "mentorNotes": "Faith-specific language resources are tagged for preference-aware recommendation; the resolver honors requiresPreferenceMatch before proactive suggestions."
+}

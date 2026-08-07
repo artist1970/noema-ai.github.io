@@ -181,3 +181,25 @@
   .resource-result{grid-template-columns:1fr}
   .resource-result a{width:max-content}
 }
+
+
+.resource-group{
+  display:grid;
+  gap:.44rem;
+}
+.resource-group + .resource-group{
+  margin-top:.45rem;
+  padding-top:.62rem;
+  border-top:1px solid rgba(54,72,62,.09);
+}
+.resource-group h4{
+  margin:0;
+  padding:.1rem .1rem .2rem;
+  color:#3f5445;
+  font:500 .78rem Georgia,serif;
+  letter-spacing:.02em;
+}
+.resource-group-list{
+  display:grid;
+  gap:.46rem;
+}

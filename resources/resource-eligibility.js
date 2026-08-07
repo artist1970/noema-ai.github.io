@@ -2,23 +2,8 @@ function lowerSet(values=[]) {
   return new Set(values.map(v=>String(v || "").trim().toLowerCase()).filter(Boolean));
 }
 
-export function audienceFromEnrollment(enrollment=null) {
-  if(!enrollment) return "adult";
-  const grade=String(enrollment.learning?.gradeLevel || "").toLowerCase();
-  if(grade==="preschool") return "preschool";
-  if(grade==="kindergarten") return "kindergarten";
-  const m=grade.match(/^grade-(\d{2})$/);
-  if(m) {
-    const n=Number(m[1]);
-    if(n<=5) return "elementary";
-    if(n<=8) return "middle";
-    return "high";
-  }
-  if(["college","graduate","professional"].includes(grade)) return "higher-learning";
-  if(enrollment.ageBand==="child-under-13") return "elementary";
-  if(enrollment.ageBand==="teen-13-17") return "high";
-  return "adult";
-}
+import {audienceFromEnrollment} from "./learning-context.js";
+export {audienceFromEnrollment};
 
 export function roleFromEnrollment(enrollment=null) {
   if(!enrollment) return "student";

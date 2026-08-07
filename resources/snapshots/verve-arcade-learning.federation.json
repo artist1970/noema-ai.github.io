@@ -1,0 +1,207 @@
+{
+  "version": 1,
+  "sourceId": "verve.arcade-learning",
+  "name": "Verve N Veda Arcade · Learning Selection",
+  "classification": "educational-games",
+  "mentorSearchable": true,
+  "audiences": [
+    "elementary",
+    "middle",
+    "high",
+    "higher-learning",
+    "adult",
+    "parent"
+  ],
+  "roles": [
+    "student",
+    "parent",
+    "educator"
+  ],
+  "homepage": "https://vervenveda.com/arcade.github.io/",
+  "repository": "vervenveda/arcade.github.io",
+  "inventoryAuthority": "noema-approved-inventory-snapshot",
+  "resources": [
+    {
+      "id": "learn-new-word-arcade",
+      "title": "Learn a New Word",
+      "description": "",
+      "url": "https://vervenveda.com/arcade.github.io/Learn_a_New_Word_index.html",
+      "audiences": [
+        "elementary",
+        "middle",
+        "high",
+        "adult"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "language-literacy"
+      ],
+      "skills": [
+        "vocabulary"
+      ],
+      "tags": [
+        "words",
+        "learning",
+        "game"
+      ],
+      "mentorEligible": true,
+      "resourceType": "game",
+      "learningValue": "supplemental"
+    },
+    {
+      "id": "trivia-esl",
+      "title": "ESL Trivia",
+      "description": "",
+      "url": "https://vervenveda.com/arcade.github.io/Trivia_ESL_index.html",
+      "audiences": [
+        "middle",
+        "high",
+        "higher-learning",
+        "adult"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "languages"
+      ],
+      "skills": [
+        "english-language-practice"
+      ],
+      "tags": [
+        "esl",
+        "trivia",
+        "game"
+      ],
+      "mentorEligible": true,
+      "resourceType": "game",
+      "learningValue": "supplemental"
+    },
+    {
+      "id": "trivia-arts",
+      "title": "Arts Trivia",
+      "description": "",
+      "url": "https://vervenveda.com/arcade.github.io/Trivia_arts_index.html",
+      "audiences": [
+        "middle",
+        "high",
+        "higher-learning",
+        "adult"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "art"
+      ],
+      "skills": [],
+      "tags": [
+        "art",
+        "trivia",
+        "game"
+      ],
+      "mentorEligible": true,
+      "resourceType": "game",
+      "learningValue": "unknown"
+    },
+    {
+      "id": "trivia-ancients",
+      "title": "Ancients Trivia",
+      "description": "",
+      "url": "https://vervenveda.com/arcade.github.io/Trivia_ancients_index.html",
+      "audiences": [
+        "middle",
+        "high",
+        "higher-learning",
+        "adult"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "history"
+      ],
+      "skills": [],
+      "tags": [
+        "ancient-history",
+        "trivia",
+        "game"
+      ],
+      "mentorEligible": true,
+      "resourceType": "game",
+      "learningValue": "unknown"
+    },
+    {
+      "id": "trivia-civic-compass",
+      "title": "Civic Compass Trivia",
+      "description": "",
+      "url": "https://vervenveda.com/arcade.github.io/Trivia_civic_Compass_inndex.html",
+      "audiences": [
+        "middle",
+        "high",
+        "adult"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "civics"
+      ],
+      "skills": [],
+      "tags": [
+        "civics",
+        "trivia",
+        "game"
+      ],
+      "mentorEligible": true,
+      "resourceType": "game",
+      "learningValue": "unknown"
+    },
+    {
+      "id": "trivia-bible",
+      "title": "Bible Trivia",
+      "description": "",
+      "url": "https://vervenveda.com/arcade.github.io/Trivia_bible_index.html",
+      "audiences": [
+        "middle",
+        "high",
+        "adult"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "textual-study"
+      ],
+      "skills": [],
+      "tags": [
+        "bible",
+        "faith",
+        "trivia",
+        "game"
+      ],
+      "mentorEligible": true,
+      "resourceType": "game",
+      "learningValue": "unknown",
+      "requiresPreferenceMatch": [
+        "faith",
+        "biblical-study"
+      ]
+    }
+  ],
+  "mentorNotes": "Only games with explicit or defensible learning metadata are eligible for learning ranking. Unknown-value games remain discoverable only on explicit title/topic requests and are not promoted as curriculum."
+}

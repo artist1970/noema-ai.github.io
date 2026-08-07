@@ -1,0 +1,265 @@
+{
+  "version": 1,
+  "sourceId": "verve.finance",
+  "name": "Verve N Veda Finance · The Open Ledger",
+  "classification": "financial-literacy",
+  "mentorSearchable": true,
+  "audiences": [
+    "high",
+    "higher-learning",
+    "adult",
+    "parent"
+  ],
+  "roles": [
+    "student",
+    "parent",
+    "educator"
+  ],
+  "homepage": "https://vervenveda.com/finance.github.io/",
+  "repository": "vervenveda/finance.github.io",
+  "inventoryAuthority": "noema-approved-inventory-snapshot",
+  "resources": [
+    {
+      "id": "finance-home",
+      "title": "Verve N Veda Finance · The Open Ledger",
+      "description": "",
+      "url": "https://vervenveda.com/finance.github.io/",
+      "audiences": [
+        "high",
+        "higher-learning",
+        "adult",
+        "parent"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "financial-literacy",
+        "practical-resources"
+      ],
+      "skills": [],
+      "tags": [
+        "finance",
+        "education",
+        "navigation"
+      ],
+      "mentorEligible": true,
+      "featured": true,
+      "resourceType": "portal",
+      "learningValue": "extension"
+    },
+    {
+      "id": "budget-planner",
+      "title": "Budget Planner",
+      "description": "",
+      "url": "https://vervenveda.com/finance.github.io/apps/budget_planner_index.html",
+      "audiences": [
+        "high",
+        "higher-learning",
+        "adult"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "financial-literacy"
+      ],
+      "skills": [
+        "budgeting"
+      ],
+      "tags": [
+        "budget",
+        "planning"
+      ],
+      "mentorEligible": true,
+      "resourceType": "tool",
+      "learningValue": "supplemental"
+    },
+    {
+      "id": "chore-budget-hub",
+      "title": "Chore & Budget Hub — Parent-Locked",
+      "description": "",
+      "url": "https://vervenveda.com/finance.github.io/apps/chore_budget_hub_index.html",
+      "audiences": [
+        "parent",
+        "adult"
+      ],
+      "roles": [
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "financial-literacy",
+        "family-learning"
+      ],
+      "skills": [
+        "budgeting"
+      ],
+      "tags": [
+        "family-money",
+        "parent-locked"
+      ],
+      "mentorEligible": true,
+      "resourceType": "workshop",
+      "learningValue": "supplemental"
+    },
+    {
+      "id": "economic-growth-simulator",
+      "title": "Economic Growth Simulator",
+      "description": "",
+      "url": "https://vervenveda.com/finance.github.io/apps/simulator_economic_growth_index.html",
+      "audiences": [
+        "high",
+        "higher-learning",
+        "adult"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "economics",
+        "financial-literacy"
+      ],
+      "skills": [],
+      "tags": [
+        "economics",
+        "simulation"
+      ],
+      "mentorEligible": true,
+      "resourceType": "simulator",
+      "learningValue": "supplemental"
+    },
+    {
+      "id": "supply-demand-simulator",
+      "title": "Supply & Demand Simulator",
+      "description": "",
+      "url": "https://vervenveda.com/finance.github.io/apps/simulator_supply_demand_index.html",
+      "audiences": [
+        "high",
+        "higher-learning",
+        "adult"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "economics",
+        "financial-literacy"
+      ],
+      "skills": [],
+      "tags": [
+        "economics",
+        "supply-demand",
+        "simulation"
+      ],
+      "mentorEligible": true,
+      "resourceType": "simulator",
+      "learningValue": "supplemental"
+    },
+    {
+      "id": "finance-news",
+      "title": "Finance News",
+      "description": "",
+      "url": "https://vervenveda.com/finance.github.io/apps/news_finance_index.html",
+      "audiences": [
+        "high",
+        "higher-learning",
+        "adult",
+        "parent"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "financial-literacy",
+        "current-events"
+      ],
+      "skills": [],
+      "tags": [
+        "finance",
+        "news",
+        "current-info"
+      ],
+      "mentorEligible": true,
+      "resourceType": "reference",
+      "learningValue": "extension",
+      "requiresFreshnessCheck": true,
+      "dynamicContent": true
+    },
+    {
+      "id": "finance-employment-news",
+      "title": "Finance & Employment News",
+      "description": "",
+      "url": "https://vervenveda.com/finance.github.io/apps/news_finance_employment_index.html",
+      "audiences": [
+        "high",
+        "higher-learning",
+        "adult",
+        "parent"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "financial-literacy",
+        "employment",
+        "current-events"
+      ],
+      "skills": [],
+      "tags": [
+        "employment",
+        "finance",
+        "news",
+        "current-info"
+      ],
+      "mentorEligible": true,
+      "resourceType": "reference",
+      "learningValue": "extension",
+      "requiresFreshnessCheck": true,
+      "dynamicContent": true
+    },
+    {
+      "id": "global-job-search",
+      "title": "Global Job Search",
+      "description": "",
+      "url": "https://vervenveda.com/finance.github.io/apps/global_job_search_index.html",
+      "audiences": [
+        "higher-learning",
+        "adult"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "employment",
+        "practical-resources"
+      ],
+      "skills": [],
+      "tags": [
+        "jobs",
+        "search",
+        "current-info"
+      ],
+      "mentorEligible": true,
+      "resourceType": "tool",
+      "learningValue": "extension",
+      "requiresFreshnessCheck": true,
+      "dynamicContent": true
+    }
+  ],
+  "mentorNotes": "NOEMA-approved inventory snapshot derived from the live Finance repository. It is not a source-owned mentor manifest."
+}
