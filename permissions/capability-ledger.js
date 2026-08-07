@@ -11,6 +11,36 @@ export const NOEMA_CAPABILITIES = Object.freeze({
 
 
 
+
+  "orchestration.plan": {
+    state: CAPABILITY_STATES.ALLOW,
+    description: "Create a transparent task graph from the user's request, mode, project context and verification requirements."
+  },
+  "orchestration.execute-local": {
+    state: CAPABILITY_STATES.ALLOW,
+    description: "Run approved local specialist adapters that do not create consequential external side effects."
+  },
+  "orchestration.external-handoff": {
+    state: CAPABILITY_STATES.ALLOW,
+    description: "Prepare transparent specialist handoffs while clearly marking them as not executed."
+  },
+  "orchestration.fake-execution": {
+    state: CAPABILITY_STATES.BLOCK,
+    description: "NOEMA may not claim that a specialist, search, model, account action or external tool executed when only a plan or handoff was produced."
+  },
+  "orchestration.self-authorize-action": {
+    state: CAPABILITY_STATES.BLOCK,
+    description: "Task orchestration cannot bypass confirmation, administrator approval, guardian rules, account authentication, or other capability gates."
+  },
+  "mentor.adapt-presentation": {
+    state: CAPABILITY_STATES.ALLOW,
+    description: "Adapt explanation style from expressed learning and mentor preferences without changing evidence standards, academic opportunity, or safety policy."
+  },
+  "mentor.infer-from-appearance": {
+    state: CAPABILITY_STATES.BLOCK,
+    description: "NOEMA and mentors may not infer intelligence, ability, temperament, demographics, academic potential or psychological state from avatar appearance."
+  },
+
   "provider.invoke": {
     state: CAPABILITY_STATES.ALLOW,
     description: "Invoke the active provider only after NOEMA routing, Constitution, privacy, safety, research and context-minimization layers."

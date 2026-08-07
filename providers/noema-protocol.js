@@ -14,6 +14,7 @@ export function createNoemaProviderRequest({
   contextEnvelope={},
   research=null,
   delegation=null,
+  orchestration=null,
   safety=null
 }={}) {
   return {
@@ -54,6 +55,18 @@ export function createNoemaProviderRequest({
         },
 
     delegation: delegation || { primary: "noema", specialists: [] },
+
+    orchestration: orchestration
+      ? {
+          taskCount: Number(orchestration.taskCount) || 0,
+          tasks: Array.isArray(orchestration.tasks)
+            ? orchestration.tasks.slice(0,12)
+            : []
+        }
+      : {
+          taskCount:0,
+          tasks:[]
+        },
 
     safety: {
       blocked: safety?.blocked === true,

@@ -1,0 +1,89 @@
+.plan-panel{
+  margin-top:.8rem;
+  border:1px solid rgba(25,27,24,.12);
+  border-radius:11px;
+  background:linear-gradient(180deg,#fffdf8,#f1eadc);
+  overflow:hidden;
+}
+.plan-panel[hidden]{display:none}
+.plan-head{
+  display:flex;
+  justify-content:space-between;
+  gap:.7rem;
+  align-items:center;
+  padding:.7rem .8rem;
+  border-bottom:1px solid rgba(25,27,24,.1);
+}
+.plan-head strong{
+  font:400 1rem Georgia,serif;
+}
+.plan-head span{
+  color:#7a746b;
+  font-size:9px;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+.plan-list{
+  display:grid;
+  gap:.42rem;
+  padding:.7rem;
+}
+.plan-task{
+  display:grid;
+  grid-template-columns:auto minmax(0,1fr) auto;
+  gap:.55rem;
+  align-items:start;
+  padding:.6rem;
+  border:1px solid rgba(25,27,24,.09);
+  border-radius:9px;
+  background:rgba(255,255,255,.72);
+}
+.plan-state{
+  min-width:74px;
+  padding:.22rem .4rem;
+  border-radius:999px;
+  background:#e8edf2;
+  color:#4e5d6b;
+  text-align:center;
+  font-size:8px;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+}
+.plan-state.complete{background:#e3efe5;color:#315c3b}
+.plan-state.handoff{background:#f4ead5;color:#795d25}
+.plan-state.unavailable,.plan-state.blocked{background:#f3dfe3;color:#7f3948}
+.plan-task strong{display:block;font-size:11px}
+.plan-task small{display:block;margin-top:.2rem;color:#777168;line-height:1.45}
+.plan-specialist{font-size:9px;color:#827a70}
+.integration-card{
+  background:linear-gradient(180deg,rgba(246,241,252,.98),rgba(234,225,244,.78));
+}
+.handoff-strip{
+  display:flex;
+  flex-wrap:wrap;
+  gap:.4rem;
+  margin-top:.6rem;
+}
+.handoff-strip a{
+  display:inline-flex;
+  padding:.35rem .5rem;
+  border:1px solid rgba(74,62,95,.18);
+  border-radius:999px;
+  background:#f7f2fb;
+  color:#58466d;
+  font-size:9px;
+  text-decoration:none;
+}
+.mentor-adaptation-note{
+  margin-top:.6rem;
+  padding:.65rem;
+  border-radius:8px;
+  background:#eef3e9;
+  color:#50604c;
+  font-size:10px;
+  line-height:1.5;
+}
+@media(max-width:650px){
+  .plan-task{grid-template-columns:1fr}
+  .plan-state{width:max-content}
+}
