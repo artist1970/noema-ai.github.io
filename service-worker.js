@@ -1,0 +1,41 @@
+const CACHE = "noema-shell-v0.2.0";
+const SHELL = [
+  "./",
+  "./index.html",
+  "./styles/noema.css",
+  "./app/noema-app.js",
+  "./core/noema-core.js",
+  "./core/identity.js",
+  "./core/persona.js",
+  "./core/context-builder.js",
+  "./core/conversation-orchestrator.js",
+  "./core/mode-router.js",
+  "./core/module-registry.js",
+  "./memory/preference-store.js",
+  "./memory/continuity-store.js",
+  "./providers/provider-interface.js",
+  "./providers/local-placeholder.js",
+  "./safety/adult-boundaries.js",
+  "./safety/privacy-boundary.js"
+];
+
+self.addEventListener("install", event => {
+  event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(SHELL)));
+  self.skipWaiting();
+});
+
+self.addEventListener("activate", event => {
+  event.waitUntil(
+    caches.keys().then(keys =>
+      Promise.all(keys.filter(key => key !== CACHE).map(key => caches.delete(key)))
+    )
+  );
+  self.clients.claim();
+});
+
+self.addEventListener("fetch", event => {
+  if (event.request.method !== "GET") return;
+  event.respondWith(
+    caches.match(event.request).then(cached => cached || fetch(event.request))
+  );
+});

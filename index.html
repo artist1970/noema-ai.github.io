@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#101827">
+  <meta name="description" content="NOEMA — Sovereign Adult Intelligence for the Verve N Veda ecosystem.">
+  <title>NOEMA — Sovereign Adult Intelligence</title>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="stylesheet" href="./styles/noema.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="eyebrow">Verve N Veda · PLERA</div>
+      <h1>NOEMA</h1>
+      <div class="tagline">Sovereign Adult Intelligence</div>
+      <p class="intro">
+        Thoughtful conversation, family intelligence, research, creative direction,
+        learning, practical tools, and specialist systems through one adult AI presence.
+      </p>
+    </div>
+  </header>
+
+  <main class="shell" aria-label="NOEMA workspace">
+    <div class="shell-head">
+      <div class="brand">NOEMA / v0.2</div>
+      <div class="status">Local-first foundation · Provider not connected</div>
+    </div>
+
+    <nav class="modes" id="modes" aria-label="NOEMA modes"></nav>
+
+    <section class="workspace">
+      <article class="card conversation">
+        <h2>What are you working on?</h2>
+        <p class="hint" id="modeHint"></p>
+
+        <label class="eyebrow" for="message">Speak with Noema</label>
+        <textarea
+          id="message"
+          placeholder="Plan something, find a resource, develop an idea, research a topic, work through a decision, or begin a creative project…"
+        ></textarea>
+
+        <div class="actions">
+          <button class="btn primary" id="routeBtn">Continue with Noema</button>
+          <button class="btn secondary" id="clearBtn">Clear message</button>
+          <button class="btn secondary" id="eraseBtn">Clear NOEMA local data</button>
+        </div>
+
+        <div class="response" id="response" aria-live="polite"></div>
+      </article>
+
+      <aside class="modules" id="modules" aria-label="Relevant specialist systems"></aside>
+    </section>
+  </main>
+
+  <footer>
+    Jennifer Kay Pearl · Verve N Veda · PLERA · Khaemenes Academy
+  </footer>
+
+  <script type="module" src="./app/noema-app.js"></script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      addEventListener("load", () => {
+        navigator.serviceWorker.register("./service-worker.js").catch(() => {});
+      });
+    }
+  </script>
+</body>
+</html>

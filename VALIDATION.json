@@ -1,0 +1,23 @@
+{
+  "version": "0.2.0",
+  "createdAt": "2026-08-07T16:08:11.969643+00:00",
+  "fileCount": 34,
+  "jsonValid": true,
+  "javascriptSyntaxValid": true,
+  "testsPassed": true,
+  "testOutput": "TAP version 13\n# Subtest: NOEMA marks high-stakes adult requests\nok 1 - NOEMA marks high-stakes adult requests\n  ---\n  duration_ms: 2.042002\n  type: 'test'\n  ...\n# Subtest: NOEMA flags credential-like privacy content\nok 2 - NOEMA flags credential-like privacy content\n  ---\n  duration_ms: 0.399073\n  type: 'test'\n  ...\n# Subtest: NOEMA keeps Hope distinct from identity\nok 3 - NOEMA keeps Hope distinct from identity\n  ---\n  duration_ms: 0.236812\n  type: 'test'\n  ...\n# Subtest: NOEMA has her own adult intelligence identity\nok 4 - NOEMA has her own adult intelligence identity\n  ---\n  duration_ms: 0.630507\n  type: 'test'\n  ...\n# Subtest: creative requests route to Moirai-capable mode\nok 5 - creative requests route to Moirai-capable mode\n  ---\n  duration_ms: 0.211314\n  type: 'test'\n  ...\n# Subtest: NOEMA preference reset does not clear other apps\nok 6 - NOEMA preference reset does not clear other apps\n  ---\n  duration_ms: 1.139342\n  type: 'test'\n  ...\n# Subtest: continuity is bounded and namespaced\nok 7 - continuity is bounded and namespaced\n  ---\n  duration_ms: 1.255174\n  type: 'test'\n  ...\n1..7\n# tests 7\n# suites 0\n# pass 7\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 58.42922\n",
+  "architecture": {
+    "noemaHasOwnIdentity": true,
+    "hopeIsDistinctModuleLineage": true,
+    "moiraiIsDistinctVisualModule": true,
+    "mentorCoreReferencedNotDuplicated": true,
+    "sovereignAgentReferencedNotDuplicated": true,
+    "providerBoundaryExplicit": true,
+    "embeddedApiKeys": false,
+    "founderCodexBundled": false,
+    "namespacedLocalStorage": true,
+    "globalLocalStorageClear": false,
+    "adultFirst": true
+  },
+  "errors": []
+}

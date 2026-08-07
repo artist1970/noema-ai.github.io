@@ -1,0 +1,64 @@
+{
+  "version": 1,
+  "sourceId": "artist1970.noema",
+  "name": "NOEMA \u2014 Sovereign Adult Intelligence",
+  "classification": "professional-practical",
+  "mentorSearchable": true,
+  "audiences": [
+    "higher-learning",
+    "adult",
+    "parent"
+  ],
+  "roles": [
+    "student",
+    "parent",
+    "educator"
+  ],
+  "homepage": "https://artist1970.github.io/noema-ai.github.io/",
+  "resources": [
+    {
+      "id": "noema-home",
+      "title": "NOEMA \u2014 Sovereign Adult Intelligence",
+      "description": "Adult AI presence for planning, family guidance, learning, research, creative work, practical tools, and specialist Verve N Veda modules.",
+      "url": "https://artist1970.github.io/noema-ai.github.io/",
+      "audiences": [
+        "higher-learning",
+        "adult",
+        "parent"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "adult-learning",
+        "family",
+        "research",
+        "creative-work",
+        "professional"
+      ],
+      "skills": [
+        "resource-navigation",
+        "planning",
+        "decision-support",
+        "creative-direction"
+      ],
+      "tags": [
+        "noema",
+        "adult-ai",
+        "family-guide",
+        "orchestration",
+        "sovereign-intelligence"
+      ],
+      "mentorEligible": true,
+      "featured": true,
+      "requiresFreshnessCheck": false,
+      "dynamicContent": false,
+      "requiresPreferenceMatch": [],
+      "requiresAccountAwareness": false,
+      "sensitiveTopics": [],
+      "externalInformation": false
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "version": "0.2.0",
+  "product": "NOEMA",
+  "descriptor": "Sovereign Adult Intelligence",
+  "repository": "artist1970/noema-ai.github.io",
+  "audiences": [
+    "adult",
+    "parent",
+    "educator",
+    "higher-learning"
+  ],
+  "defaultMode": "personal",
+  "storagePrefix": "noema_",
+  "provider": {
+    "connected": false,
+    "credentialsInPublicRepo": false
+  }
+}
