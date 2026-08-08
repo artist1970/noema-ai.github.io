@@ -24,6 +24,9 @@ function relevantRefreshSourceIds({query="",mode="personal",learningContext={}}=
   if(/\b(language|arabic|esl|english|linguistic|vocabulary|word|spelling)\b/i.test(query))
     ids.add("khaemenes.linguistics");
 
+  if(/\b(dictionary|define|definition|meaning|vocabulary|word|spelling|thesaurus|synonym|antonym|writing)\b/i.test(query))
+    ids.add("aurora.core");
+
   if(mode==="archive" || mode==="research" ||
      /\b(archive|history|reading|source|manuscript|reference)\b/i.test(query))
     ids.add("verve.arshif");
