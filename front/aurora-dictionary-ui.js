@@ -1,4 +1,8 @@
-import { auroraDictionary, AURORA_DICTIONARY_CONFIG } from "../resources/aurora-dictionary.js";
+import {
+  auroraDictionary,
+  AURORA_DICTIONARY_CONFIG,
+  dictionaryEntrySenses
+} from "../resources/aurora-dictionary.js";
 
 function ensureStyles() {
   if (document.querySelector('link[data-naib-dictionary-styles]')) return;
@@ -9,17 +13,63 @@ function ensureStyles() {
   document.head.appendChild(link);
 }
 
+function makeSense(sense, index, total) {
+  const wrap = document.createElement("div");
+  wrap.className = "dictionary-sense";
+
+  const head = document.createElement("div");
+  head.className = "dictionary-sense-head";
+  const labels = [];
+  if (total > 1) labels.push(String(index + 1));
+  if (sense.partOfSpeech) labels.push(sense.partOfSpeech);
+  if (labels.length) head.textContent = labels.join(" · ");
+
+  const definition = document.createElement("p");
+  definition.textContent = sense.definition;
+  if (labels.length) wrap.appendChild(head);
+  wrap.appendChild(definition);
+
+  if (sense.example) {
+    const example = document.createElement("p");
+    example.className = "dictionary-example";
+    example.textContent = `Example: ${sense.example}`;
+    wrap.appendChild(example);
+  }
+
+  const relations = [];
+  if (sense.synonyms?.length) relations.push(`Synonyms: ${sense.synonyms.join(", ")}`);
+  if (sense.antonyms?.length) relations.push(`Antonyms: ${sense.antonyms.join(", ")}`);
+  if (relations.length) {
+    const related = document.createElement("div");
+    related.className = "dictionary-relations";
+    related.textContent = relations.join(" · ");
+    wrap.appendChild(related);
+  }
+
+  return wrap;
+}
+
 function makeResult(entry, exact = false) {
   const article = document.createElement("article");
   article.className = `dictionary-result${exact ? " exact" : ""}`;
 
   const word = document.createElement("strong");
   word.textContent = entry.word;
+  article.appendChild(word);
 
-  const definition = document.createElement("p");
-  definition.textContent = entry.definition;
+  const senses = dictionaryEntrySenses(entry);
+  senses.forEach((sense, index) => article.appendChild(makeSense(sense, index, senses.length)));
 
-  article.append(word, definition);
+  const metadata = [];
+  if (entry.pronunciation) metadata.push(entry.pronunciation);
+  if (entry.subjects?.length) metadata.push(entry.subjects.join(", "));
+  if (metadata.length) {
+    const meta = document.createElement("div");
+    meta.className = "dictionary-entry-meta";
+    meta.textContent = metadata.join(" · ");
+    article.appendChild(meta);
+  }
+
   return article;
 }
 
@@ -34,7 +84,7 @@ function buildDrawer() {
         <div>
           <div class="eyebrow">Language Reference · A–Z</div>
           <h2 id="dictionaryHeading">Dictionary</h2>
-          <p>Look up a word without leaving NAIB. Definitions are read from the AuroraCore dictionary collection.</p>
+          <p>Look up words, meanings, and alternate senses without leaving NAIB.</p>
         </div>
         <button class="dictionary-close" id="dictionaryClose" type="button" aria-label="Close Dictionary">×</button>
       </header>
@@ -42,7 +92,7 @@ function buildDrawer() {
       <form class="dictionary-search" id="dictionaryForm">
         <label for="dictionaryQuery">Word</label>
         <div class="dictionary-search-row">
-          <input id="dictionaryQuery" type="search" maxlength="80" autocomplete="off" spellcheck="false" placeholder="Search a word…" required>
+          <input id="dictionaryQuery" type="search" maxlength="100" autocomplete="off" spellcheck="false" placeholder="Search a word…" required>
           <button class="btn primary" type="submit">Define</button>
         </div>
       </form>
@@ -113,7 +163,7 @@ function mountDictionary() {
     if (data.exact.length) {
       const title = document.createElement("div");
       title.className = "dictionary-section-label";
-      title.textContent = data.exact.length === 1 ? "Definition" : "Definitions";
+      title.textContent = data.exactSenseCount === 1 ? "Definition" : `${data.exactSenseCount} senses`;
       results.appendChild(title);
       for (const entry of data.exact) results.appendChild(makeResult(entry, true));
     }
@@ -127,7 +177,7 @@ function mountDictionary() {
     }
 
     const exactText = data.exact.length
-      ? `${data.exact.length} exact definition${data.exact.length === 1 ? "" : "s"}`
+      ? `${data.exactSenseCount} sense${data.exactSenseCount === 1 ? "" : "s"}`
       : `${data.results.length} related entr${data.results.length === 1 ? "y" : "ies"}`;
     status.textContent = `${exactText} · ${data.letterEntryCount} ${data.letter}-words available.`;
   }
