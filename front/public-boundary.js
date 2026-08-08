@@ -1,6 +1,6 @@
 export const PUBLIC_ADMIN_BOUNDARY = Object.freeze({
   publicIdentity:"NAIB",
-  administrativeIdentity:"NOEMA",
+  administrativeIdentity:"internal-governance",
   publicMay:{
     converse:true,
     explain:true,
