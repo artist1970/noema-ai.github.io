@@ -1,5 +1,5 @@
-const CACHE = "naib-shell-v1.3.7";
-const DICTIONARY_CACHE = "naib-aurora-dictionary-v1";
+const CACHE = "naib-shell-v1.3.8";
+const DICTIONARY_CACHE = "naib-aurora-dictionary-v2";
 const PRESERVED_CACHES = new Set([CACHE, DICTIONARY_CACHE]);
 
 const SHELL = [
