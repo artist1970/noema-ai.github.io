@@ -3,7 +3,7 @@ export const AURORA_DICTIONARY_CONFIG = Object.freeze({
   repositoryUrl: "https://github.com/artist1970/AuroraCore",
   dictionaryUrl: "https://github.com/artist1970/AuroraCore/tree/main/dictionary",
   rawBase: "https://raw.githubusercontent.com/artist1970/AuroraCore/main/dictionary/letters",
-  cacheName: "naib-aurora-dictionary-v1",
+  cacheName: "naib-aurora-dictionary-v2",
   alphabet: "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 });
 
@@ -12,7 +12,7 @@ export function normalizeDictionaryQuery(value = "") {
     .trim()
     .toLowerCase()
     .replace(/^[^a-z]+|[^a-z'-]+$/g, "")
-    .slice(0, 80);
+    .slice(0, 100);
 }
 
 export function dictionaryLetter(value = "") {
@@ -29,6 +29,74 @@ export function dictionaryLetterUrl(letter, base = AURORA_DICTIONARY_CONFIG.rawB
   return `${base}/${normalized}-words`;
 }
 
+function cleanList(value) {
+  return Array.isArray(value)
+    ? value.map(item => String(item || "").trim()).filter(Boolean)
+    : [];
+}
+
+function normalizeSense(raw = {}) {
+  const definition = String(raw?.definition || "").trim();
+  if (!definition) return null;
+  const sense = { definition };
+  const partOfSpeech = String(raw?.partOfSpeech || "").trim();
+  const example = String(raw?.example || "").trim();
+  const id = String(raw?.id || raw?.senseId || "").trim();
+  const sourceId = String(raw?.sourceId || "").trim();
+  if (id) sense.id = id;
+  if (partOfSpeech) sense.partOfSpeech = partOfSpeech;
+  if (example) sense.example = example;
+  if (sourceId) sense.sourceId = sourceId;
+  for (const field of ["synonyms", "antonyms", "subjects", "labels"]) {
+    const list = cleanList(raw?.[field]);
+    if (list.length) sense[field] = list;
+  }
+  return sense;
+}
+
+export function dictionaryEntrySenses(entry = {}) {
+  const collected = [];
+  const primary = normalizeSense(entry);
+  if (primary) collected.push(primary);
+  for (const raw of Array.isArray(entry?.senses) ? entry.senses : []) {
+    const sense = normalizeSense(raw);
+    if (sense) collected.push(sense);
+  }
+
+  const seen = new Set();
+  return collected.filter(sense => {
+    const key = [
+      sense.definition.toLowerCase(),
+      String(sense.partOfSpeech || "").toLowerCase(),
+      String(sense.example || "").toLowerCase()
+    ].join("\u0000");
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
+
+export function normalizeDictionaryEntry(entry = {}) {
+  const word = String(entry?.word || "").trim();
+  const senses = dictionaryEntrySenses(entry);
+  const definition = String(entry?.definition || senses[0]?.definition || "").trim();
+  if (!word || !definition) return null;
+
+  const normalized = { word, definition };
+  for (const field of ["partOfSpeech", "example", "etymology", "pronunciation", "sourceId"]) {
+    const value = String(entry?.[field] || "").trim();
+    if (value) normalized[field] = value;
+  }
+  for (const field of ["synonyms", "antonyms", "subjects", "gradeBands", "labels", "forms"]) {
+    const list = cleanList(entry?.[field]);
+    if (list.length) normalized[field] = list;
+  }
+  if (senses.length > 1 || Array.isArray(entry?.senses)) normalized.senses = senses;
+  if (entry?.provenance && typeof entry.provenance === "object") normalized.provenance = entry.provenance;
+  if (Number.isFinite(Number(entry?.frequency))) normalized.frequency = Number(entry.frequency);
+  return normalized;
+}
+
 export function normalizeLetterPayload(payload, expectedLetter = "") {
   const raw = typeof payload === "string" ? JSON.parse(payload) : payload;
   const letter = String(raw?.letter || expectedLetter || "").trim().toUpperCase();
@@ -36,12 +104,7 @@ export function normalizeLetterPayload(payload, expectedLetter = "") {
 
   return {
     letter,
-    entries: entries
-      .map(entry => ({
-        word: String(entry?.word || "").trim(),
-        definition: String(entry?.definition || "").trim()
-      }))
-      .filter(entry => entry.word && entry.definition)
+    entries: entries.map(normalizeDictionaryEntry).filter(Boolean)
   };
 }
 
@@ -172,6 +235,7 @@ export class AuroraDictionary {
       suggestions: search.suggestions,
       results: search.results,
       letterEntryCount: payload.entries.length,
+      exactSenseCount: search.exact.reduce((sum, entry) => sum + dictionaryEntrySenses(entry).length, 0),
       source: {
         name: "AuroraCore",
         repository: AURORA_DICTIONARY_CONFIG.repository,
