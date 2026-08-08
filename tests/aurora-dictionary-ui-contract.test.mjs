@@ -18,8 +18,10 @@ test("dictionary control is wired and drawer is minimized by default", () => {
   assert.match(ui, /dictionaryClose/);
 });
 
-test("dictionary integration is part of the offline shell", () => {
-  assert.match(serviceWorker, /naib-shell-v1\.3\.5/);
+test("dictionary integration is part of the offline shell and its runtime cache is preserved", () => {
+  assert.match(serviceWorker, /naib-shell-v1\.3\.6/);
+  assert.match(serviceWorker, /DICTIONARY_CACHE\s*=\s*["']naib-aurora-dictionary-v1["']/);
+  assert.match(serviceWorker, /PRESERVED_CACHES/);
   assert.match(serviceWorker, /\.\/resources\/aurora-dictionary\.js/);
   assert.match(serviceWorker, /\.\/front\/aurora-dictionary-ui\.js/);
   assert.match(serviceWorker, /\.\/styles\/naib-dictionary\.css/);
