@@ -55,10 +55,13 @@ export class NaibFacade {
   }
 
   getStatus() {
+    const status=this.noema.getSystemStatus?.() || {};
+    const {identity:internalIdentity,...safeStatus}=status;
     return {
       identity:this.identity,
       administration:{
-        status:"active",
+        ...safeStatus,
+        identity:"internal-governance",
         publicNameExposed:false
       }
     };
