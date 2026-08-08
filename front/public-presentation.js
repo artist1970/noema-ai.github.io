@@ -11,7 +11,8 @@ const PUBLIC_TEXT_REPLACEMENTS = [
   [/The name you want Noema to use/gi, "The name you want NAIB to use"],
   [/NOEMA, Mathematics, Campaign site/gi, "NAIB, Mathematics, Campaign site"],
   [/\bNoema\b/g, "NAIB"],
-  [/\bNOEMA\b/g, "Internal Governance"]
+  [/\bNOEMA\b/g, "Internal Governance"],
+  [/\bnoema\b/g, "system"]
 ];
 
 export function sanitizePublicText(value = "") {
