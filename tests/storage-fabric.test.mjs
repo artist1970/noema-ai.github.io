@@ -28,12 +28,18 @@ const largeStub = {
   status: async () => ({ supported: false, backend: "unavailable" })
 };
 
-test("storage fabric keeps the four branches distinct", () => {
+test("storage fabric keeps all five branches distinct", () => {
   assert.equal(normalizeStorageBranch("internal"), "internal");
   assert.equal(normalizeStorageBranch("account"), "account");
   assert.equal(normalizeStorageBranch("communication"), "communication");
   assert.equal(normalizeStorageBranch("admin"), "admin");
+  assert.equal(normalizeStorageBranch("dictionary"), "dictionary");
   assert.equal(fabricNamespace("admin", "docs"), "fabric-admin-docs");
+  assert.equal(fabricNamespace("dictionary", "core-letters"), "fabric-dictionary-core-letters");
+  assert.notEqual(
+    fabricNamespace("dictionary", "core-letters"),
+    fabricNamespace("internal", "core-letters")
+  );
   assert.notEqual(
     fabricNamespace("account", "records"),
     fabricNamespace("communication", "records")
@@ -49,8 +55,10 @@ test("storage fabric works without external dependencies", async () => {
   await fabric.put("account", "records", "sample", { ok: true });
   await fabric.put("communication", "archive", "sample", { queued: false });
   await fabric.put("admin", "notes", "sample", { title: "Admin note" });
+  await fabric.put("dictionary", "core-letters", "letter-a", { letter: "A", entries: [] });
 
   assert.deepEqual((await fabric.get("account", "records", "sample")).value, { ok: true });
   assert.deepEqual((await fabric.get("communication", "archive", "sample")).value, { queued: false });
   assert.deepEqual((await fabric.get("admin", "notes", "sample")).value, { title: "Admin note" });
+  assert.deepEqual((await fabric.get("dictionary", "core-letters", "letter-a")).value, { letter: "A", entries: [] });
 });
