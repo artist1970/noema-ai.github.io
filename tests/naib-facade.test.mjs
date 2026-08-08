@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import {NaibFacade} from "../front/naib-facade.js";
 
-test("NAIB facade preserves NOEMA as administrative authority",async()=>{
+test("NAIB facade keeps administrative identity internal",async()=>{
   const fake={
     respond:async()=>({response:{text:"hello"}}),
     route:()=>({}),
@@ -10,10 +10,11 @@ test("NAIB facade preserves NOEMA as administrative authority",async()=>{
     checkCapability:()=>({allowed:true}),
     rememberExchange:()=>{},
     clearNoemaData:()=>{},
-    getSystemStatus:()=>({identity:"NOEMA"})
+    getSystemStatus:()=>({identity:"internal"})
   };
   const naib=new NaibFacade({noemaCore:fake});
   const out=await naib.respond("hello");
   assert.equal(out.publicIdentity.name,"NAIB");
-  assert.equal(out.administrativeAuthority.name,"NOEMA");
+  assert.equal(out.administrativeAuthority.name,"Internal Governance");
+  assert.equal(out.administrativeAuthority.publicNameExposed,false);
 });
