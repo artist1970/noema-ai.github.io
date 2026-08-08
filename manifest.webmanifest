@@ -1,9 +1,9 @@
 {
-  "name": "NAIB \u2014 Public Intelligence Director",
+  "name": "NAIB — Public Intelligence Director",
   "short_name": "NAIB",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#f5f0e6",
   "theme_color": "#101827",
-  "description": "NAIB Public Intelligence with NOEMA administration, Khaemenes school/course discovery, federated workshops, health and arts learning resources, educational games, archives, verification, mentors, voice, and bounded orchestration."
+  "description": "NAIB Public Intelligence for Khaemenes school and course discovery, federated workshops, learning resources, educational games, archives, verification, mentors, voice, and bounded specialist coordination."
 }
