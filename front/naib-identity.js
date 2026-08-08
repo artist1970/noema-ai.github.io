@@ -1,3 +1,5 @@
+import "./public-presentation.js";
+
 export const NAIB_IDENTITY = Object.freeze({
   id:"naib",
   name:"NAIB",
