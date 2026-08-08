@@ -47,6 +47,12 @@ export const LEARNING_FEDERATION_SOURCES = Object.freeze([
     tier:"academy-extension",stage:"cross-stage",priority:22
   },
   {
+    id:"aurora.core",label:"AuroraCore Dictionary & Language Reference",
+    url:"https://raw.githubusercontent.com/artist1970/AuroraCore/main/mentor-manifest.json",
+    sourceKind:FEDERATION_SOURCE_KINDS.SOURCE_MANIFEST,
+    tier:"learning-extension",stage:"cross-stage",priority:30
+  },
+  {
     id:"khaemenes.academy",label:"Khaemenes Academy",
     url:"https://vervenveda.com/Khaemenes_Academy.github.io/mentor-manifest.json",
     sourceKind:FEDERATION_SOURCE_KINDS.SOURCE_MANIFEST,
