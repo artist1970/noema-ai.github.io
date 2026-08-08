@@ -1,4 +1,4 @@
-const CACHE = "naib-shell-v1.3.4";
+const CACHE = "naib-shell-v1.3.5";
 const SHELL = [
   "./",
   "./index.html",
@@ -11,6 +11,7 @@ const SHELL = [
   "./styles/noema-conversation.css",
   "./styles/noema-orchestration.css",
   "./styles/naib-public.css",
+  "./styles/naib-dictionary.css",
   "./resources/federation-source-registry.js",
   "./resources/learning-metadata.js",
   "./resources/educational-game-policy.js",
@@ -30,6 +31,7 @@ const SHELL = [
   "./resources/ecosystem-network-catalog.js",
   "./resources/network-catalog-discovery.js",
   "./resources/resource-director.js",
+  "./resources/aurora-dictionary.js",
   "./storage/internal-cloud-schema.js",
   "./storage/internal-cloud.js",
   "./storage/internal-cloud-instance.js",
@@ -49,6 +51,7 @@ const SHELL = [
   "./front/naib-facade.js",
   "./front/public-boundary.js",
   "./front/public-presentation.js",
+  "./front/aurora-dictionary-ui.js",
   "./specialists/specialist-registry.js",
   "./orchestration/task-graph.js",
   "./orchestration/task-planner.js",
