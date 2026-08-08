@@ -1,6 +1,6 @@
 export const NAIB_STORAGE_FABRIC = Object.freeze({
   FORMAT: "naib-storage-fabric",
-  VERSION: 1,
+  VERSION: 2,
   OPFS_ROOT: "naib-storage-fabric",
   LARGE_OBJECT_THRESHOLD_BYTES: 4 * 1024 * 1024
 });
@@ -25,6 +25,11 @@ export const NAIB_STORAGE_BRANCHES = Object.freeze({
     id: "admin",
     title: "Admin Documents Vault",
     purpose: "Private local working-document storage for the site administrator."
+  }),
+  dictionary: Object.freeze({
+    id: "dictionary",
+    title: "Dictionary Sovereign Cloud",
+    purpose: "Dedicated local-first storage for AuroraCore dictionary data, indexes, lexical shards, imports, and review snapshots."
   })
 });
 
