@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NAIB · Admin Documents Vault</title>
+<style>
+:root{
+  --bg:#071019;--panel:#0d1924;--panel2:#111f2d;--line:#294052;
+  --ink:#eef7ff;--muted:#9eb2c1;--gold:#d9b56d;--blue:#5fb6ff;
+  --danger:#e46b6b;--ok:#67d6a1;--radius:14px
+}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(135deg,#050b11,#0a1621 55%,#0b1118);color:var(--ink);font:16px/1.5 system-ui,-apple-system,Segoe UI,sans-serif}
+a{color:inherit}
+.shell{width:min(1180px,92vw);margin:auto}
+header{border-bottom:1px solid var(--line);background:#071019e8;position:sticky;top:0;z-index:5;backdrop-filter:blur(12px)}
+nav{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:18px 0}
+.brand{letter-spacing:.08em;text-transform:uppercase}
+.brand strong{color:var(--gold)}
+.back{color:var(--muted);text-decoration:none}
+.hero{padding:54px 0 26px}
+h1{font:400 clamp(2.4rem,6vw,5rem)/1.02 Georgia,serif;margin:.15em 0}
+.lead{max-width:780px;color:var(--muted);font-size:1.08rem}
+.notice{border:1px solid #725d2f;background:#2a2415;color:#f4dfad;padding:13px 16px;border-radius:12px;margin:22px 0}
+.grid{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}
+.card{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:0 20px 45px #0005}
+h2,h3{font-weight:500;margin-top:0}
+label{display:block;color:var(--muted);margin:12px 0 6px}
+input,textarea,select,button{font:inherit}
+input[type="text"],input[type="search"],textarea,select{
+ width:100%;padding:11px 12px;color:var(--ink);background:#07121d;border:1px solid var(--line);border-radius:10px
+}
+.drop{border:1px dashed #50708a;border-radius:14px;padding:26px;text-align:center;background:#081521;cursor:pointer}
+.drop.drag{border-color:var(--blue);background:#0b2133}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+button,.button{border:1px solid #38536a;background:#122638;color:var(--ink);padding:10px 14px;border-radius:10px;cursor:pointer}
+button.primary{background:linear-gradient(135deg,#c59b52,#e3c57d);color:#1c160d;border-color:#e3c57d}
+button.danger{border-color:#7a3d3d;color:#ffb6b6}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.stat{background:#07121d;border:1px solid var(--line);padding:15px;border-radius:10px}
+.stat strong{display:block;color:var(--gold);font-size:1.25rem}
+.toolbar{display:grid;grid-template-columns:1fr 220px auto;gap:10px;margin:24px 0 14px}
+table{width:100%;border-collapse:collapse}
+th,td{padding:12px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{color:var(--muted);font-weight:500}
+.file-name{font-weight:600}
+.meta{font-size:.88rem;color:var(--muted)}
+.empty{text-align:center;color:var(--muted);padding:42px 15px}
+.status{font-size:.9rem;color:var(--muted);min-height:1.4em;margin-top:10px}
+footer{padding:35px 0 55px;color:var(--muted);text-align:center}
+@media(max-width:820px){.grid{grid-template-columns:1fr}.toolbar{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}table,thead,tbody,tr,th,td{display:block}thead{display:none}tr{border:1px solid var(--line);border-radius:10px;margin:10px 0;padding:6px}td{border:0;padding:7px}}
+</style>
+</head>
+<body>
+<header><div class="shell"><nav><div class="brand"><strong>NAIB</strong> · Admin Vault</div><a class="back" href="../../index.html">← Return to NAIB</a></nav></div></header>
+
+<main class="shell">
+<section class="hero">
+<p style="color:var(--gold);letter-spacing:.16em;text-transform:uppercase">Storage Fabric · Admin Branch</p>
+<h1>Documents Vault</h1>
+<p class="lead">A dependency-free, local storage workspace for administrative documents. Large files use the browser's Origin Private File System when available; IndexedDB remains the fallback.</p>
+<div class="notice"><strong>Storage only.</strong> This page does not provide authentication or remote security. Anyone with access to this browser profile may be able to access locally stored documents.</div>
+</section>
+
+<section class="grid">
+<article class="card">
+<h2>Add documents</h2>
+<div id="drop" class="drop">
+  <input id="files" type="file" multiple hidden>
+  <strong>Drop files here or click to choose</strong>
+  <div class="meta">PDF · DOCX · XLSX · PPTX · TXT · MD · JSON · images · ZIP · other files</div>
+</div>
+<label for="folder">Folder / category</label>
+<input id="folder" type="text" value="General" placeholder="Curriculum, Legal, Reports, Archive…">
+<label for="notes">Notes</label>
+<textarea id="notes" rows="3" placeholder="Optional local notes about this upload"></textarea>
+<div class="actions"><button id="store" class="primary">Store selected files</button></div>
+<div id="uploadStatus" class="status"></div>
+</article>
+
+<aside class="card">
+<h2>Storage status</h2>
+<div class="stats">
+ <div class="stat"><strong id="docCount">0</strong><span>Documents</span></div>
+ <div class="stat"><strong id="docBytes">0 B</strong><span>Admin files</span></div>
+ <div class="stat"><strong id="opfs">Checking…</strong><span>Large-object tier</span></div>
+ <div class="stat"><strong id="quota">Checking…</strong><span>Browser quota</span></div>
+</div>
+<div class="actions"><button id="persist">Request persistent storage</button><button id="exportIndex">Export vault index</button></div>
+<p class="meta">Browser quota is shared by this website origin. Separate NAIB branches improve organization and performance but do not multiply the browser's physical quota.</p>
+</aside>
+</section>
+
+<section style="padding:32px 0 12px">
+<div class="toolbar">
+ <input id="search" type="search" placeholder="Search documents…">
+ <select id="folderFilter"><option value="">All folders</option></select>
+ <button id="refresh">Refresh</button>
+</div>
+<div class="card" style="padding:8px 18px">
+<table>
+<thead><tr><th>Document</th><th>Folder</th><th>Storage</th><th>Size</th><th>Actions</th></tr></thead>
+<tbody id="rows"></tbody>
+</table>
+<div id="empty" class="empty">No documents stored yet.</div>
+</div>
+</section>
+</main>
+
+<footer>NAIB Internal Storage Fabric · Local-first · Dependency-free</footer>
+
+<script type="module">
+import { NAIBAdminDocsVault } from "../../storage/admin-docs-vault-instance.js";
+import { NAIBStorageFabric } from "../../storage/storage-fabric-instance.js";
+
+const $ = id => document.getElementById(id);
+let selectedFiles = [];
+
+function bytes(n=0){
+ const v=Number(n)||0;
+ if(v<1024)return `${v} B`;
+ if(v<1024**2)return `${(v/1024).toFixed(1)} KB`;
+ if(v<1024**3)return `${(v/1024**2).toFixed(1)} MB`;
+ return `${(v/1024**3).toFixed(2)} GB`;
+}
+function esc(s=""){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function downloadBlob(blob,name){
+ const url=URL.createObjectURL(blob);
+ const a=document.createElement("a");a.href=url;a.download=name;document.body.append(a);a.click();a.remove();
+ setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+async function render(){
+ const docs=await NAIBAdminDocsVault.list({folder:$("folderFilter").value,query:$("search").value});
+ $("rows").innerHTML="";
+ $("empty").style.display=docs.length?"none":"block";
+ for(const doc of docs){
+  const tr=document.createElement("tr");
+  tr.innerHTML=`<td><div class="file-name">${esc(doc.name)}</div><div class="meta">${esc(doc.type||"file")}</div></td>
+  <td>${esc(doc.folder)}</td><td>${esc(doc.backend.toUpperCase())}</td><td>${bytes(doc.size)}</td>
+  <td><div class="actions" style="margin:0"><button data-open="${esc(doc.id)}">Download</button><button class="danger" data-delete="${esc(doc.id)}">Delete</button></div></td>`;
+  $("rows").append(tr);
+ }
+ $("rows").querySelectorAll("[data-open]").forEach(btn=>btn.onclick=async()=>{
+   const result=await NAIBAdminDocsVault.getFile(btn.dataset.open);
+   if(result) downloadBlob(result.blob,result.metadata.name);
+ });
+ $("rows").querySelectorAll("[data-delete]").forEach(btn=>btn.onclick=async()=>{
+   const doc=await NAIBAdminDocsVault.getMetadata(btn.dataset.delete);
+   if(!doc)return;
+   if(!confirm(`Delete "${doc.name}" from this local Admin Vault?`))return;
+   await NAIBAdminDocsVault.deleteFile(doc.id,{confirmed:true});
+   await refreshAll();
+ });
+}
+async function refreshFolders(){
+ const current=$("folderFilter").value;
+ const folders=await NAIBAdminDocsVault.folders();
+ $("folderFilter").innerHTML='<option value="">All folders</option>'+folders.map(f=>`<option>${esc(f)}</option>`).join("");
+ if(folders.includes(current))$("folderFilter").value=current;
+}
+async function refreshStatus(){
+ const s=await NAIBAdminDocsVault.status();
+ $("docCount").textContent=s.documentCount;
+ $("docBytes").textContent=bytes(s.totalBytes);
+ $("opfs").textContent=s.storage.largeObjectStore.supported?"OPFS":"IndexedDB";
+ const q=s.storage.internalCloud.browserQuota;
+ $("quota").textContent=q===null?"Browser-managed":bytes(q);
+}
+async function refreshAll(){await refreshFolders();await Promise.all([render(),refreshStatus()])}
+
+$("drop").onclick=()=> $("files").click();
+$("drop").ondragover=e=>{e.preventDefault();$("drop").classList.add("drag")};
+$("drop").ondragleave=()=> $("drop").classList.remove("drag");
+$("drop").ondrop=e=>{e.preventDefault();$("drop").classList.remove("drag");selectedFiles=[...e.dataTransfer.files];$("uploadStatus").textContent=`${selectedFiles.length} file(s) selected.`};
+$("files").onchange=e=>{selectedFiles=[...e.target.files];$("uploadStatus").textContent=`${selectedFiles.length} file(s) selected.`};
+
+$("store").onclick=async()=>{
+ if(!selectedFiles.length){$("uploadStatus").textContent="Choose at least one file.";return}
+ $("store").disabled=true;
+ try{
+   let count=0;
+   for(const file of selectedFiles){
+     $("uploadStatus").textContent=`Storing ${file.name}…`;
+     await NAIBAdminDocsVault.saveFile(file,{folder:$("folder").value,notes:$("notes").value});
+     count++;
+   }
+   selectedFiles=[];
+   $("files").value="";
+   $("uploadStatus").textContent=`Stored ${count} file(s).`;
+   await refreshAll();
+ }catch(err){$("uploadStatus").textContent=`Storage error: ${err.message||err}`}
+ finally{$("store").disabled=false}
+};
+$("search").oninput=()=>render();
+$("folderFilter").onchange=()=>render();
+$("refresh").onclick=()=>refreshAll();
+$("persist").onclick=async()=>{
+ const r=await NAIBStorageFabric.cloud.requestPersistence();
+ $("uploadStatus").textContent=r.persisted?"Persistent browser storage granted.":"Persistence was not granted; browser-managed storage remains active.";
+ await refreshStatus();
+};
+$("exportIndex").onclick=async()=>{
+ const data=await NAIBAdminDocsVault.exportIndex();
+ downloadBlob(new Blob([JSON.stringify(data,null,2)],{type:"application/json"}),`naib-admin-vault-index-${new Date().toISOString().slice(0,10)}.json`);
+};
+
+await NAIBAdminDocsVault.initialize();
+await refreshAll();
+</script>
+</body>
+</html>
