@@ -2,7 +2,7 @@ import {getNaibIdentity} from "./naib-identity.js";
 
 export class NaibFacade {
   constructor({noemaCore}={}) {
-    if(!noemaCore) throw new Error("NAIB requires the NOEMA administrative core.");
+    if(!noemaCore) throw new Error("NAIB requires its internal administrative core.");
     this.noema=noemaCore;
     this.identity=getNaibIdentity();
   }
@@ -18,7 +18,8 @@ export class NaibFacade {
         role:this.identity.role
       },
       administrativeAuthority:{
-        name:"NOEMA",
+        name:"Internal Governance",
+        publicNameExposed:false,
         constitutionActive:true,
         controls:[
           "permissions",
@@ -56,7 +57,10 @@ export class NaibFacade {
   getStatus() {
     return {
       identity:this.identity,
-      administration:this.noema.getSystemStatus()
+      administration:{
+        status:"active",
+        publicNameExposed:false
+      }
     };
   }
 }
