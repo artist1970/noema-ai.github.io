@@ -57,3 +57,8 @@ test("optional diagnostics are converted to collapsed disclosures", () => {
   assert.match(presentation, /collapseResponseDiagnostics/);
   assert.doesNotMatch(presentation, /details\.open\s*=\s*true/);
 });
+
+test("public landing copy does not expose the internal administrative name", () => {
+  assert.doesNotMatch(html, />[^<]*NOEMA[^<]*</i);
+  assert.doesNotMatch(html, /(aria-label|title|placeholder|content)=["'][^"']*NOEMA[^"']*["']/i);
+});
