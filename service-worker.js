@@ -1,4 +1,4 @@
-const CACHE = "naib-shell-v1.3.6";
+const CACHE = "naib-shell-v1.3.7";
 const DICTIONARY_CACHE = "naib-aurora-dictionary-v1";
 const PRESERVED_CACHES = new Set([CACHE, DICTIONARY_CACHE]);
 
@@ -152,7 +152,13 @@ self.addEventListener("activate", event => {
 
 self.addEventListener("fetch", event => {
   if (event.request.method !== "GET") return;
+
+  const url = new URL(event.request.url);
+  if (url.origin !== self.location.origin) return;
+
   event.respondWith(
-    caches.match(event.request).then(cached => cached || fetch(event.request))
+    caches.open(CACHE).then(cache =>
+      cache.match(event.request).then(cached => cached || fetch(event.request))
+    )
   );
 });
