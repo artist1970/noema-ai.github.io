@@ -1,4 +1,4 @@
-const CACHE = "naib-shell-v1.3.1";
+const CACHE = "naib-shell-v1.3.2";
 const SHELL = [
   "./",
   "./index.html",
@@ -26,6 +26,8 @@ const SHELL = [
   "./resources/resource-manifest-loader.js",
   "./resources/resource-eligibility.js",
   "./resources/resource-ranker.js",
+  "./resources/ecosystem-network-catalog.js",
+  "./resources/network-catalog-discovery.js",
   "./resources/resource-director.js",
   "./storage/internal-cloud-schema.js",
   "./storage/internal-cloud.js",
