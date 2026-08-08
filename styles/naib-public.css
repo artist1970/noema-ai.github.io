@@ -1,0 +1,92 @@
+/* NAIB public presentation layer. Internal module names remain unchanged. */
+
+.plan-panel > summary.plan-head{
+  list-style:none;
+  cursor:pointer;
+  user-select:none;
+  border-bottom:0;
+}
+.plan-panel > summary.plan-head::-webkit-details-marker{display:none}
+.plan-panel > summary.plan-head::after{
+  content:"＋";
+  margin-left:auto;
+  color:#8a6933;
+  font-size:14px;
+  line-height:1;
+}
+.plan-panel[open] > summary.plan-head{
+  border-bottom:1px solid rgba(25,27,24,.1);
+}
+.plan-panel[open] > summary.plan-head::after{content:"−"}
+.plan-panel > .plan-list{display:none}
+.plan-panel[open] > .plan-list{display:grid}
+
+.module-shell{min-width:0}
+.module-disclosure{
+  border:1px solid rgba(25,27,24,.12);
+  border-radius:11px;
+  background:rgba(255,253,249,.66);
+  overflow:hidden;
+}
+.module-disclosure > summary{
+  list-style:none;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:.75rem;
+  padding:.85rem .9rem;
+  color:#34352f;
+  background:linear-gradient(180deg,#fffdf9,#f2ecdf);
+  font:400 1rem Georgia,"Times New Roman",serif;
+}
+.module-disclosure > summary::-webkit-details-marker{display:none}
+.module-disclosure > summary::after{
+  content:"＋";
+  color:#8a6933;
+  font-family:Inter,system-ui,sans-serif;
+}
+.module-disclosure[open] > summary::after{content:"−"}
+.module-disclosure > summary small{
+  margin-left:auto;
+  color:#7b756b;
+  font:500 9px Inter,system-ui,sans-serif;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.module-disclosure > .modules{display:none;padding:.7rem}
+.module-disclosure[open] > .modules{display:flex}
+
+.response > .meta,
+.response > .response-trace{
+  display:none;
+}
+.response-details{
+  margin-top:.75rem;
+  border-top:1px solid rgba(25,27,24,.10);
+  padding-top:.55rem;
+}
+.response-details > summary{
+  list-style:none;
+  cursor:pointer;
+  width:max-content;
+  color:#796642;
+  font-size:10px;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+.response-details > summary::-webkit-details-marker{display:none}
+.response-details > summary::after{content:" ＋"}
+.response-details[open] > summary::after{content:" −"}
+.response-details .meta,
+.response-details .response-trace{display:block}
+.response-details .response-trace{
+  margin-top:.45rem;
+  color:#837b70;
+  font-size:10px;
+  line-height:1.5;
+}
+
+@media(max-width:920px){
+  .module-shell{order:2}
+}
