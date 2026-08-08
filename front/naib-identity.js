@@ -1,4 +1,5 @@
 import "./public-presentation.js";
+import "./aurora-dictionary-ui.js";
 
 export const NAIB_IDENTITY = Object.freeze({
   id:"naib",
