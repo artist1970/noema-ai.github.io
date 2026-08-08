@@ -1,4 +1,7 @@
-const CACHE = "naib-shell-v1.3.5";
+const CACHE = "naib-shell-v1.3.6";
+const DICTIONARY_CACHE = "naib-aurora-dictionary-v1";
+const PRESERVED_CACHES = new Set([CACHE, DICTIONARY_CACHE]);
+
 const SHELL = [
   "./",
   "./index.html",
@@ -141,7 +144,7 @@ self.addEventListener("install", event => {
 self.addEventListener("activate", event => {
   event.waitUntil(
     caches.keys().then(keys =>
-      Promise.all(keys.filter(key => key !== CACHE).map(key => caches.delete(key)))
+      Promise.all(keys.filter(key => !PRESERVED_CACHES.has(key)).map(key => caches.delete(key)))
     )
   );
   self.clients.claim();
