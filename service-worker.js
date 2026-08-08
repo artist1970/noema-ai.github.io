@@ -1,5 +1,5 @@
-const CACHE = "naib-shell-v1.3.8";
-const DICTIONARY_CACHE = "naib-aurora-dictionary-v2";
+const CACHE = "naib-shell-v1.3.9";
+const DICTIONARY_CACHE = "naib-aurora-dictionary-v3";
 const PRESERVED_CACHES = new Set([CACHE, DICTIONARY_CACHE]);
 
 const SHELL = [
@@ -42,6 +42,8 @@ const SHELL = [
   "./storage/large-object-store.js",
   "./storage/storage-fabric.js",
   "./storage/storage-fabric-instance.js",
+  "./storage/dictionary-sovereign-cloud.js",
+  "./storage/dictionary-sovereign-cloud-instance.js",
   "./storage/admin-docs-vault.js",
   "./storage/admin-docs-vault-instance.js",
   "./admin/docs-vault/index.html",
