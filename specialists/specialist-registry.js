@@ -152,15 +152,15 @@ export const SPECIALISTS = Object.freeze({
     id:"hope",
     label:"Hope",
     state:SPECIALIST_STATES.HANDOFF,
-    category:"conversation-lineage",
-    purposes:["hope","companion-lineage"],
+    category:"compassionate-community-navigation",
+    purposes:["companion","community-support","family","caregiving","veterans","seniors","housing","basic-needs","health-resource-navigation","benefits","financial-stability","employment","training","education","documents","legal-resource-preparation","transition-planning"],
     audiences:["adult"],
     requiresExplicitRequest:true,
     requiresAccount:false,
     canExecuteLocally:false,
-    authority:"distinct-companion-lineage",
-    url:"https://artist1970.github.io/hope-ai.github.io/",
-    notes:"Distinct legacy companion lineage. Founder-specific or private Hope memory is never silently inherited."
+    authority:"compassionate-community-navigation-and-resource-handoff",
+    url:"https://artist1970.github.io/Hope.github.io/",
+    notes:"Compassionate companion and community navigator. Handoff-ready; preserves dignity and user choice, does not guarantee eligibility, availability or outcomes, does not store sensitive documents or silently inherit private/founder memory, and routes current or consequential information through approved verification."
   },
   network333: {
     id:"333",
