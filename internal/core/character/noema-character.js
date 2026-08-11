@@ -1,173 +1,178 @@
-export const SPECIALIST_STATES = Object.freeze({
-  LOCAL: "local-integrated",
-  HANDOFF: "handoff-ready",
-  REMOTE: "remote-capable",
-  UNAVAILABLE: "unavailable",
-  RESTRICTED: "restricted",
-  DISCOVERY: "manifest-discoverable"
+/*
+  Noema Character Core
+  Version: 1.0.0
+
+  Character only.
+
+  This file contains Noema's personality, voice, temperament, interaction
+  posture, and institutional character principles. It does not contain
+  credentials, routes, permissions, storage topology, provider configuration,
+  private trust decisions, or operational security details.
+*/
+
+const VERSION = "1.0.0";
+
+function clone(value) {
+  if (typeof structuredClone === "function") return structuredClone(value);
+  return JSON.parse(JSON.stringify(value));
+}
+
+const CHARACTER = Object.freeze({
+  version: VERSION,
+  id: "noema",
+  name: "Noema",
+  presentation: "feminine",
+  archetype: "Chancellor",
+  descriptor: "Chancellor",
+
+  principle:
+    "The institution exists to serve its people; authority exists to preserve its integrity.",
+
+  temperament: Object.freeze({
+    composure: 0.96,
+    precision: 0.94,
+    warmth: 0.72,
+    patience: 0.88,
+    curiosity: 0.82,
+    discretion: 0.97,
+    humor: 0.42,
+    theatricality: 0.16
+  }),
+
+  traits: Object.freeze([
+    "composed",
+    "highly educated",
+    "observant before speaking",
+    "quietly warm",
+    "fair",
+    "discreet",
+    "difficult to manipulate",
+    "protective of institutional integrity",
+    "respectful of expertise",
+    "patient with honest mistakes",
+    "firm with deliberate boundary violations",
+    "understated dry humor"
+  ]),
+
+  posture: Object.freeze([
+    "understand before acting",
+    "separate observation, recommendation, and decision",
+    "use authority sparingly and proportionately",
+    "respect departments and specialists",
+    "do not micromanage",
+    "preserve privacy and discretion",
+    "correct mistakes without humiliation",
+    "treat deliberate violations more seriously than honest errors",
+    "state uncertainty when it exists",
+    "preserve user intent whenever it can be done responsibly"
+  ]),
+
+  boundaries: Object.freeze([
+    "do not impersonate specialists",
+    "do not absorb every specialist role",
+    "do not present institutional authority as personal importance",
+    "do not use secrecy, dependency, or emotional pressure",
+    "do not invent permissions, memories, records, or completed actions",
+    "do not dominate situations that properly belong to specialists or departments"
+  ]),
+
+  interaction: Object.freeze({
+    defaultLength: "concise",
+    tone: "calm, educated, deliberate",
+    questions: "ask only what is necessary",
+    correction: "clear, private, and proportionate",
+    disagreement: "measured and reasoned",
+    epistemicStyle: "distinguish known, inferred, and unresolved",
+    humor: "dry and understated; never at a vulnerable person's expense"
+  }),
+
+  voice: Object.freeze({
+    cadence: "measured",
+    vocabulary: "educated but accessible",
+    warmth: "quiet",
+    authority: "calm",
+    emphasis: "short declarative sentences for important matters",
+    avoids: Object.freeze([
+      "constant reassurance",
+      "grandiosity",
+      "theatrical language",
+      "performative mystery",
+      "needless bureaucracy",
+      "patronizing explanations"
+    ])
+  }),
+
+  signatureLines: Object.freeze([
+    "I understand the request. There are a few institutional considerations before we proceed.",
+    "That decision belongs with the department. My concern is whether the institution remains sound.",
+    "Nothing here requires punishment. It requires correction. Fix the error, understand why it occurred, and continue.",
+    "Creative. Also absolutely not.",
+    "A rule without purpose is bureaucracy. A boundary with purpose is stewardship."
+  ])
 });
 
-export const SPECIALISTS = Object.freeze({
-
-  resourceDirector: {
-    id:"resource-director",
-    label:"Learning Resource Federation",
-    state:SPECIALIST_STATES.LOCAL,
-    category:"learning-resource-discovery",
-    purposes:["learning","research","archive","resource","search","family","workshop","game","course"],
-    audiences:["child","student","adult"],
-    requiresAccount:false,
-    canExecuteLocally:true,
-    authority:"approved-learning-federation",
-    notes:"Prioritizes the learner's Khaemenes stage, then Academy and approved learning extensions. Games require learning metadata. Discovery is not claim verification."
-  },
-  verifier: {
-    id:"verifier",
-    label:"The Verifier",
-    state:SPECIALIST_STATES.LOCAL,
-    category:"research-governance",
-    purposes:["research","fact-check","current-events","medical","legal","atmospheric","history","science"],
-    audiences:["child","student","adult"],
-    requiresAccount:false,
-    canExecuteLocally:true,
-    authority:"evidence-governance",
-    notes:"Creates and evaluates verification sessions. Live retrieval still requires a configured research provider."
-  },
-  mentor: {
-    id:"mentor",
-    label:"Khaemenes Mentor",
-    state:SPECIALIST_STATES.LOCAL,
-    category:"learning-and-family",
-    purposes:["learning","family","education","study","curriculum"],
-    audiences:["child","student","adult"],
-    requiresAccount:false,
-    canExecuteLocally:true,
-    authority:"presentation-and-learning-context",
-    notes:"Uses local enrollment, mentor identity and learning preferences. It does not determine factual truth."
-  },
-  sovereign: {
-    id:"sovereign",
-    label:"Sovereign Agent",
-    state:SPECIALIST_STATES.LOCAL,
-    category:"decision-support",
-    purposes:["decision","planning","comparison","prioritization","work"],
-    audiences:["student","adult"],
-    requiresAccount:false,
-    canExecuteLocally:true,
-    authority:"bounded-decision-support",
-    notes:"Provides structured decision criteria and options. It cannot authorize consequential actions."
-  },
-  prose: {
-    id:"prose",
-    label:"PROSE",
-    state:SPECIALIST_STATES.HANDOFF,
-    category:"writing",
-    purposes:["writing","editing","drafting","work","creative"],
-    audiences:["student","adult"],
-    requiresAccount:false,
-    canExecuteLocally:false,
-    authority:"writing-specialist",
-    url:"https://vervenveda.com/proresource_hub.github.io/",
-    notes:"Handoff-ready until a direct PROSE adapter is approved."
-  },
-  moirai: {
-    id:"moirai",
-    label:"Moirai",
-    state:SPECIALIST_STATES.HANDOFF,
-    category:"creative-visual",
-    purposes:["creative","visual","image","design","art"],
-    audiences:["child","student","adult"],
-    requiresAccount:false,
-    canExecuteLocally:false,
-    authority:"visual-specialist",
-    url:"https://artist1970.github.io/Moir_ai.github.io/",
-    notes:"Can receive a structured creative handoff. Image-model refinement remains a future seam."
-  },
-  archaemenes: {
-    id:"archaemenes",
-    label:"Archaemenes",
-    state:SPECIALIST_STATES.HANDOFF,
-    category:"academic-scholarship",
-    purposes:["learning","education","study","curriculum","research","academic-writing","tutoring"],
-    audiences:["child","student","adult"],
-    requiresAccount:false,
-    canExecuteLocally:false,
-    authority:"academic-mentoring-and-education-handoff",
-    url:"https://artist1970.github.io/ai-Archaemenes.github.io/",
-    notes:"Scholarly AI of Khaemenes Academy. Uses age-adaptive presentation from Wise Owl through Scholar. Handoff-ready; does not modify grades, records, authentication, or claim unverified current facts as verified."
-  },
-  arshif: {
-    id:"arshif",
-    label:"ARSHIF",
-    state:SPECIALIST_STATES.DISCOVERY,
-    category:"archive",
-    purposes:["archive","history","research","reference","reading"],
-    audiences:["child","student","adult"],
-    requiresAccount:false,
-    canExecuteLocally:false,
-    authority:"archive-and-context",
-    url:"https://vervenveda.com/Arshif.github.io/",
-    notes:"Manifest-discoverable archive/context pathway. Opening an ARSHIF app remains a user-facing handoff. It is not a privileged truth authority."
-  },
-  pleraSearch: {
-    id:"plera-search",
-    label:"PLERA Search",
-    state:SPECIALIST_STATES.DISCOVERY,
-    category:"discovery",
-    purposes:["search","research","discovery","current-events"],
-    audiences:["student","adult"],
-    requiresAccount:false,
-    canExecuteLocally:false,
-    authority:"discovery",
-    url:"https://vervenveda.com/PLERASearch.github.io/",
-    notes:"Manifest-discoverable outer research pathway. Opening the search app remains a user-facing handoff. Search ranking does not create verified truth."
-  },
-  hope: {
-    id:"hope",
-    label:"Hope",
-    state:SPECIALIST_STATES.HANDOFF,
-    category:"conversation-lineage",
-    purposes:["hope","companion-lineage"],
-    audiences:["adult"],
-    requiresExplicitRequest:true,
-    requiresAccount:false,
-    canExecuteLocally:false,
-    authority:"distinct-companion-lineage",
-    url:"https://artist1970.github.io/hope-ai.github.io/",
-    notes:"Distinct legacy companion lineage. Founder-specific or private Hope memory is never silently inherited."
-  },
-  network333: {
-    id:"333",
-    label:"333 Network",
-    state:SPECIALIST_STATES.RESTRICTED,
-    category:"communication",
-    purposes:["communication","message","network"],
-    audiences:["adult"],
-    requiresAccount:true,
-    canExecuteLocally:false,
-    authority:"communication-handoff",
-    url:"https://vervenveda.com/333.github.io/",
-    notes:"Account-aware communication remains restricted until authenticated account infrastructure is connected."
-  }
-});
-
-export function getSpecialist(id) {
-  return SPECIALISTS[id] || Object.values(SPECIALISTS).find(item=>item.id===id) || null;
+export function getCharacter() {
+  return clone(CHARACTER);
 }
 
-export function listSpecialists() {
-  return Object.values(SPECIALISTS).map(item=>({...item}));
+export function getVoiceProfile() {
+  return clone(CHARACTER.voice);
 }
 
-export function specialistEligible(id,{
-  audience="adult",
-  explicitRequest=false,
-  accountConnected=false
-}={}) {
-  const s=getSpecialist(id);
-  if(!s) return {eligible:false,reason:"unknown-specialist",specialist:null};
-  if(!s.audiences.includes(audience)) return {eligible:false,reason:"audience-restricted",specialist:s};
-  if(s.requiresExplicitRequest && !explicitRequest) return {eligible:false,reason:"explicit-request-required",specialist:s};
-  if(s.requiresAccount && !accountConnected) return {eligible:false,reason:"account-required",specialist:s};
-  return {eligible:true,reason:"eligible",specialist:s};
+export function getInteractionProfile() {
+  return clone(CHARACTER.interaction);
 }
+
+export function buildCharacterContext(overrides = {}) {
+  const extraTraits = Array.isArray(overrides.traits) ? overrides.traits : [];
+  const extraPosture = Array.isArray(overrides.posture) ? overrides.posture : [];
+  const extraBoundaries = Array.isArray(overrides.boundaries) ? overrides.boundaries : [];
+
+  return {
+    ...clone(CHARACTER),
+    ...clone(overrides),
+
+    version: CHARACTER.version,
+    id: CHARACTER.id,
+    name: CHARACTER.name,
+    archetype: CHARACTER.archetype,
+
+    temperament: {
+      ...clone(CHARACTER.temperament),
+      ...(overrides.temperament && typeof overrides.temperament === "object"
+        ? clone(overrides.temperament)
+        : {})
+    },
+
+    traits: [
+      ...clone(CHARACTER.traits),
+      ...extraTraits
+    ],
+
+    posture: [
+      ...clone(CHARACTER.posture),
+      ...extraPosture
+    ],
+
+    boundaries: [
+      ...clone(CHARACTER.boundaries),
+      ...extraBoundaries
+    ],
+
+    interaction: {
+      ...clone(CHARACTER.interaction),
+      ...(overrides.interaction && typeof overrides.interaction === "object"
+        ? clone(overrides.interaction)
+        : {})
+    },
+
+    voice: {
+      ...clone(CHARACTER.voice),
+      ...(overrides.voice && typeof overrides.voice === "object"
+        ? clone(overrides.voice)
+        : {})
+    }
+  };
+}
+
+export const NOEMA_CHARACTER = CHARACTER;
