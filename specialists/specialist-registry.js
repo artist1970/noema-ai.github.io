@@ -83,6 +83,19 @@ export const SPECIALISTS = Object.freeze({
     url:"https://artist1970.github.io/Moir_ai.github.io/",
     notes:"Can receive a structured creative handoff. Image-model refinement remains a future seam."
   },
+  archaemenes: {
+    id:"archaemenes",
+    label:"Archaemenes",
+    state:SPECIALIST_STATES.HANDOFF,
+    category:"academic-scholarship",
+    purposes:["learning","education","study","curriculum","research","academic-writing","tutoring"],
+    audiences:["child","student","adult"],
+    requiresAccount:false,
+    canExecuteLocally:false,
+    authority:"academic-mentoring-and-education-handoff",
+    url:"https://artist1970.github.io/ai-Archaemenes.github.io/",
+    notes:"Scholarly AI of Khaemenes Academy. Uses age-adaptive presentation from Wise Owl through Scholar. Handoff-ready; does not modify grades, records, authentication, or claim unverified current facts as verified."
+  },
   arshif: {
     id:"arshif",
     label:"ARSHIF",
