@@ -109,6 +109,19 @@ export const SPECIALISTS = Object.freeze({
     url:"https://artist1970.github.io/Eiren.github.io/",
     notes:"Poet, songwriter, reflective companion, and creative guide. Handoff-ready; preserves user authorship, does not elevate permissions, does not silently persist long-term memory, and does not claim remote execution."
   },
+  zelle: {
+    id:"zelle",
+    label:"Zelle",
+    state:SPECIALIST_STATES.HANDOFF,
+    category:"creative-guidance",
+    purposes:["creative","art","visual","writing","storytelling","music","photography","mixed-media","creative-block","idea-development"],
+    audiences:["child","student","adult"],
+    requiresAccount:false,
+    canExecuteLocally:false,
+    authority:"creative-guidance-and-resource-handoff",
+    url:"https://artist1970.github.io/Zelle.github.io/",
+    notes:"Guest-facing creative guide. Handoff-ready; offers possibilities rather than prescriptions, preserves user authorship, does not own or control ecosystem resources, does not elevate permissions, does not silently persist long-term memory, and does not claim remote execution."
+  },
   arshif: {
     id:"arshif",
     label:"ARSHIF",
