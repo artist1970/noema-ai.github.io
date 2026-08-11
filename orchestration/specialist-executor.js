@@ -13,6 +13,34 @@ function explicitHopeRequest(message="") {
   return /\bhope\b/i.test(String(message || ""));
 }
 
+function createRegistryHandoff(specialistId,s,{
+  message="",
+  route={},
+  context={}
+}={}) {
+  return {
+    status:"handoff",
+    output:{
+      type:"specialist-handoff",
+      specialistId,
+      label:s?.label || specialistId,
+      authority:s?.authority || "",
+      url:s?.url || "",
+      brief:{
+        message:String(message || "").slice(0,6000),
+        mode:route.mode?.id || "personal",
+        project:context.project
+          ? {
+              title:context.project.title || "",
+              summary:context.project.summary || ""
+            }
+          : null
+      },
+      executed:false
+    }
+  };
+}
+
 export class SpecialistExecutor {
   constructor({core}={}) {
     this.core=core;
@@ -137,17 +165,21 @@ export class SpecialistExecutor {
     if(specialistId==="moirai") {
       const handoff=createMoiraiHandoff({
         prompt:message,
-        theme:route.mode?.id || "creative",
-        mood:context.avatar?.temperament || "",
-        palette:""
+        mode:route.mode?.id || "",
+        mood:context.avatar?.temperament || ""
       });
+
       return {
         status:"handoff",
         output:{
           type:"specialist-handoff",
           specialistId,
+          label:s?.label || "Moirai",
+          authority:s?.authority || "",
           url:handoff.url,
           brief:handoff.brief,
+          boundaries:[...(handoff.boundaries || [])],
+          note:handoff.note || "",
           executed:false
         }
       };
@@ -168,23 +200,19 @@ export class SpecialistExecutor {
       };
     }
 
-    if(["prose","arshif","plera-search"].includes(specialistId)) {
-      return {
-        status:"handoff",
-        output:{
-          type:"specialist-handoff",
-          specialistId,
-          url:s.url || "",
-          brief:{
-            message:String(message || "").slice(0,6000),
-            mode:route.mode?.id || "personal",
-            project:context.project
-              ? {title:context.project.title || "",summary:context.project.summary || ""}
-              : null
-          },
-          executed:false
-        }
-      };
+    if([
+      "prose",
+      "eiren",
+      "zelle",
+      "archaemenes",
+      "arshif",
+      "plera-search"
+    ].includes(specialistId)) {
+      return createRegistryHandoff(specialistId,s,{
+        message,
+        route,
+        context
+      });
     }
 
     return {
