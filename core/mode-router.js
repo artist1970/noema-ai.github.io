@@ -4,40 +4,47 @@ const MODES = Object.freeze({
     modules: ["sovereign", "mentor"],
     hint: "Think through plans, choices, routines, learning, and next steps."
   },
+
   family: {
     label: "Family",
-    modules: ["mentor", "sovereign"],
+    modules: ["mentor", "archaemenes", "resource-director", "sovereign"],
     hint: "Family learning, parent resources, homeschool support, and shared planning."
   },
+
   learning: {
     label: "Learning",
-    modules: ["mentor", "sovereign", "arshif"],
-    hint: "Find courses, lessons, tools, explanations, and approved learning resources."
+    modules: ["mentor", "archaemenes", "resource-director", "sovereign", "arshif"],
+    hint: "Learn with Archaemenes, discover Academy resources, study, practice, and explore approved references."
   },
+
   research: {
     label: "Research",
-    modules: ["mentor", "verifier", "pleraSearch", "sovereign"],
-    hint: "Search approved research pathways and identify information that needs fresh verification."
+    modules: ["verifier", "plera-search", "resource-director", "arshif", "sovereign"],
+    hint: "Search approved research pathways, compare sources, and identify information that needs fresh verification."
   },
+
   creative: {
     label: "Creative",
-    modules: ["moirai", "prose", "sovereign"],
-    hint: "Develop visual concepts, writing, palettes, creative direction, and variations."
+    modules: ["zelle", "moirai", "eiren", "prose", "sovereign"],
+    hint: "Create across Bazaar Art, The Refrain, poetry and reflection, writing, design, and other creative work."
   },
+
   work: {
     label: "Work",
-    modules: ["mentor", "prose", "sovereign"],
-    hint: "Professional tools, writing, planning, documents, and practical resources."
+    modules: ["prose", "resource-director", "sovereign"],
+    hint: "Professional writing, planning, documents, research pathways, and practical resources."
   },
+
   civic: {
     label: "Civic",
-    modules: ["mentor", "verifier", "pleraSearch", "sovereign"],
-    hint: "Civic learning and current-information pathways with freshness requirements."
+    modules: ["verifier", "plera-search", "resource-director", "sovereign"],
+    hint: "Civic learning and current-information pathways with evidence and freshness requirements."
   },
+
   archive: {
     label: "Archive",
-    modules: ["arshif", "mentor"],
-    hint: "Find archived writing, reading, references, and preserved knowledge."
+    modules: ["arshif", "resource-director", "mentor"],
+    hint: "Find archived writing, reading, references, preserved knowledge, and historical context."
   }
 });
 
@@ -53,13 +60,25 @@ export function getMode(id = "personal") {
 export function inferMode(query = "") {
   const q = String(query || "").toLowerCase();
 
-  if (/draw|image|visual|palette|art|design|illustrat|poster|logo/.test(q)) return "creative";
-  if (/archive|codex|old file|reference|reading room/.test(q)) return "archive";
-  if (/child|student|school|lesson|curriculum|parent|homeschool|transcript|diploma/.test(q)) return "family";
+  // Creative disciplines stay in one visible mode; the task planner selects
+  // the appropriate specialist underneath it.
+  if (
+    /draw|drawing|image|visual|palette|art|artwork|bazaar art|design|illustrat|poster|logo|painting|photograph|photography|mixed[- ]media/.test(q) ||
+    /music|musical|song|songwriting|melody|harmony|rhythm|compose|composition|arrange|instrument|recording|production|mixing|mastering|refrain/.test(q) ||
+    /poem|poetry|poetic|reflection|reflective|story|storytelling|creative writing|lyric|lyrics/.test(q)
+  ) return "creative";
+
+  if (/archive|codex|old file|old record|reference|reading room|primary source|manuscript/.test(q)) return "archive";
+
+  if (/child|student|school|academy|lesson|curriculum|parent|homeschool|transcript|diploma|teacher|tutor|homework/.test(q)) return "family";
+
   if (/vote|voter|government|civic|congress|election|public policy/.test(q)) return "civic";
-  if (/research|source|verify|news|latest|current|fact check/.test(q)) return "research";
-  if (/work|resume|career|business|project|professional|proposal/.test(q)) return "work";
-  if (/learn|study|course|practice|explain|tutorial/.test(q)) return "learning";
+
+  if (/research|source|verify|verification|news|latest|current|fact check/.test(q)) return "research";
+
+  if (/work|resume|career|business|project|professional|proposal|document/.test(q)) return "work";
+
+  if (/learn|study|course|practice|explain|tutorial|subject|math|science|history|language arts/.test(q)) return "learning";
 
   return "personal";
 }
