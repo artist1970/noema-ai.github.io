@@ -118,14 +118,18 @@ export const SPECIALISTS = Object.freeze({
     id:"zelle",
     label:"Zelle",
     state:SPECIALIST_STATES.HANDOFF,
-    category:"creative-guidance",
-    purposes:["creative","art","visual","writing","storytelling","music","photography","mixed-media","creative-block","idea-development"],
+    category:"bazaar-art-direction",
+    purposes:[
+      "creative","art","visual","bazaar-art","art-direction","design",
+      "color","composition","illustration","painting","photography",
+      "mixed-media","visual-storytelling","creative-block","idea-development"
+    ],
     audiences:["child","student","adult"],
     requiresAccount:false,
     canExecuteLocally:false,
-    authority:"creative-guidance-and-resource-handoff",
+    authority:"bazaar-art-direction-and-creative-guidance-handoff",
     url:"https://artist1970.github.io/Zelle.github.io/",
-    notes:"Guest-facing creative guide. Handoff-ready; offers possibilities rather than prescriptions, preserves user authorship, does not own or control ecosystem resources, does not elevate permissions, does not silently persist long-term memory, and does not claim remote execution."
+    notes:"Art Director at Bazaar Art. Provides creative direction for visual art while preserving the creator's authorship and final artistic authority. Handoff-ready; does not own ecosystem resources, elevate permissions, silently persist long-term memory, or claim remote execution."
   },
   arshif: {
     id:"arshif",
