@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive,nosnippet">
+<title>Internal Core</title>
+<style>
+  :root{color-scheme:dark;--bg:#05080c;--panel:#0b1118;--ink:#dce5ec;--muted:#708090;--line:#1c2833;--accent:#9b875e}
+  *{box-sizing:border-box}
+  html,body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);font:14px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+  body{display:grid;place-items:center;padding:24px}
+  main{width:min(760px,100%);padding:28px;border:1px solid var(--line);border-radius:11px;background:linear-gradient(180deg,#0a1016,#070b10)}
+  h1{margin:0;font-size:1rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
+  p{margin:.8rem 0 0;color:var(--muted)}
+  .state{margin-top:18px;padding:12px;border:1px solid var(--line);border-radius:9px;background:#070b10;color:#9aacb9}
+</style>
+</head>
+<body>
+<main aria-label="Internal core status">
+  <h1>Internal Core</h1>
+  <p>Dormant compatibility chassis. No public runtime is attached.</p>
+  <div class="state" id="state">isolated · local-only · unreferenced</div>
+</main>
+<script>
+(() => {
+  "use strict";
+
+  const VERSION = "1.0.0";
+  const DB_NAME = "nmc_v1";
+  const DB_VERSION = 1;
+  const STORE = "records";
+  const SESSION_STORE = "runtime";
+
+  const now = () => new Date().toISOString();
+  const clone = value => value == null ? value : JSON.parse(JSON.stringify(value));
+  const uid = prefix => `${prefix}_${Date.now().toString(36)}_${crypto.getRandomValues(new Uint32Array(1))[0].toString(36)}`;
+
+  function openDB(){
+    return new Promise((resolve,reject)=>{
+      const req=indexedDB.open(DB_NAME,DB_VERSION);
+      req.onupgradeneeded=()=>{
+        const db=req.result;
+        if(!db.objectStoreNames.contains(STORE)){
+          const store=db.createObjectStore(STORE,{keyPath:"id"});
+          store.createIndex("space","space",{unique:false});
+          store.createIndex("updatedAt","updatedAt",{unique:false});
+        }
+        if(!db.objectStoreNames.contains(SESSION_STORE)){
+          db.createObjectStore(SESSION_STORE,{keyPath:"id"});
+        }
+      };
+      req.onsuccess=()=>resolve(req.result);
+      req.onerror=()=>reject(req.error||new Error("database unavailable"));
+    });
+  }
+
+  const Cloud = Object.freeze({
+    async put(space,key,value,meta={}){
+      const record={
+        id:`${String(space)}:${String(key)}`,
+        space:String(space),
+        key:String(key),
+        value:clone(value),
+        meta:clone(meta),
+        updatedAt:now()
+      };
+      const db=await openDB();
+      try{
+        await new Promise((resolve,reject)=>{
+          const tr=db.transaction(STORE,"readwrite");
+          tr.objectStore(STORE).put(record);
+          tr.oncomplete=resolve;
+          tr.onerror=()=>reject(tr.error||new Error("write failed"));
+        });
+      } finally { db.close(); }
+      return clone(record);
+    },
+    async get(space,key){
+      const db=await openDB();
+      try{
+        return await new Promise((resolve,reject)=>{
+          const tr=db.transaction(STORE,"readonly");
+          const req=tr.objectStore(STORE).get(`${String(space)}:${String(key)}`);
+          req.onsuccess=()=>resolve(req.result?clone(req.result):null);
+          req.onerror=()=>reject(req.error||new Error("read failed"));
+        });
+      } finally { db.close(); }
+    },
+    async list(space){
+      const db=await openDB();
+      try{
+        return await new Promise((resolve,reject)=>{
+          const tr=db.transaction(STORE,"readonly");
+          const req=tr.objectStore(STORE).index("space").getAll(String(space));
+          req.onsuccess=()=>resolve((req.result||[]).map(clone));
+          req.onerror=()=>reject(req.error||new Error("list failed"));
+        });
+      } finally { db.close(); }
+    },
+    async remove(space,key){
+      const db=await openDB();
+      try{
+        await new Promise((resolve,reject)=>{
+          const tr=db.transaction(STORE,"readwrite");
+          tr.objectStore(STORE).delete(`${String(space)}:${String(key)}`);
+          tr.oncomplete=resolve;
+          tr.onerror=()=>reject(tr.error||new Error("delete failed"));
+        });
+      } finally { db.close(); }
+      return true;
+    }
+  });
+
+  class Unit {
+    constructor(id,contract={}){
+      this.id=String(id);
+      this.contract=Object.freeze({...contract});
+      this.handlers=new Map();
+      this.enabled=true;
+    }
+    on(action,handler){
+      if(typeof handler!=="function") throw new TypeError("handler required");
+      this.handlers.set(String(action),handler);
+      return this;
+    }
+    async run(action,payload={},context={}){
+      if(!this.enabled) return {ok:false,state:"disabled"};
+      const handler=this.handlers.get(String(action));
+      if(!handler) return {ok:false,state:"unsupported"};
+      return handler(clone(payload),Object.freeze({...context,unit:this.id}));
+    }
+  }
+
+  const Directory = new Map();
+  function register(id,contract={}){
+    const key=String(id);
+    if(Directory.has(key)) return Directory.get(key);
+    const unit=new Unit(key,contract);
+    Directory.set(key,unit);
+    return unit;
+  }
+
+  const S1=register("s1",{input:"event",output:"decision"});
+  const S2=register("s2",{input:"request",output:"grant"});
+  const S3=register("s3",{input:"payload",output:"sanitized"});
+  const S4=register("s4",{input:"identity-context",output:"bounded-context"});
+  const S5=register("s5",{input:"memory-candidate",output:"retention-decision"});
+  const S6=register("s6",{input:"runtime-event",output:"runtime-state"});
+  const S7=register("s7",{input:"task",output:"route"});
+  const S8=register("s8",{input:"provider-request",output:"provider-decision"});
+  const S9=register("s9",{input:"event",output:"audit-record"});
+
+  S1.on("check",async payload=>({ok:true,allowed:Boolean(payload&&payload.allowed!==false)}));
+  S2.on("authorize",async payload=>({ok:true,granted:Boolean(payload&&payload.granted===true)}));
+  S3.on("sanitize",async payload=>{
+    const source=payload&&typeof payload==="object"?payload:{};
+    const denied=new Set(["password","passcode","token","secret","privateKey","apiKey","credential"]);
+    const clean={};
+    for(const [key,value] of Object.entries(source)) if(!denied.has(key)) clean[key]=value;
+    return {ok:true,value:clean};
+  });
+  S4.on("bound",async payload=>({ok:true,value:payload&&typeof payload==="object"?clone(payload):{}}));
+  S5.on("retain",async payload=>({ok:true,retain:Boolean(payload&&payload.explicit===true)}));
+  S6.on("state",async payload=>({ok:true,value:{id:uid("rt"),at:now(),event:clone(payload)}}));
+  S7.on("route",async payload=>({ok:true,route:String(payload?.route||"none")}));
+  S8.on("approve",async payload=>({ok:true,approved:Boolean(payload&&payload.approved===true)}));
+  S9.on("record",async payload=>{
+    const record={id:uid("a"),at:now(),event:clone(payload)};
+    await Cloud.put("a",record.id,record);
+    return {ok:true,record};
+  });
+
+  const Interface = Object.freeze({
+    version:VERSION,
+    async invoke(unitId,action,payload={},context={}){
+      const unit=Directory.get(String(unitId));
+      if(!unit) return {ok:false,state:"unknown"};
+      return unit.run(action,payload,context);
+    },
+    async store(space,key,value,meta={}){ return Cloud.put(space,key,value,meta); },
+    async read(space,key){ return Cloud.get(space,key); },
+    async list(space){ return Cloud.list(space); },
+    async remove(space,key){ return Cloud.remove(space,key); },
+    status(){
+      return {
+        version:VERSION,
+        state:"isolated",
+        attached:false,
+        units:Directory.size,
+        database:DB_NAME
+      };
+    }
+  });
+
+  Object.defineProperty(window,"NMC",{
+    value:Interface,
+    configurable:false,
+    enumerable:false,
+    writable:false
+  });
+
+  const state=document.getElementById("state");
+  if(state) state.textContent=`isolated · local-only · ${Directory.size} units · v${VERSION}`;
+})();
+</script>
+</body>
+</html>
