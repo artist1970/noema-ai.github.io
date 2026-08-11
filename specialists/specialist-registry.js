@@ -98,7 +98,7 @@ export const SPECIALISTS = Object.freeze({
     requiresAccount:false,
     canExecuteLocally:false,
     authority:"academic-mentoring-and-education-handoff",
-    url:"https://artist1970.github.io/ai-Archaemenes.github.io/",
+    url:"https://artist1970.github.io/Archaemenes.github.io/",
     notes:"Scholarly AI of Khaemenes Academy. Uses age-adaptive presentation from Wise Owl through Scholar. Handoff-ready; does not modify grades, records, authentication, or claim unverified current facts as verified."
   },
   eiren: {
