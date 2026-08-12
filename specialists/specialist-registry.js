@@ -131,6 +131,22 @@ export const SPECIALISTS = Object.freeze({
     url:"https://artist1970.github.io/Zelle.github.io/",
     notes:"Art Director at Bazaar Art. Provides creative direction for visual art while preserving the creator's authorship and final artistic authority. Handoff-ready; does not own ecosystem resources, elevate permissions, silently persist long-term memory, or claim remote execution."
   },
+  aurora: {
+    id:"aurora",
+    label:"Aurora",
+    state:SPECIALIST_STATES.UNAVAILABLE,
+    category:"restorative-wellness",
+    purposes:[
+      "wellness","breathing","meditation","affirmations","grounding",
+      "relaxation","rest-preparation","natural-wellness","reflective-wellness"
+    ],
+    audiences:["child","student","adult"],
+    requiresAccount:false,
+    canExecuteLocally:false,
+    authority:"wellness-guidance-with-non-diagnostic-boundaries",
+    url:"https://artist1970.github.io/Aurora.github.io/",
+    notes:"Zen and wellness specialist for gentle breathing, meditation, affirmations, grounding, relaxation and natural-wellness education. Current public interface is not yet available, so Aurora must not be represented as having executed or accepted a handoff. She does not diagnose, prescribe, promise cures, replace urgent care, or override qualified medical care."
+  },
   arshif: {
     id:"arshif",
     label:"ARSHIF",
