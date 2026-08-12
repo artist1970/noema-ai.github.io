@@ -96,6 +96,23 @@ test("Archaemenes uses the canonical live repository",()=>{
   assert.ok(s.purposes.includes("tutoring"));
 });
 
+test("Aurora is registered as Zen and wellness but remains unavailable",()=>{
+  const s=getSpecialist("aurora");
+
+  assert.ok(s);
+  assert.equal(s.state,SPECIALIST_STATES.UNAVAILABLE);
+  assert.equal(s.category,"restorative-wellness");
+  assert.equal(
+    s.url,
+    "https://artist1970.github.io/Aurora.github.io/"
+  );
+  assert.ok(s.purposes.includes("breathing"));
+  assert.ok(s.purposes.includes("meditation"));
+  assert.ok(s.purposes.includes("grounding"));
+  assert.ok(s.notes.includes("Zen and wellness specialist"));
+  assert.ok(s.notes.includes("Current public interface is not yet available"));
+});
+
 test("canonical specialists remain audience eligible where approved",()=>{
   assert.equal(
     specialistEligible("moirai",{audience:"adult"}).eligible,
