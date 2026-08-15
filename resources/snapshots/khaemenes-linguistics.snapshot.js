@@ -1,0 +1,312 @@
+// Current explicit fallback for Khaemenes Linguistics.
+// Keep this small source-specific fallback in sync with the source-owned mentor-manifest.json.
+// Live source manifests still outrank this fallback whenever refresh succeeds.
+export const KHAEMENES_LINGUISTICS_SNAPSHOT = Object.freeze(
+{
+  "version": 2,
+  "sourceId": "khaemenes.linguistics",
+  "name": "Khaemenes Academy Linguistics · Polyglot",
+  "classification": "educational",
+  "mentorSearchable": true,
+  "audiences": [
+    "elementary",
+    "middle",
+    "high",
+    "higher-learning",
+    "adult",
+    "parent"
+  ],
+  "roles": [
+    "student",
+    "parent",
+    "educator"
+  ],
+  "homepage": "https://vervenveda.com/Khaemenes_Linguistics.github.io/",
+  "repository": "vervenveda/Khaemenes_Linguistics.github.io",
+  "resources": [
+    {
+      "id": "linguistics-home",
+      "title": "Khaemenes Linguistics · Polyglot",
+      "description": "",
+      "url": "https://vervenveda.com/Khaemenes_Linguistics.github.io/",
+      "audiences": [
+        "elementary",
+        "middle",
+        "high",
+        "higher-learning",
+        "adult",
+        "parent"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "languages",
+        "linguistics"
+      ],
+      "skills": [],
+      "tags": [
+        "polyglot",
+        "language-learning"
+      ],
+      "mentorEligible": true,
+      "featured": true
+    },
+    {
+      "id": "sovereign-interlingual-translator",
+      "title": "Sovereign Interlingual Translator",
+      "description": "Offline-first translation, language learning, and literary comparison across 77 modern and heritage language options, with optional consent-gated online translation.",
+      "url": "https://vervenveda.com/Khaemenes_Linguistics.github.io/multilingual-translator_index.html",
+      "audiences": [
+        "elementary",
+        "middle",
+        "high",
+        "higher-learning",
+        "adult",
+        "parent"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "languages",
+        "linguistics",
+        "translation",
+        "literacy",
+        "literary-study"
+      ],
+      "skills": [
+        "translation",
+        "language-comparison",
+        "interlingual-literacy",
+        "vocabulary",
+        "literary-comparison"
+      ],
+      "tags": [
+        "translator",
+        "multilingual",
+        "interlingual",
+        "offline-first",
+        "sovereign",
+        "literary-comparison"
+      ],
+      "mentorEligible": true,
+      "featured": true,
+      "minutes": 10,
+      "energy": "steady",
+      "resourceType": "tool",
+      "learningValue": "cross-curricular-support",
+      "curricularWeight": "supplemental",
+      "subjects": [
+        "language-arts",
+        "world-languages",
+        "literature"
+      ],
+      "requiresFreshnessCheck": false,
+      "dynamicContent": true,
+      "externalInformation": true,
+      "requiresExplicitQuery": false,
+      "policyTags": [
+        "offline-first",
+        "external-translation-explicit-consent",
+        "no-student-text-in-url"
+      ]
+    },
+    {
+      "id": "arabic-365",
+      "title": "Arabic 365",
+      "description": "",
+      "url": "https://vervenveda.com/Khaemenes_Linguistics.github.io/apps/Arabic_365_index.html",
+      "audiences": [
+        "middle",
+        "high",
+        "higher-learning",
+        "adult"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "languages"
+      ],
+      "skills": [
+        "arabic",
+        "vocabulary"
+      ],
+      "tags": [
+        "arabic",
+        "daily-practice"
+      ],
+      "mentorEligible": true,
+      "minutes": 15,
+      "energy": "steady"
+    },
+    {
+      "id": "arabic-daily",
+      "title": "Arabic Daily",
+      "description": "",
+      "url": "https://vervenveda.com/Khaemenes_Linguistics.github.io/apps/Arabic_daily_index.html",
+      "audiences": [
+        "middle",
+        "high",
+        "higher-learning",
+        "adult"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "languages"
+      ],
+      "skills": [
+        "arabic",
+        "practice"
+      ],
+      "tags": [
+        "arabic",
+        "daily-practice"
+      ],
+      "mentorEligible": true,
+      "minutes": 10,
+      "energy": "steady"
+    },
+    {
+      "id": "arabic-memory",
+      "title": "Arabic Memory Game",
+      "description": "",
+      "url": "https://vervenveda.com/Khaemenes_Linguistics.github.io/apps/Arabic_memory_game_index.html",
+      "audiences": [
+        "elementary",
+        "middle",
+        "high"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "languages"
+      ],
+      "skills": [
+        "arabic",
+        "memory"
+      ],
+      "tags": [
+        "arabic",
+        "game"
+      ],
+      "mentorEligible": true,
+      "minutes": 10,
+      "energy": "playful"
+    },
+    {
+      "id": "arabic-numbers",
+      "title": "Arabic Numbers",
+      "description": "",
+      "url": "https://vervenveda.com/Khaemenes_Linguistics.github.io/apps/Arabic_numbers_index.html",
+      "audiences": [
+        "elementary",
+        "middle",
+        "high"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "languages",
+        "mathematics"
+      ],
+      "skills": [
+        "arabic",
+        "numbers"
+      ],
+      "tags": [
+        "arabic",
+        "numbers"
+      ],
+      "mentorEligible": true,
+      "minutes": 10,
+      "energy": "playful"
+    },
+    {
+      "id": "esl-course",
+      "title": "ESL Course",
+      "description": "",
+      "url": "https://vervenveda.com/Khaemenes_Linguistics.github.io/apps/ESL_course_index.html",
+      "audiences": [
+        "middle",
+        "high",
+        "higher-learning",
+        "adult"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "languages"
+      ],
+      "skills": [
+        "english",
+        "esl"
+      ],
+      "tags": [
+        "english",
+        "language-learning"
+      ],
+      "mentorEligible": true,
+      "minutes": 20,
+      "energy": "steady"
+    },
+    {
+      "id": "quran-root-explorer",
+      "title": "Arabic Qur'an Root Explorer",
+      "description": "",
+      "url": "https://vervenveda.com/Khaemenes_Linguistics.github.io/apps/Arabic_Quran_root_explorer_index.html",
+      "audiences": [
+        "high",
+        "higher-learning",
+        "adult"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "languages",
+        "textual-study"
+      ],
+      "skills": [
+        "arabic-roots",
+        "text-analysis"
+      ],
+      "tags": [
+        "arabic",
+        "quranic-study",
+        "faith"
+      ],
+      "mentorEligible": true,
+      "minutes": 20,
+      "energy": "steady",
+      "requiresPreferenceMatch": [
+        "faith",
+        "quranic-study"
+      ]
+    }
+  ],
+  "mentorNotes": "Faith-specific language resources are tagged for preference-aware recommendation; the future resolver should honor requiresPreferenceMatch before proactive suggestions. The Sovereign Interlingual Translator is offline-first; its optional MyMemory online mode requires explicit in-page consent before text is sent externally."
+}
+);
