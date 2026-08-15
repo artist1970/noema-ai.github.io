@@ -1,4 +1,4 @@
-const CACHE = "naib-shell-v1.3.9";
+const CACHE = "naib-shell-v1.3.10";
 const DICTIONARY_CACHE = "naib-aurora-dictionary-v3";
 const PRESERVED_CACHES = new Set([CACHE, DICTIONARY_CACHE]);
 
@@ -24,6 +24,8 @@ const SHELL = [
   "./resources/domain-learning-policy.js",
   "./resources/learning-federation.js",
   "./resources/snapshots/federation-snapshots.js",
+  "./resources/snapshots/khaemenes-linguistics.snapshot.js",
+  "./resources/snapshots/khaemenes-linguistics.federation.json",
   "./adapters/learning-federation-adapter.js",
   "./resources/execution-state.js",
   "./resources/approved-manifest-sources.js",
