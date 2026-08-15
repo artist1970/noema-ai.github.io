@@ -36,7 +36,7 @@ export class IntelligenceDirector {
     let resourceRefresh=[];
     const resourceLikely =
       ["learning","research","archive","family"].includes(route.mode?.id) ||
-      /\b(find|resource|lesson|course|study|learn|research|search|archive|reading|tool)\b/i.test(route.message || "");
+      /\b(find|resource|lesson|course|study|learn|research|search|archive|reading|tool|translate|translates|translated|translating|translation|translator|multilingual|interlingual|language|languages|linguistic|linguistics|spanish|french|german|mandarin|chinese|japanese)\b/i.test(route.message || "");
 
     if (resourceLikely && this.core.resourceDirector) {
       resourceRefresh=await this.core.resourceDirector.refreshForRequest({
