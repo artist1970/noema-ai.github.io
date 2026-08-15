@@ -1,4 +1,5 @@
 import {FEDERATION_SNAPSHOTS} from "./snapshots/federation-snapshots.js";
+import {KHAEMENES_LINGUISTICS_SNAPSHOT} from "./snapshots/khaemenes-linguistics.snapshot.js";
 import {LEARNING_FEDERATION_SOURCES} from "./federation-source-registry.js";
 import {ResourceManifestLoader} from "./resource-manifest-loader.js";
 import {explicitPreferenceTerms,checkResourceEligibility,roleFromEnrollment} from "./resource-eligibility.js";
@@ -21,7 +22,7 @@ function relevantRefreshSourceIds({query="",mode="personal",learningContext={}}=
     "khaemenes.academy"
   ].filter(Boolean));
 
-  if(/\b(language|arabic|esl|english|linguistic|vocabulary|word|spelling)\b/i.test(query))
+  if(/\b(language|languages|world[- ]?language|arabic|esl|english|spanish|french|german|mandarin|chinese|japanese|linguistic|linguistics|vocabulary|word|spelling|translate|translates|translated|translating|translation|translator|multilingual|interlingual)\b/i.test(query))
     ids.add("khaemenes.linguistics");
 
   if(/\b(dictionary|define|definition|meaning|vocabulary|word|spelling|thesaurus|synonym|antonym|writing)\b/i.test(query))
@@ -38,6 +39,11 @@ function relevantRefreshSourceIds({query="",mode="personal",learningContext={}}=
   return [...ids];
 }
 
+function fallbackSnapshotForSource(sourceId="") {
+  if(sourceId==="khaemenes.linguistics") return KHAEMENES_LINGUISTICS_SNAPSHOT;
+  return FEDERATION_SNAPSHOTS[sourceId];
+}
+
 export class LearningFederation {
   constructor({fetchImpl}={}) {
     this.loaders=new Map(
@@ -45,7 +51,7 @@ export class LearningFederation {
         source.id,
         new ResourceManifestLoader({
           source,
-          snapshot:FEDERATION_SNAPSHOTS[source.id],
+          snapshot:fallbackSnapshotForSource(source.id),
           fetchImpl
         })
       ])
