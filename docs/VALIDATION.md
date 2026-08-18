@@ -1,0 +1,12 @@
+# Validation
+- [ ] Add `config/mentor-registry.json`
+- [ ] Add `adapters/eiren-adapter.js`
+- [ ] Leave `adapters/moirai-adapter.js` unchanged
+- [ ] Leave `delegation/delegation-engine.js` unchanged
+- [ ] Leave `directory/ecosystem.json` unchanged
+- [ ] Noema has no public destination
+- [ ] NAIB is Administrator
+- [ ] Nine mentor names appear once in registry
+- [ ] Eiren points to `artist1970/Eiren.github.io`
+- [ ] No CORE content, credentials, tokens, or secrets
+- [ ] Integrate delegation only in a later audited pass
