@@ -1,0 +1,97 @@
+{
+  "schema": "naib-mentor-registry",
+  "version": 1,
+  "administrator": {
+    "id": "naib",
+    "name": "NAIB",
+    "role": "Administrator",
+    "publicFront": "https://artist1970.github.io/NAIB.github.io/"
+  },
+  "governance": {
+    "chancellor": "NOEMA",
+    "public": false,
+    "note": "Noema is the private Chancellor and is not a public destination."
+  },
+  "mentors": [
+    {
+      "id": "archaemenes",
+      "name": "Archaemenes",
+      "type": "mentor",
+      "publicFront": "https://artist1970.github.io/Archaemenes.github.io/",
+      "adapter": null,
+      "status": "registered-pending-adapter"
+    },
+    {
+      "id": "arshif",
+      "name": "Arshif",
+      "type": "mentor",
+      "publicFront": "https://artist1970.github.io/Arshif.github.io/",
+      "adapter": null,
+      "status": "registered-pending-adapter"
+    },
+    {
+      "id": "moirai",
+      "name": "Moirai",
+      "type": "mentor",
+      "publicFront": "https://artist1970.github.io/Moirai.github.io/",
+      "adapter": "../adapters/moirai-adapter.js",
+      "status": "existing-reference-implementation"
+    },
+    {
+      "id": "mavric",
+      "name": "MAVRIC",
+      "type": "mentor",
+      "publicFront": "https://artist1970.github.io/MAVRIC.github.io/",
+      "adapter": null,
+      "status": "registered-pending-adapter"
+    },
+    {
+      "id": "zelle",
+      "name": "Zelle",
+      "type": "mentor",
+      "publicFront": "https://artist1970.github.io/Zelle.github.io/",
+      "adapter": null,
+      "status": "registered-pending-adapter"
+    },
+    {
+      "id": "aurora",
+      "name": "Aurora",
+      "type": "mentor",
+      "publicFront": "https://artist1970.github.io/AuroraCore.github.io/",
+      "adapter": null,
+      "status": "registered-pending-adapter"
+    },
+    {
+      "id": "eiren",
+      "name": "Eiren",
+      "type": "mentor",
+      "publicFront": "https://artist1970.github.io/Eiren.github.io/",
+      "adapter": "../adapters/eiren-adapter.js",
+      "status": "handoff-ready"
+    },
+    {
+      "id": "araneae",
+      "name": "Araneae",
+      "type": "mentor",
+      "publicFront": "https://artist1970.github.io/Araneae.github.io/",
+      "adapter": null,
+      "status": "registered-pending-adapter"
+    },
+    {
+      "id": "hope",
+      "name": "Hope",
+      "type": "mentor",
+      "publicFront": "https://artist1970.github.io/Hope.github.io/",
+      "adapter": "../adapters/hope-adapter.js",
+      "status": "existing-adapter-review-pending"
+    }
+  ],
+  "policy": {
+    "coreContentEmbedded": false,
+    "specialistsAreAdvisory": true,
+    "specialistsMayNotElevatePermissions": true,
+    "specialistsMayNotWriteLongTermMemoryDirectly": true,
+    "childSafetyMayNotBeWeakened": true,
+    "publicFrontsOnly": true
+  }
+}
