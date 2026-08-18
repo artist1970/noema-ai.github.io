@@ -1,0 +1,246 @@
+{
+  "schema": "verve-n-veda-public-directory",
+  "version": 1,
+  "updated": "2026-08-17",
+  "entries": [
+    {
+      "id": "naib",
+      "name": "NAIB",
+      "type": "intelligence-guide",
+      "description": "Public Intelligence Director and guide across the Verve N Veda ecosystem.",
+      "url": "https://artist1970.github.io/NAIB.github.io/",
+      "keywords": [
+        "help",
+        "guide",
+        "assistant",
+        "intelligence",
+        "where do i go",
+        "navigation",
+        "planning",
+        "research",
+        "learning",
+        "creative",
+        "resources"
+      ]
+    },
+    {
+      "id": "khaemenes-academy",
+      "name": "Khaemenes Academy",
+      "type": "learning",
+      "description": "Learning pathways, schools, courses, study resources, and educational tools.",
+      "url": "https://vervenveda.com/Khaemenes_Academy.github.io/",
+      "keywords": [
+        "school",
+        "academy",
+        "education",
+        "learning",
+        "student",
+        "course",
+        "math",
+        "science",
+        "history",
+        "reading",
+        "high school",
+        "elementary",
+        "middle school"
+      ]
+    },
+    {
+      "id": "archaemenes",
+      "name": "Archaemenes",
+      "type": "mentor",
+      "description": "Academy mentor for learning pathways and academic guidance.",
+      "url": "https://vervenveda.com/Khaemenes_Academy.github.io/",
+      "keywords": [
+        "mentor",
+        "teacher",
+        "school",
+        "study",
+        "homework",
+        "learning",
+        "academy",
+        "student"
+      ]
+    },
+    {
+      "id": "hope",
+      "name": "Hope",
+      "type": "mentor",
+      "description": "Civic resources, compassionate interaction, and community-oriented guidance.",
+      "url": "https://artist1970.github.io/hope-ai.github.io/",
+      "keywords": [
+        "civic",
+        "community",
+        "kindness",
+        "compassion",
+        "support",
+        "government",
+        "citizen",
+        "help"
+      ]
+    },
+    {
+      "id": "zelle",
+      "name": "Zelle",
+      "type": "mentor",
+      "description": "Art and visual creativity resources.",
+      "url": "https://vervenveda.com/",
+      "keywords": [
+        "art",
+        "drawing",
+        "painting",
+        "watercolor",
+        "visual",
+        "artist",
+        "creative",
+        "design"
+      ]
+    },
+    {
+      "id": "moirai",
+      "name": "Moirai",
+      "type": "mentor",
+      "description": "Music, sound, composition, and creative audio guidance.",
+      "url": "https://artist1970.github.io/Moir_ai.github.io/",
+      "keywords": [
+        "music",
+        "song",
+        "sound",
+        "composition",
+        "audio",
+        "theory",
+        "creative"
+      ]
+    },
+    {
+      "id": "aurora",
+      "name": "Aurora",
+      "type": "mentor",
+      "description": "Wellbeing and health-oriented resources.",
+      "url": "https://vervenveda.com/",
+      "keywords": [
+        "health",
+        "wellbeing",
+        "wellness",
+        "exercise",
+        "nutrition",
+        "mindfulness",
+        "care"
+      ]
+    },
+    {
+      "id": "eiren",
+      "name": "Eiren",
+      "type": "mentor",
+      "description": "Literature, reading, writing, and language-centered guidance.",
+      "url": "https://vervenveda.com/",
+      "keywords": [
+        "literature",
+        "reading",
+        "books",
+        "writing",
+        "poetry",
+        "language",
+        "english",
+        "stories"
+      ]
+    },
+    {
+      "id": "arshif",
+      "name": "ARSHIF",
+      "type": "archive",
+      "description": "Archive, reference, history, research collections, and reading rooms.",
+      "url": "https://vervenveda.com/Arshif.github.io/",
+      "keywords": [
+        "archive",
+        "history",
+        "research",
+        "library",
+        "reference",
+        "conflict",
+        "documents",
+        "sources",
+        "reading"
+      ]
+    },
+    {
+      "id": "verifier",
+      "name": "The Verifier",
+      "type": "research",
+      "description": "Evidence-aware research and claim verification resources.",
+      "url": "https://vervenveda.com/theverifier.github.io/",
+      "keywords": [
+        "verify",
+        "fact check",
+        "research",
+        "evidence",
+        "sources",
+        "claim",
+        "truth",
+        "citation"
+      ]
+    },
+    {
+      "id": "plera-search",
+      "name": "PLERA Search",
+      "type": "search",
+      "description": "Discovery and search across public information and ecosystem resources.",
+      "url": "https://vervenveda.com/PLERASearch.github.io/",
+      "keywords": [
+        "search",
+        "find",
+        "discover",
+        "lookup",
+        "web",
+        "information",
+        "resources"
+      ]
+    },
+    {
+      "id": "333-network",
+      "name": "333 Network",
+      "type": "network",
+      "description": "Connection and communications resources across the wider ecosystem.",
+      "url": "https://vervenveda.com/333.github.io/",
+      "keywords": [
+        "network",
+        "connect",
+        "communication",
+        "community",
+        "email",
+        "message",
+        "directory"
+      ]
+    },
+    {
+      "id": "proresources",
+      "name": "ProReSources",
+      "type": "resource-hub",
+      "description": "Professional and practical resource hub.",
+      "url": "https://vervenveda.com/proresource_hub.github.io/",
+      "keywords": [
+        "professional",
+        "career",
+        "work",
+        "resources",
+        "business",
+        "practical",
+        "tools"
+      ]
+    },
+    {
+      "id": "verve-n-veda",
+      "name": "Verve N Veda",
+      "type": "home",
+      "description": "Main public gateway for the Verve N Veda ecosystem.",
+      "url": "https://vervenveda.com/",
+      "keywords": [
+        "home",
+        "verve n veda",
+        "main",
+        "gateway",
+        "ecosystem"
+      ]
+    }
+  ]
+}
