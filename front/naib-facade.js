@@ -5,7 +5,7 @@ function clone(value) {
   return JSON.parse(JSON.stringify(value));
 }
 
-function isNoemaIdentity(value) {
+function isInternalIdentity(value) {
   if (!value || typeof value !== "object") return false;
 
   const id = String(value.id || "").toLowerCase();
@@ -14,7 +14,7 @@ function isNoemaIdentity(value) {
   return id === "noema" || name === "noema";
 }
 
-function maskNoemaText(value) {
+function maskInternalName(value) {
   return typeof value === "string"
     ? value.replace(/\bNOEMA\b/gi, "NAIB")
     : value;
@@ -23,11 +23,10 @@ function maskNoemaText(value) {
 function sanitizePublicResult(result = {}) {
   const safe = clone(result || {});
 
-  // The internal route may carry Noema's live identity and persona because
-  // routing is governed behind the scenes. Those objects are not public
-  // interface data and must not pass through the NAIB facade.
+  // Internal live identity/persona objects are implementation data.
+  // They do not cross the NAIB public facade.
   if (safe.route?.context) {
-    if (isNoemaIdentity(safe.route.context.identity)) {
+    if (isInternalIdentity(safe.route.context.identity)) {
       delete safe.route.context.identity;
     }
 
@@ -39,8 +38,7 @@ function sanitizePublicResult(result = {}) {
     }
   }
 
-  // Public delegation should identify NAIB as the coordinating intelligence.
-  // This changes only the facade copy; Noema remains the internal regulator.
+  // Public delegation identifies NAIB as the coordinating intelligence.
   if (
     typeof safe.delegation?.primary === "string" &&
     safe.delegation.primary.toLowerCase() === "noema"
@@ -55,8 +53,6 @@ function sanitizePublicResult(result = {}) {
     safe.trace.delegation.primary = "NAIB";
   }
 
-  // Internal orchestration may use Noema for understanding/synthesis tasks.
-  // Publicly those tasks belong to the NAIB-facing coordinated experience.
   if (Array.isArray(safe.orchestration?.tasks)) {
     safe.orchestration.tasks = safe.orchestration.tasks.map(task => {
       if (!task || typeof task !== "object") return task;
@@ -67,7 +63,7 @@ function sanitizePublicResult(result = {}) {
       ) {
         return {
           ...task,
-          specialistId: "naib"
+          specialistId:"naib"
         };
       }
 
@@ -75,23 +71,21 @@ function sanitizePublicResult(result = {}) {
     });
   }
 
-  // Provider-error fallback text may originate inside Noema's director.
-  // The public facade must speak as NAIB without exposing the internal name.
   if (safe.providerResponse && typeof safe.providerResponse === "object") {
-    safe.providerResponse.text = maskNoemaText(safe.providerResponse.text);
+    safe.providerResponse.text = maskInternalName(safe.providerResponse.text);
   }
 
   if (typeof safe.response === "string") {
-    safe.response = maskNoemaText(safe.response);
+    safe.response = maskInternalName(safe.response);
   } else if (safe.response && typeof safe.response === "object") {
-    safe.response.text = maskNoemaText(safe.response.text);
+    safe.response.text = maskInternalName(safe.response.text);
 
     if (Array.isArray(safe.response.warnings)) {
-      safe.response.warnings = safe.response.warnings.map(maskNoemaText);
+      safe.response.warnings = safe.response.warnings.map(maskInternalName);
     }
 
     if (typeof safe.response.note === "string") {
-      safe.response.note = maskNoemaText(safe.response.note);
+      safe.response.note = maskInternalName(safe.response.note);
     }
   }
 
@@ -111,11 +105,21 @@ export class NaibFacade {
 
     return {
       ...result,
+
       publicIdentity:{
         name:this.identity.name,
         title:this.identity.title,
-        role:this.identity.role
+        role:this.identity.role,
+        canonicalFront:this.identity.publicFront.url
       },
+
+      publicContract:{
+        canonicalFront:this.identity.publicFront.url,
+        canonicalCoreRef:this.identity.core.canonicalRef,
+        privateCoreFetchedByBrowser:false,
+        humanFinalAuthority:true
+      },
+
       administrativeAuthority:{
         name:"Internal Governance",
         publicNameExposed:false,
@@ -161,6 +165,7 @@ export class NaibFacade {
 
     return {
       identity:this.identity,
+      publicFront:this.identity.publicFront,
       administration:{
         ...safeStatus,
         identity:"internal-governance",
