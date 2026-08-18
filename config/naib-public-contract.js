@@ -1,17 +1,21 @@
 /*
   Canonical NAIB public-front contract.
 
-  This module is safe to import inside protected/internal runtime code.
-  It contains references and policy metadata only — never credentials.
-*/
+  Safe to import inside protected/internal runtime code.
+  References and policy metadata only — never credentials.
 
+  Governance boundary:
+  - Noema is the private Chancellor.
+  - NAIB is the Administrator and canonical public administrative front.
+*/
 export const NAIB_PUBLIC_CONTRACT = Object.freeze({
-  version:"1.0.0",
+  version:"1.1.0",
 
   identity:Object.freeze({
     id:"naib",
     name:"NAIB",
-    title:"Public Intelligence Director"
+    title:"Administrator",
+    role:"administrator"
   }),
 
   publicFront:Object.freeze({
@@ -26,14 +30,17 @@ export const NAIB_PUBLIC_CONTRACT = Object.freeze({
     browserFetchAllowed:false
   }),
 
-  gateway:Object.freeze({
+  runtime:Object.freeze({
     repository:"artist1970/noema-ai.github.io",
-    role:"neutral-public-navigation-gateway"
+    role:"protected-administrative-runtime-bridge"
   }),
 
   governance:Object.freeze({
-    publicAdministrativeIdentityExposed:false,
+    chancellor:"NOEMA",
+    chancellorVisibility:"private",
+    exposeChancellorAsPublicDestination:false,
     humanFinalAuthority:true,
-    permissionSelfElevation:false
+    permissionSelfElevation:false,
+    mentorAdministrativeAuthority:false
   })
 });
