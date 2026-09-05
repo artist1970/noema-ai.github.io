@@ -1,9 +1,12 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import fs from "node:fs";
+import {NAIB_PUBLIC_CONTRACT} from "../config/naib-public-contract.js";
 
-test("v1.3 preserves NAIB public / NOEMA administrative split",()=>{
-  const html=fs.readFileSync(new URL("../index.html",import.meta.url),"utf8");
-  assert.match(html,/NAIB \/ v1\.3/);
-  assert.match(html,/NOEMA remains the administrative intelligence/);
+test("release lineage preserves NAIB public / protected governance split",()=>{
+  assert.equal(NAIB_PUBLIC_CONTRACT.identity.name,"NAIB");
+  assert.equal(NAIB_PUBLIC_CONTRACT.publicFront.canonical,true);
+  assert.equal(NAIB_PUBLIC_CONTRACT.core.visibility,"private");
+  assert.equal(NAIB_PUBLIC_CONTRACT.core.browserFetchAllowed,false);
+  assert.equal(NAIB_PUBLIC_CONTRACT.governance.chancellor,"NOEMA");
+  assert.equal(NAIB_PUBLIC_CONTRACT.governance.chancellorVisibility,"private");
 });

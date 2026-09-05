@@ -12,6 +12,6 @@ test("orchestration settles visible plan",()=>{
     verifierSession:null
   });
   assert.equal(result.summary.complete,true);
-  assert.ok(result.tasks.some(t=>t.specialistId==="moirai" && t.status==="handoff"));
+  assert.ok(result.tasks.some(t=>t.specialistId==="zelle" && t.status==="handoff"));
   assert.ok(result.tasks.some(t=>t.specialistId==="sovereign" && t.status==="complete"));
 });

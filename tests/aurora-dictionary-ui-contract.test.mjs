@@ -19,8 +19,8 @@ test("dictionary control is wired and drawer is minimized by default", () => {
 });
 
 test("dictionary integration is offline-ready without blocking live Aurora freshness", () => {
-  assert.match(serviceWorker, /naib-shell-v1\.3\.7/);
-  assert.match(serviceWorker, /DICTIONARY_CACHE\s*=\s*["']naib-aurora-dictionary-v1["']/);
+  assert.match(serviceWorker, /naib-shell-v1\.3\.10/);
+  assert.match(serviceWorker, /DICTIONARY_CACHE\s*=\s*["']naib-aurora-dictionary-v3["']/);
   assert.match(serviceWorker, /PRESERVED_CACHES/);
   assert.match(serviceWorker, /url\.origin\s*!==\s*self\.location\.origin/);
   assert.match(serviceWorker, /\.\/resources\/aurora-dictionary\.js/);

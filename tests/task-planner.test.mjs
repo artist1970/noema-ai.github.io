@@ -13,9 +13,20 @@ test("research learning request coordinates verifier and mentor",()=>{
   assert.ok(plan.tasks.some(t=>t.specialistId==="mentor"));
 });
 
-test("creative drawing request prepares Moirai task",()=>{
+test("visual design request prepares Zelle task",()=>{
   const plan=buildTaskPlan({
     message:"Design an illustrated poster.",
+    route:{mode:{id:"creative"}},
+    researchDecision:{required:false},
+    context:{}
+  });
+  assert.ok(plan.tasks.some(t=>t.specialistId==="zelle"));
+  assert.ok(!plan.tasks.some(t=>t.specialistId==="moirai"));
+});
+
+test("music creation request prepares Moirai task",()=>{
+  const plan=buildTaskPlan({
+    message:"Write a melody and chord progression for a new song.",
     route:{mode:{id:"creative"}},
     researchDecision:{required:false},
     context:{}
