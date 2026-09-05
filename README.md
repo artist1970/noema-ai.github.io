@@ -4,14 +4,6 @@
 
 This repository is **not the canonical public NAIB identity** and it is **not a STOS authority plane**. It provides the governed runtime behind NAIB: memory and cloud services, specialist federation, research and evidence support, provider boundaries, orchestration, privacy controls, capability checks, and proposal mediation.
 
-The public NAIB experience remains separately represented by:
-
-- **Public identity/front:** `artist1970/NAIB.github.io`
-- **Protected runtime:** `artist1970/noema-ai.github.io`
-- **Private identity/governance CORE:** `artist1970/CORE/NAIBCore`
-- **Specialist-family router:** `STOSCore`
-- **Consequential authority:** the STOS trust spine
-
 ## Architectural Role
 
 The distinction between **NAIB** and **NOEMA** is intentional.
@@ -53,45 +45,12 @@ NOEMA owns or governs:
 
 **NAIB may ask NOEMA for a governed capability. NAIB may not become NOEMA.**
 
-## System Position
 
-```text
-Verve N Veda public ecosystem
-            |
-            v
-     NAIB.github.io
- canonical public Administrator
-            |
-            v
-   noema-ai.github.io
- protected NOEMA / NAIB runtime
-            |
-     +------+------+
-     |             |
-     v             v
-NAIB Internal   specialist /
-Cloud           research /
-                evidence services
-     |             |
-     +------+------+
-            |
-            v
-         STOSCore
- AI-family routing / coordination
-            |
-            v
-      STOS trust spine
-Buddy -> Klik -> Avouch
-        -> Piston / Viaduct -> xkyoot
-```
 
 The runtime may inspect, reason, organize, retrieve, compare, prepare, and propose within its allowed boundaries.
 
 It does **not** obtain execution authority merely because an AI, specialist, model, memory record, or internal service recommends an action.
 
-## ADIT / ADIT-STOS Integration
-
-Release `1.3.10-adit.1` adds a fail-closed integration boundary for ADIT and ADIT-STOS.
 
 The boundary is **proposal-only**.
 
@@ -119,13 +78,6 @@ It does **not** permit ADIT to:
 - bypass STOS policy
 - proxy the normal STOS Gateway directly
 
-No ADIT proposal is equivalent to authorization.
-
-## NAIB Internal Cloud
-
-The protected runtime includes the live browser-local **NAIB Internal Cloud**:
-
-`naib_internal_cloud_v1`
 
 Its current namespaces include areas for:
 
@@ -141,16 +93,6 @@ Its current namespaces include areas for:
 - projects
 - research
 - system records
-
-The cloud is an internal storage service, not an authority source.
-
-Memory, learning, cached evidence, and historical state must never be allowed to redefine permissions or silently grant execution rights.
-
-The historical compatibility chassis at:
-
-`internal/core/noema-core.html`
-
-remains preserved as compatibility/reference material and is not activated by the ADIT integration.
 
 ## Specialist Federation
 
@@ -226,37 +168,6 @@ Provider credentials belong behind approved secure server boundaries.
 The runtime is designed so that public surfaces can know safe provider status and normalized responses without embedding protected credentials in browser storage.
 
 ## Repository Areas
-
-Major repository areas include:
-
-```text
-adapters/        specialist and engine adapters
-admin/           protected administrative surfaces
-config/          public/runtime contracts and configuration
-conversation/    conversation handling
-core/            runtime coordination
-delegation/      bounded delegation logic
-directory/       resource and ecosystem discovery
-docs/            architecture and security documentation
-front/           public-boundary adapters
-identity/        identity and role definitions
-integrations/    sovereign integration boundaries
-memory/          governed memory services
-orchestration/   sequential planning and coordination
-permissions/     capability and permission logic
-providers/       model/provider adapters and boundaries
-research/        research and evidence systems
-resources/       resource coordination
-safety/          privacy and safety boundaries
-schemas/         data contracts
-search/          retrieval/search support
-specialists/     specialist federation
-storage/         internal cloud and storage fabric
-sync/            bounded synchronization services
-tests/           regression and boundary tests
-transparency/    audit/status surfaces
-voice/           interaction and voice support
-```
 
 ## Validation
 
