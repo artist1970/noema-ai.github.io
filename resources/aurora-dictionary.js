@@ -78,12 +78,22 @@ function normalizeSense(raw = {}) {
 }
 
 export function dictionaryEntrySenses(entry = {}) {
-  const collected = [];
-  const primary = normalizeSense(entry);
-  if (primary) collected.push(primary);
+  const explicit = [];
   for (const raw of Array.isArray(entry?.senses) ? entry.senses : []) {
     const sense = normalizeSense(raw);
-    if (sense) collected.push(sense);
+    if (sense) explicit.push(sense);
+  }
+
+  const primary = normalizeSense(entry);
+  const collected = [...explicit];
+
+  // A top-level definition is commonly a convenience copy of the first
+  // explicit sense. Count it only when it contributes a distinct meaning.
+  if (primary) {
+    const duplicateDefinition = explicit.some(sense =>
+      sense.definition.toLowerCase() === primary.definition.toLowerCase()
+    );
+    if (!duplicateDefinition) collected.unshift(primary);
   }
 
   const seen = new Set();
