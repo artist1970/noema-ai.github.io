@@ -1,0 +1,102 @@
+{
+  "schema": "naib-adit-stos-build-receipt",
+  "version": 1,
+  "release": "1.3.10-adit.1",
+  "source": {
+    "archive": "noema-ai.github.io-main (11).zip",
+    "archiveSha256": "ef580f61cea69bd1d354569dc1051957c276967284871143e6a319921a534a6f",
+    "baselineFileCount": 305,
+    "baselinePackageVersion": "1.3.0",
+    "baselineTestResult": {
+      "tests": 168,
+      "pass": 154,
+      "fail": 14
+    }
+  },
+  "result": {
+    "fileCountBeforeReceipts": 311,
+    "added": [
+      ".github/workflows/naib-adit-stos.yml",
+      "docs/ADIT_STOS_INTEGRATION.md",
+      "integrations/adit-stos/README.md",
+      "integrations/adit-stos/contract.json",
+      "integrations/adit-stos/naib-adit-boundary.js",
+      "tests/adit-stos-boundary.test.mjs"
+    ],
+    "modified": [
+      "VALIDATION.json",
+      "adapters/moirai-adapter.js",
+      "package.json",
+      "resources/aurora-dictionary.js",
+      "tests/aurora-dictionary-ui-contract.test.mjs",
+      "tests/identity.test.mjs",
+      "tests/orchestration-engine.test.mjs",
+      "tests/public-ui-contract.test.mjs",
+      "tests/release-metadata.test.mjs",
+      "tests/task-planner.test.mjs",
+      "tests/v1-release.test.mjs",
+      "tests/v11-release.test.mjs",
+      "tests/v12-release.test.mjs",
+      "tests/v13-release.test.mjs"
+    ],
+    "deleted": [],
+    "tests": {
+      "total": 180,
+      "pass": 180,
+      "fail": 0
+    }
+  },
+  "authority": {
+    "aditBoundary": "proposal-only",
+    "execute": false,
+    "mutate": false,
+    "admin": false,
+    "secretAccess": false,
+    "liveInternalCloudDirectWrite": false,
+    "direct9844Proxy": false,
+    "finalAuthority": "STOS trust spine"
+  },
+  "identity": {
+    "publicFront": "artist1970/NAIB.github.io",
+    "protectedRuntime": "artist1970/noema-ai.github.io",
+    "privateGovernanceCore": "artist1970/CORE/NAIBCore",
+    "specialistRouter": "STOSCore"
+  },
+  "preservedHashes": {
+    "internal/core/noema-core.html": {
+      "before": "d1451eba92008535d298c352e2c31e9bbcfd9c7a67f1a8a30c147f6872be06e3",
+      "after": "d1451eba92008535d298c352e2c31e9bbcfd9c7a67f1a8a30c147f6872be06e3",
+      "match": true
+    },
+    "storage/internal-cloud-schema.js": {
+      "before": "99507f8e4b31ee818205ab04149108551be25cb6c46406faba9f06fc04346b82",
+      "after": "99507f8e4b31ee818205ab04149108551be25cb6c46406faba9f06fc04346b82",
+      "match": true
+    },
+    "storage/internal-cloud.js": {
+      "before": "6c26e4ffb583c058404f00e54e721ab6d5a2b133ca9c45483610751ff13e3355",
+      "after": "6c26e4ffb583c058404f00e54e721ab6d5a2b133ca9c45483610751ff13e3355",
+      "match": true
+    },
+    "storage/internal-cloud-instance.js": {
+      "before": "39963c2c5cd36c5c51c4b7b81ae57466c333f7592d07b3068c4cc06f40b97cbf",
+      "after": "39963c2c5cd36c5c51c4b7b81ae57466c333f7592d07b3068c4cc06f40b97cbf",
+      "match": true
+    },
+    "front/naib-facade.js": {
+      "before": "62a4a14e4d9496463f8d50b2fd96d84a8d92157b42a07809e7d60206efe6b2ca",
+      "after": "62a4a14e4d9496463f8d50b2fd96d84a8d92157b42a07809e7d60206efe6b2ca",
+      "match": true
+    },
+    "config/naib-public-contract.js": {
+      "before": "074ac262f9eb309568b929033090f2b0f67feca3025d5c67b434f341ca2cb6a2",
+      "after": "074ac262f9eb309568b929033090f2b0f67feca3025d5c67b434f341ca2cb6a2",
+      "match": true
+    }
+  },
+  "verveNVeda": {
+    "modified": false,
+    "status": "READ_ONLY_FORENSIC_HOLD"
+  },
+  "status": "PASS_READY_FOR_MANUAL_UPLOAD"
+}
