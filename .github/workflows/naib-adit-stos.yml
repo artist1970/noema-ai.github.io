@@ -1,0 +1,27 @@
+name: NAIB ADIT-STOS Validation
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Full NAIB / Noema test suite
+        run: npm test
+      - name: ADIT-STOS boundary suite
+        run: npm run test:adit
+      - name: Syntax check integration boundary
+        run: node --check integrations/adit-stos/naib-adit-boundary.js
