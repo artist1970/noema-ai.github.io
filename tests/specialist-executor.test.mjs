@@ -77,6 +77,23 @@ test("Archaemenes produces academic handoff rather than fake execution",()=>{
   assert.equal(result.output.url,"https://artist1970.github.io/Archaemenes.github.io/");
 });
 
+test("Eiren accepts a governed child literacy handoff without execution",()=>{
+  const ex=new SpecialistExecutor({core});
+  const result=ex.execute(
+    {id:"early-literacy",specialistId:"eiren"},
+    {
+      message:"Read this story with me and help me talk about the new words",
+      route:{mode:{id:"learning"}},
+      context:{enrollment:{ageBand:"child-under-13"}}
+    }
+  );
+
+  assert.equal(result.status,"handoff");
+  assert.equal(result.output.executed,false);
+  assert.equal(result.output.specialistId,"eiren");
+  assert.equal(result.output.url,"https://artist1970.github.io/Eiren.github.io/");
+});
+
 test("Verifier local state can execute",()=>{
   const ex=new SpecialistExecutor({core});
   const result=ex.execute(
