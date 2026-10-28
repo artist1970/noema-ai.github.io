@@ -42,9 +42,14 @@ export function buildTaskPlan({
     ["learning","family"].includes(mode) ||
     has(q,/\b(learn|teach|study|lesson|curriculum|student|homework|practice|explain)\b/i);
 
+  const needsEarlyLiteracy =
+    has(q,/\b(read aloud|read-along|read along|story time|storybook|picture book|phonics|letter sounds?|sight words?|early literacy|beginning reading|learn to read|help me read|read this (?:book|story)|new words?|story discussion|rhyme|rhyming)\b/i);
+
   const needsAcademic =
-    ["learning","family"].includes(mode) ||
-    has(q,/\b(academic|academy|school|student|teacher|tutor|tutoring|lesson|curriculum|homework|study|course|subject|math|mathematics|science|history|social studies|language arts|english|reading|writing assignment|research paper|exam|test|quiz)\b/i);
+    !needsEarlyLiteracy && (
+      ["learning","family"].includes(mode) ||
+      has(q,/\b(academic|academy|school|student|teacher|tutor|tutoring|lesson|curriculum|homework|study|course|subject|math|mathematics|science|history|social studies|language arts|english|reading|writing assignment|research paper|exam|test|quiz)\b/i)
+    );
 
   const needsArchive =
     mode==="archive" ||
@@ -80,6 +85,16 @@ export function buildTaskPlan({
       "Adapt for learner and mentor",
       "mentor",
       "Use learning stage, interests, collaboration preferences and adopted mentor traits to shape presentation without changing factual standards.",
+      ["understand"]
+    ));
+  }
+
+  if(needsEarlyLiteracy) {
+    tasks.push(task(
+      "early-literacy",
+      "Prepare early-literacy mentor handoff",
+      "eiren",
+      "Prepare a bounded Eiren handoff for read-aloud guidance, phonics, beginning reading, vocabulary, rhyme, story discussion, or comprehension while preserving Academy mastery and guardian boundaries.",
       ["understand"]
     ));
   }
