@@ -33,3 +33,24 @@ test("music creation request prepares Moirai task",()=>{
   });
   assert.ok(plan.tasks.some(t=>t.specialistId==="moirai"));
 });
+
+test("Kindergarten read-along routes to Eiren without automatic Archaemenes handoff",()=>{
+  const plan=buildTaskPlan({
+    message:"Help me read this story and talk about the new words.",
+    route:{mode:{id:"learning"}},
+    researchDecision:{required:false},
+    context:{enrollment:{ageBand:"child-under-13",stage:"kindergarten"}}
+  });
+  assert.ok(plan.tasks.some(t=>t.id==="early-literacy" && t.specialistId==="eiren"));
+  assert.ok(!plan.tasks.some(t=>t.id==="academic" && t.specialistId==="archaemenes"));
+});
+
+test("general Kindergarten academic learning still routes to Archaemenes",()=>{
+  const plan=buildTaskPlan({
+    message:"Help me understand this science lesson.",
+    route:{mode:{id:"learning"}},
+    researchDecision:{required:false},
+    context:{enrollment:{ageBand:"child-under-13",stage:"kindergarten"}}
+  });
+  assert.ok(plan.tasks.some(t=>t.id==="academic" && t.specialistId==="archaemenes"));
+});
