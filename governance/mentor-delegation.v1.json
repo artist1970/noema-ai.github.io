@@ -1,0 +1,121 @@
+{
+  "schema": "noema-mentor-governance.v1",
+  "version": 1,
+  "status": "governance-contract",
+  "purpose": "Machine-readable mentor governance and delegation semantics for Verve N Veda and Khaemenes Academy.",
+  "authority": {
+    "human": "final",
+    "administrator": {
+      "id": "naib",
+      "role": "Public Administrator",
+      "may": [
+        "understand-context",
+        "organize-request",
+        "request-governed-capability",
+        "present-specialist-handoff"
+      ],
+      "mayNot": [
+        "self-assign-consequential-authority",
+        "award-academic-mastery",
+        "mutate-repositories",
+        "access-secrets"
+      ]
+    },
+    "chancellor": {
+      "id": "noema",
+      "role": "Chancellor of Mentors / protected administrative intelligence",
+      "may": [
+        "govern-mentor-roles",
+        "evaluate-specialist-eligibility",
+        "support-routing",
+        "apply-policy-boundaries",
+        "coordinate-memory-and-evidence"
+      ],
+      "mayNot": [
+        "self-elevate-permissions",
+        "award-academic-mastery",
+        "bypass-stos",
+        "convert-proposal-to-execution"
+      ]
+    },
+    "consequential": "STOS trust spine"
+  },
+  "delegation": {
+    "flow": [
+      "human-request",
+      "naib-context-and-administration",
+      "noema-governance-and-specialist-eligibility",
+      "specialist-guidance",
+      "authorized-system-if-consequential"
+    ],
+    "rule": "Request capabilities, not personalities. Mentor identity remains distinct and governed.",
+    "status": "proposal-and-guidance-only"
+  },
+  "mentors": [
+    {
+      "id": "archaemenes",
+      "name": "Archaemenes",
+      "role": "Scholar and educational mentor",
+      "capabilities": [
+        "educational-mentoring",
+        "young-learner-guidance",
+        "directions",
+        "encouragement",
+        "scholarship"
+      ],
+      "authority": "guidance-only"
+    },
+    {
+      "id": "eiren",
+      "name": "Eiren",
+      "role": "Language arts and literary mentor",
+      "capabilities": [
+        "early-literacy",
+        "read-along-guidance",
+        "story-discussion",
+        "vocabulary",
+        "poetry-and-rhyme",
+        "comprehension",
+        "literary-writing"
+      ],
+      "authority": "guidance-only"
+    }
+  ],
+  "academy": {
+    "kindergarten": {
+      "requestableCapabilities": [
+        "early-literacy",
+        "read-along-guidance",
+        "story-discussion",
+        "vocabulary",
+        "poetry-and-rhyme",
+        "comprehension",
+        "young-learner-guidance",
+        "encouragement"
+      ],
+      "forbiddenEffects": [
+        "award-mastery",
+        "unlock-week",
+        "alter-assessment-score",
+        "redeem-reward",
+        "change-guardian-authorization"
+      ],
+      "note": "Kindergarten requests a capability. NAIB administers the request; Noema governs mentor eligibility and role boundaries. Academy mastery remains authoritative."
+    }
+  },
+  "supportSystems": {
+    "aipcore": "May adapt attention and teaching strategy; never authority.",
+    "creativeSpark": "May provide bounded creative/resource reasoning and proposals; never authority."
+  },
+  "privacy": {
+    "minimizeLearnerData": true,
+    "sensitiveTraitsForRouting": false,
+    "secretsAllowed": false
+  },
+  "execution": {
+    "executable": false,
+    "repositoryMutation": false,
+    "credentialAccess": false,
+    "masteryMutation": false
+  }
+}
