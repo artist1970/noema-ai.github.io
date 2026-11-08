@@ -1,6 +1,6 @@
 {
   "schema": "naib-mentor-registry",
-  "version": 1,
+  "version": 2,
   "administrator": {
     "id": "naib",
     "name": "NAIB",
@@ -84,6 +84,42 @@
       "publicFront": "https://artist1970.github.io/Hope.github.io/",
       "adapter": "../adapters/hope-adapter.js",
       "status": "existing-adapter-review-pending"
+    },
+    {
+      "id": "pierre",
+      "name": "Pierre",
+      "type": "mentor",
+      "publicFront": "https://artist1970.github.io/Pierre.gihub.io/",
+      "adapter": null,
+      "status": "registered-pending-adapter",
+      "sourceNote": "Linguistics mentor; repo spelling gihub.io is literal."
+    },
+    {
+      "id": "auren",
+      "name": "Auren",
+      "type": "mentor",
+      "publicFront": "https://artist1970.github.io/Auren.github.io/",
+      "adapter": null,
+      "status": "registered-pending-adapter",
+      "sourceNote": "Public archival prototype; no private archive access."
+    },
+    {
+      "id": "codalis",
+      "name": "CODalis",
+      "type": "mentor",
+      "publicFront": "https://artist1970.github.io/MAVRIC.github.io/",
+      "adapter": null,
+      "status": "registered-pending-adapter",
+      "sourceNote": "Shared public doorway with MAVRIC, but independent CORE identity."
+    },
+    {
+      "id": "klasaipeer",
+      "name": "KlasaiPeer",
+      "type": "learner-companion",
+      "publicFront": "https://artist1970.github.io/Klasaipeer.github.io/",
+      "adapter": null,
+      "status": "prototype-no-protected-adoption",
+      "sourceNote": "No authenticated pairing or durable learner data."
     }
   ],
   "policy": {
@@ -92,6 +128,9 @@
     "specialistsMayNotElevatePermissions": true,
     "specialistsMayNotWriteLongTermMemoryDirectly": true,
     "childSafetyMayNotBeWeakened": true,
-    "publicFrontsOnly": true
+    "publicFrontsOnly": true,
+    "registryIsNotActivationAuthority": true,
+    "adapterRequiredForDelegatedHandoff": true,
+    "publicFrontDeploymentMustBeVerified": true
   }
 }
