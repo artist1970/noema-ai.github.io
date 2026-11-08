@@ -1,6 +1,6 @@
 {
   "schema": "naib-mentor-registry",
-  "version": 2,
+  "version": 3,
   "administrator": {
     "id": "naib",
     "name": "NAIB",
@@ -25,7 +25,7 @@
       "id": "arshif",
       "name": "Arshif",
       "type": "mentor",
-      "publicFront": "https://artist1970.github.io/Arshif.github.io/",
+      "publicFront": "https://vervenveda.com/Arshif.github.io/",
       "adapter": null,
       "status": "registered-pending-adapter"
     },
@@ -57,7 +57,7 @@
       "id": "aurora",
       "name": "Aurora",
       "type": "mentor",
-      "publicFront": "https://artist1970.github.io/AuroraCore.github.io/",
+      "publicFront": "https://artist1970.github.io/Aurora.github.io/",
       "adapter": null,
       "status": "registered-pending-adapter"
     },
