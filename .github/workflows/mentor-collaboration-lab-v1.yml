@@ -1,0 +1,30 @@
+name: NOEMA Fictional Mentor Collaboration Lab
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'mentor-collaboration/**'
+      - 'tests/mentor-collaboration-lab-v1.test.mjs'
+      - '.github/workflows/mentor-collaboration-lab-v1.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  synthetic-offline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate source files
+        run: |
+          node --check mentor-collaboration/learning-capsule-review-v1.mjs
+          node --check mentor-collaboration/run-fictional-lab.mjs
+      - name: End-to-end fictional regression
+        run: node --test tests/mentor-collaboration-lab-v1.test.mjs
+      - name: Run fictional demonstration with no printed learner details
+        run: node mentor-collaboration/run-fictional-lab.mjs > /dev/null

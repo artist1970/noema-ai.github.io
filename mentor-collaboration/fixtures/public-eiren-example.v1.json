@@ -1,0 +1,12 @@
+{
+  "schema": "vnv-fictional-public-source-fixture-v1",
+  "fixtureOnly": true,
+  "sourceRepository": "artist1970/Eiren.github.io",
+  "sourcePath": "knowledge/public-qa.v1.json",
+  "sourceGitBlobSha": "c67407eb265725379e97f07c529adae86321344f",
+  "recordId": "eiren-public-001",
+  "topic": "poetry",
+  "question": "What is a good first step for poetry?",
+  "answer": "Begin with one concrete image: a window at dusk, rain on a sleeve, a leaf floating downstream. Write two or three lines about what you can actually see or hear. Then read them aloud and keep the words that carry the feeling without forcing a rhyme.",
+  "note": "One already-published source record used only in a fictional offline test, not a new approval."
+}
