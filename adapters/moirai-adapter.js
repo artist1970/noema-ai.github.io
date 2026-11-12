@@ -54,6 +54,9 @@ function inferMode(text="", requested="") {
   if(/\b(practice|rehearse|rehearsal|warmup|warm-up|technique)\b/.test(q)) return "practice";
   if(/\b(arrange|arrangement|instrumentation|orchestration)\b/.test(q)) return "arrange";
   if(/\b(songwrite|songwriting|lyrics|lyric|verse|chorus|bridge|hook)\b/.test(q)) return "songwrite";
+  // A request to create melodic or harmonic material is composition, even
+  // when the caller selects a broad "creative" presentation mode.
+  if(/\b(write|create|make|develop|build|craft)\b.{0,100}\b(melody|chord|chords|progression|motif|tune)\b/.test(q)) return "compose";
   if(/\b(compose|composition|piece|score|motif|theme)\b/.test(q)) return "compose";
   if(/\b(research|history|composer|genre|source|reference)\b/.test(q)) return "research";
   return "learn";

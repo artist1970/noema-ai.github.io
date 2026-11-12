@@ -114,3 +114,21 @@ test("Verifier local state can execute",()=>{
   assert.equal(result.status,"complete");
   assert.equal(result.output.verifiedLabelAllowed,false);
 });
+
+
+test("Moirai's broad creative mode distinguishes composing from learning",()=>{
+  const ex=new SpecialistExecutor({core});
+  const composition=ex.execute(
+    {id:"music",specialistId:"moirai"},
+    {message:"Help me create a melody and chord progression",route:{mode:{id:"creative"}},context:{}}
+  );
+  assert.equal(composition.status,"handoff");
+  assert.equal(composition.output.brief.mode,"compose");
+  assert.equal(composition.output.executed,false);
+  const lesson=ex.execute(
+    {id:"music",specialistId:"moirai"},
+    {message:"Teach me music theory",route:{mode:{id:"learning"}},context:{}}
+  );
+  assert.equal(lesson.status,"handoff");
+  assert.equal(lesson.output.brief.mode,"learn");
+});
