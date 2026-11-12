@@ -151,6 +151,52 @@ test("unregistered, privileged, high-stakes or arbitrary free-text routes are bl
  assert.equal((await pilot.propose(extra)).status,"withheld");
  assert.equal((await pilot.propose({...props(),sourceMentorId:"noema"})).status,"withheld");
 });
+test("revocation while consent verification is pending cannot revive the request",async()=>{
+ let completeConsent;
+ const pilot=getPilot({verifyConsent:()=>new Promise(resolve=>{completeConsent=resolve;})});
+ const p=await pilot.propose(props());
+ const waiting=pilot.approve({principal:"learner-1234",requestId:p.requestId,
+  consentEvidence:{type:"explicit-owner-confirmation"},
+  guardianEvidence:{type:"verified-guardian-approval"}});
+ assert.equal(typeof completeConsent,"function");
+ assert.equal((await pilot.revoke({principal:"learner-1234",requestId:p.requestId})).status,"revoked");
+ completeConsent(true);
+ assert.equal((await waiting).status,"withheld");
+ assert.equal(pilot.pendingCount,0);
+ assert.equal((await pilot.release({principal:"learner-1234",requestId:p.requestId})).status,"withheld");
+});
+test("revocation during release authorization cancels dispatch even after a successful host check",async()=>{
+ let completeRelease;
+ const pilot=getPilot({authorize:({operation})=>operation==="mentor.handoff.release"
+  ?new Promise(resolve=>{completeRelease=resolve;})
+  :{granted:true,authenticated:true,audience:"student"}});
+ const p=await pilot.propose(props());
+ await pilot.approve({principal:"learner-1234",requestId:p.requestId,
+  consentEvidence:{type:"explicit-owner-confirmation"},
+  guardianEvidence:{type:"verified-guardian-approval"}});
+ const waiting=pilot.release({principal:"learner-1234",requestId:p.requestId});
+ assert.equal(typeof completeRelease,"function");
+ assert.equal((await pilot.revoke({principal:"learner-1234",requestId:p.requestId})).status,"revoked");
+ completeRelease({granted:true,authenticated:true,audience:"student"});
+ assert.equal((await waiting).status,"withheld");
+ assert.equal(pilot.pendingCount,0);
+});
+test("concurrent release attempts cannot each produce an objective envelope",async()=>{
+ let completeRelease;
+ const pilot=getPilot({authorize:({operation})=>operation==="mentor.handoff.release"
+  ?new Promise(resolve=>{completeRelease=resolve;})
+  :{granted:true,authenticated:true,audience:"student"}});
+ const p=await pilot.propose(props());
+ await pilot.approve({principal:"learner-1234",requestId:p.requestId,
+  consentEvidence:{type:"explicit-owner-confirmation"},
+  guardianEvidence:{type:"verified-guardian-approval"}});
+ const first=pilot.release({principal:"learner-1234",requestId:p.requestId});
+ const second=await pilot.release({principal:"learner-1234",requestId:p.requestId});
+ assert.equal(second.status,"withheld");
+ completeRelease({granted:true,authenticated:true,audience:"student"});
+ assert.equal((await first).status,"review-envelope-ready");
+ assert.equal(pilot.pendingCount,0);
+});
 test("separate trusted callbacks are mandatory and source cannot import storage or network",()=>{
  assert.throws(()=>new ConsentedMentorHandoffPilot({index,governance}),/trusted callbacks/);
  const code=readFileSync(new URL("../delegation/consented-mentor-handoff-v1.mjs",import.meta.url),"utf8");

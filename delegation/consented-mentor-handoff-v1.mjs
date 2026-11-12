@@ -121,6 +121,9 @@ export class ConsentedMentorHandoffPilot {
    this.#pending.delete(requestId);
    return fail("host-consent-verification-error");
   }
+  // Revocation may happen while a host verifier is awaiting user/guardian.
+  // Its result must not revive a request already deleted by its owner.
+  if(this.#pending.get(requestId)!==request)return fail("request-revoked");
   if(request.expiresAt<=this.clock()){
    this.#pending.delete(requestId);return fail("expired-consent");
   }
@@ -141,6 +144,7 @@ export class ConsentedMentorHandoffPilot {
   });}catch{
    this.#pending.delete(requestId);return fail("host-authorization-denied");
   }
+  if(this.#pending.get(requestId)!==request)return fail("request-revoked");
   if(!approvalShape(authorization,request.audience)||request.expiresAt<=this.clock()){
    this.#pending.delete(requestId);return fail("host-authorization-or-expiry");
   }
