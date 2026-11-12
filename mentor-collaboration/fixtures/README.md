@@ -1,0 +1,1 @@
+Pin of the complete, fictional Archaemenes-to-Zelle adult envelope. Creative Spark's private review-side regression uses the same public-safe shape. No actual consent or authorization data is included; the source envelope is produced by NOEMA's local synthetic-callback pilot. A matching fixture verifies contract shape only, not a live cross-repository service.

@@ -56,6 +56,13 @@ test("fictional end-to-end adult + student + revoked demonstrations succeed",asy
  assert.equal(report.revocation.status,"revoked");
  assert.equal(report.revocation.replayStatus,"withheld");
 });
+test("NOEMA production-shaped synthetic envelope exactly matches the pinned receiver fixture",async()=>{
+ const actual=await envelope();
+ const pinned=read("../mentor-collaboration/fixtures/noema-zelle-adult-envelope.v1.json");
+ assert.deepEqual(actual,pinned);
+ assert.equal(Object.hasOwn(pinned,"sessionId"),false);
+ assert.equal(Object.hasOwn(pinned,"consentEvidence"),false);
+});
 test("adult capsule reuses public Eiren source attribution; not a generated mentor reply",async()=>{
  const result=assemble(await envelope(),[packet()]);
  assert.equal(result.status,"fictional-capsule-preview");
