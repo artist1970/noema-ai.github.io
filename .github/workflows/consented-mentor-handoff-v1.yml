@@ -1,0 +1,25 @@
+name: NOEMA NAIB Consented Mentor Handoff Pilot
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'delegation/consented-mentor-handoff-v1.mjs'
+      - 'tests/consented-mentor-handoff-v1.test.mjs'
+      - 'docs/CONSENTED_MENTOR_HANDOFF_V1.md'
+      - '.github/workflows/consented-mentor-handoff-v1.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  review-only:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Check bounded handoff source
+        run: node --check delegation/consented-mentor-handoff-v1.mjs
+      - name: Exercise explicit consent, guardian, expiry, and revocation
+        run: node --test tests/consented-mentor-handoff-v1.test.mjs
