@@ -1,0 +1,91 @@
+{
+  "schema": "vnv-public-mentor-roster-alignment-v1",
+  "version": 1,
+  "scope": "public-discovery-reference-only",
+  "source": {
+    "repository": "artist1970/creative-spark.github.io",
+    "path": "data/mentor-laboratory-roster.v1.json",
+    "blobSha": "03f3ad07d3288e5672a5b5f4f4e3744e212b44df",
+    "asOf": "2026-11-09"
+  },
+  "mentors": [
+    {
+      "id": "archaemenes",
+      "url": "https://artist1970.github.io/Archaemenes.github.io/",
+      "trust": "public-discovery-only",
+      "sourceRepo": "artist1970/Archaemenes.github.io"
+    },
+    {
+      "id": "eiren",
+      "url": "https://artist1970.github.io/Eiren.github.io/",
+      "trust": "public-discovery-only",
+      "sourceRepo": "artist1970/Eiren.github.io"
+    },
+    {
+      "id": "zelle",
+      "url": "https://artist1970.github.io/Zelle.github.io/",
+      "trust": "public-discovery-only",
+      "sourceRepo": "artist1970/Zelle.github.io"
+    },
+    {
+      "id": "moirai",
+      "url": "https://artist1970.github.io/Moirai.github.io/",
+      "trust": "public-discovery-only",
+      "sourceRepo": "artist1970/Moirai.github.io"
+    },
+    {
+      "id": "hope",
+      "url": "https://artist1970.github.io/Hope.github.io/",
+      "trust": "public-discovery-only",
+      "sourceRepo": "artist1970/Hope.github.io"
+    },
+    {
+      "id": "aurora",
+      "url": "https://artist1970.github.io/Aurora.github.io/",
+      "trust": "public-discovery-only",
+      "sourceRepo": "artist1970/Aurora.github.io"
+    },
+    {
+      "id": "pierre",
+      "url": "https://artist1970.github.io/Pierre.gihub.io/",
+      "trust": "public-discovery-only",
+      "sourceRepo": "artist1970/Pierre.gihub.io"
+    },
+    {
+      "id": "auren",
+      "url": "https://artist1970.github.io/Auren.github.io/",
+      "trust": "public-discovery-only",
+      "sourceRepo": "artist1970/Auren.github.io"
+    },
+    {
+      "id": "arshif",
+      "url": "https://vervenveda.com/Arshif.github.io/",
+      "trust": "public-discovery-only",
+      "sourceRepo": "vervenveda/Arshif.github.io"
+    },
+    {
+      "id": "araneae",
+      "url": "https://artist1970.github.io/Araneae.github.io/",
+      "trust": "public-discovery-only",
+      "sourceRepo": "artist1970/Araneae.github.io"
+    },
+    {
+      "id": "mavric",
+      "url": "https://artist1970.github.io/MAVRIC.github.io/",
+      "trust": "public-discovery-only",
+      "sourceRepo": "artist1970/MAVRIC.github.io"
+    },
+    {
+      "id": "codalis",
+      "url": "https://artist1970.github.io/MAVRIC.github.io/",
+      "trust": "public-discovery-only",
+      "sourceRepo": "artist1970/MAVRIC.github.io"
+    },
+    {
+      "id": "klasaipeer",
+      "url": "https://artist1970.github.io/Klasaipeer.github.io/",
+      "trust": "public-discovery-only",
+      "sourceRepo": "artist1970/Klasaipeer.github.io"
+    }
+  ]
+}

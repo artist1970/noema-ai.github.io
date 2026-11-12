@@ -1,0 +1,46 @@
+{
+  "schema": "noema-naib-governance-discovery-v1",
+  "version": 1,
+  "authority": "identity-and-routing-reference-only",
+  "source": {
+    "repository": "vervenveda/vervenveda.github.io",
+    "path": "index.html",
+    "siteUrl": "https://vervenveda.com/",
+    "note": "Public NAIB identity and navigation pillars; does not define or grant private governance permissions."
+  },
+  "chancellor": {
+    "id": "noema",
+    "title": "Chancellor of the AI mentors",
+    "responsibility": "governs the mentor system",
+    "publicGateway": "https://artist1970.github.io/noema-ai.github.io/",
+    "publicGovernanceOperations": false,
+    "routableSpecialist": false
+  },
+  "administrator": {
+    "id": "naib",
+    "title": "Second-in-command and AI mentor Administrator",
+    "reportsTo": "noema",
+    "publicGateway": "https://artist1970.github.io/NAIB.github.io/",
+    "duties": [
+      "understand",
+      "organize",
+      "study",
+      "preserve"
+    ],
+    "publicAdministrativeOperations": false,
+    "routableSpecialist": false
+  },
+  "specialists": {
+    "relationship": "operate under NOEMA's governance, coordinated by NAIB",
+    "handoffIsExecution": false,
+    "publicRegistryGrantsAuthorization": false,
+    "mayAccessPrivateLearnerData": false
+  },
+  "policy": {
+    "noCOREExport": true,
+    "noSTOSCommissioning": true,
+    "noImplicitStudentContext": true,
+    "noSilentLongTermMemory": true,
+    "independentServerAuthorizationRequired": true
+  }
+}
