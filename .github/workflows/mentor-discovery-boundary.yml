@@ -1,0 +1,29 @@
+name: NOEMA NAIB Mentor Discovery Boundary
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'config/mentor-registry.json'
+      - 'config/creative-spark-roster-alignment.v1.json'
+      - 'config/noema-naib-governance-discovery.v1.json'
+      - 'delegation/mentor-discovery-v1.mjs'
+      - 'tests/mentor-discovery-v1.test.mjs'
+      - '.github/workflows/mentor-discovery-boundary.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-only-router:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Parse source-only route module
+        run: node --check delegation/mentor-discovery-v1.mjs
+      - name: Verify roster, hierarchy and routing safety
+        run: node --test tests/mentor-discovery-v1.test.mjs
