@@ -1,0 +1,123 @@
+{
+  "schema": "noema-approved-mentor-knowledge-sources-v1",
+  "version": 1,
+  "scope": "offline-review-only-source-metadata",
+  "source": {
+    "repository": "artist1970/creative-spark.github.io",
+    "path": "knowledge/mentor-federation/public-qa-manifest.v1.json",
+    "gitBlobSha": "b2f0c048fde0285d37a2faca207cba931a35115e",
+    "publicationDate": "2026-11-12"
+  },
+  "totals": {
+    "publishedSources": 9,
+    "publishedRecords": 1354
+  },
+  "policy": {
+    "noPrivateCore": true,
+    "noUnapprovedDrafts": true,
+    "noUserTranscriptUploads": true,
+    "requiresIndependentRuntimeAuthorization": true,
+    "sourceApprovalIsNotTruthVerification": true
+  },
+  "members": [
+    {
+      "mentorId": "eiren",
+      "name": "Eiren",
+      "sourceUrl": "https://artist1970.github.io/Eiren.github.io/knowledge/public-qa.v1.json",
+      "sourceRepository": "artist1970/Eiren.github.io",
+      "sourcePath": "knowledge/public-qa.v1.json",
+      "sourceSchema": "vnv-mentor-public-qa-v1",
+      "statusField": "reviewStatus",
+      "approvedValue": "approved",
+      "recordCount": 60
+    },
+    {
+      "mentorId": "pierre",
+      "name": "Pierre",
+      "sourceUrl": "https://artist1970.github.io/Pierre.gihub.io/knowledge/public-qa.v1.json",
+      "sourceRepository": "artist1970/Pierre.gihub.io",
+      "sourcePath": "knowledge/public-qa.v1.json",
+      "sourceSchema": "pierre-public-knowledge-v1",
+      "statusField": "status",
+      "approvedValue": "approved-public-seed",
+      "recordCount": 527
+    },
+    {
+      "mentorId": "archaemenes",
+      "name": "Archaemenes",
+      "sourceUrl": "https://artist1970.github.io/Archaemenes.github.io/knowledge/question-records.json",
+      "sourceRepository": "artist1970/Archaemenes.github.io",
+      "sourcePath": "knowledge/question-records.json",
+      "sourceSchema": "archaemenes-question-collection-v1",
+      "statusField": "status",
+      "approvedValue": "approved",
+      "recordCount": 140
+    },
+    {
+      "mentorId": "zelle",
+      "name": "Zelle",
+      "sourceUrl": "https://artist1970.github.io/Zelle.github.io/knowledge/question-records.json",
+      "sourceRepository": "artist1970/Zelle.github.io",
+      "sourcePath": "knowledge/question-records.json",
+      "sourceSchema": "zelle-question-collection-v1",
+      "statusField": "status",
+      "approvedValue": "approved",
+      "recordCount": 500
+    },
+    {
+      "mentorId": "moirai",
+      "name": "Moirai",
+      "sourceUrl": "https://artist1970.github.io/Moirai.github.io/knowledge/question-records.v1.json",
+      "sourceRepository": "artist1970/Moirai.github.io",
+      "sourcePath": "knowledge/question-records.v1.json",
+      "sourceSchema": "moirai-public-qa-v1",
+      "statusField": "status",
+      "approvedValue": "approved",
+      "recordCount": 20
+    },
+    {
+      "mentorId": "aurora",
+      "name": "Aurora",
+      "sourceUrl": "https://artist1970.github.io/Aurora.github.io/knowledge/question-records.v1.json",
+      "sourceRepository": "artist1970/Aurora.github.io",
+      "sourcePath": "knowledge/question-records.v1.json",
+      "sourceSchema": "aurora-public-qa-v1",
+      "statusField": "status",
+      "approvedValue": "approved",
+      "recordCount": 18
+    },
+    {
+      "mentorId": "hope",
+      "name": "Hope",
+      "sourceUrl": "https://artist1970.github.io/Hope.github.io/knowledge/question-records.v1.json",
+      "sourceRepository": "artist1970/Hope.github.io",
+      "sourcePath": "knowledge/question-records.v1.json",
+      "sourceSchema": "hope-public-qa-v1",
+      "statusField": "status",
+      "approvedValue": "approved",
+      "recordCount": 20
+    },
+    {
+      "mentorId": "naib",
+      "name": "NAIB",
+      "sourceUrl": "https://artist1970.github.io/NAIB.github.io/knowledge/public-guidance.v1.json",
+      "sourceRepository": "artist1970/NAIB.github.io",
+      "sourcePath": "knowledge/public-guidance.v1.json",
+      "sourceSchema": "naib-public-guidance-v1",
+      "statusField": "status",
+      "approvedValue": "approved-public",
+      "recordCount": 18
+    },
+    {
+      "mentorId": "auren",
+      "name": "Auren",
+      "sourceUrl": "https://artist1970.github.io/Auren.github.io/knowledge/public-qa.v1.json",
+      "sourceRepository": "artist1970/Auren.github.io",
+      "sourcePath": "knowledge/public-qa.v1.json",
+      "sourceSchema": "auren-public-knowledge-v1",
+      "statusField": "status",
+      "approvedValue": "approved-public-seed",
+      "recordCount": 51
+    }
+  ]
+}

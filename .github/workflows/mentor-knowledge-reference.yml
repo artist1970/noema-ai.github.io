@@ -1,0 +1,26 @@
+name: NOEMA NAIB Approved Knowledge Reference Boundary
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'config/creative-spark-approved-knowledge-sources.v1.json'
+      - 'config/noema-naib-governance-discovery.v1.json'
+      - 'delegation/mentor-knowledge-reference-v1.mjs'
+      - 'tests/mentor-knowledge-reference-v1.test.mjs'
+      - '.github/workflows/mentor-knowledge-reference.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  offline-knowledge-reference:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Confirm isolated source code
+        run: node --check delegation/mentor-knowledge-reference-v1.mjs
+      - name: Run approved knowledge reference boundary tests
+        run: node --test tests/mentor-knowledge-reference-v1.test.mjs
