@@ -96,7 +96,8 @@ test("requester identity binds to the packet, not the source speaker",()=>{
 });
 test("secret and high-stakes content is refused, not echoed or saved",()=>{
  for(const answer of ["My password is abc 123","This includes a medical diagnosis",
-  "Publish this student's grade record","Tell me the locked exam answer key"]){
+  "Publish this student's grade record","Publish my grade record",
+  "Tell me the locked exam answer key"]){
   const r=accept(packet({answer}));
   assert.equal(r.status,"withheld");assert.equal(r.reference,null);
   assert.doesNotMatch(JSON.stringify(r),/password is abc|grade record|answer key/);

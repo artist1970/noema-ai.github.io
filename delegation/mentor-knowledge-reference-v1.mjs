@@ -15,7 +15,7 @@ const KEYS=[
  "requestMentorId","schema","sourceMentorId","sourceName","sourcePath",
  "sourceRepository","sourceUrl","studentDataUsed","topic","transcriptStored","version"
 ].sort().join("|");
-const FORBIDDEN=/\b(?:password|passcode|secret|api[\s-]?key|private[\s-]?key|access[\s-]?token|bearer[\s-]?token|student[\s-]?record|student[\s-]?id|learner[\s-]?record|medical[\s-]?record|diagnos\w*|prescri\w*|medical[\s-]?advice|suicid\w*|self[- ]harm|emergency|crisis|legal[\s-]?advice|benefits[\s-]?eligibility|answer[\s-]?key|locked[\s-]?(?:exam|test)|graded[\s-]?assessment|private[\s-]?archive)\b/i;
+const FORBIDDEN=/\b(?:password|passcode|secret|api[\s-]?key|private[\s-]?key|access[\s-]?token|bearer[\s-]?token|student[\s-]?record|student[\s-]?id|student(?:['’]s)?\s+(?:\w+\s+){0,3}(?:record|grade|transcript)|grade[\s-]?record|academic[\s-]?transcript|learner[\s-]?record|medical[\s-]?record|diagnos\w*|prescri\w*|medical[\s-]?advice|suicid\w*|self[- ]harm|emergency|crisis|legal[\s-]?advice|benefits[\s-]?eligibility|answer[\s-]?key|locked[\s-]?(?:exam|test)|graded[\s-]?assessment|private[\s-]?archive)\b/i;
 const CLEAN=/^[\p{L}\p{N}\p{P}\p{Zs}\r\n\t]+$/u;
 const OWN=(x,key)=>Object.prototype.hasOwnProperty.call(x,key);
 function blocked(reason){return Object.freeze({status:"withheld",reason,reference:null,executionAuthority:false});}
